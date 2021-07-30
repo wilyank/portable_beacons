@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+    	"portable_beacons:beacon_backpack_0",
+    	"portable_beacons:beacon_backpack_1",
+    	"portable_beacons:beacon_backpack_2",
+    	"portable_beacons:beacon_backpack_3",
+    	"portable_beacons:beacon_backpack_4"]
+}

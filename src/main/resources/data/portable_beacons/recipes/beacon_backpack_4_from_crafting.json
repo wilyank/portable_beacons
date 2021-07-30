@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"OOO",
+		"OXO",
+		"OOO"
+	],
+	"key": {
+		"O":{
+			"item":"minecraft:netherite_block"
+		},
+		"X": {
+			"item":"portable_beacons:beacon_backpack_3"
+		}
+	},
+	"result": {
+		"item":"portable_beacons:beacon_backpack_4"
+	}
+}
