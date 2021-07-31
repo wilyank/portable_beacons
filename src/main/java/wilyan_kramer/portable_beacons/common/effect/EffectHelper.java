@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.annotation.Nullable;
+
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 
@@ -28,6 +30,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.Curios;
+import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import wilyan_kramer.portable_beacons.common.config.Config;
 import wilyan_kramer.portable_beacons.common.item.BeaconBackpackItem;
 
@@ -130,7 +133,7 @@ public class EffectHelper {
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public static void addPotionTooltip(ItemStack stack, List<ITextComponent> textList, float flag, String slotId) {
+	public static void addPotionTooltip(ItemStack stack, List<ITextComponent> textList, float flag, @Nullable String slotId) {
 		// This is a modified version of the vanilla function PotionUtils.addPotionTooltip()
 		List<EffectInstance> list = getAllEffects(stack);
 		List<Pair<Attribute, AttributeModifier>> list1 = Lists.newArrayList();
@@ -159,8 +162,12 @@ public class EffectHelper {
 
 		if (!list1.isEmpty()) {
 			textList.add(StringTextComponent.EMPTY);
-			textList.add((new TranslationTextComponent(Curios.MODID + ".modifiers." + slotId)).withStyle(TextFormatting.GOLD));
-
+			if (slotId == "hit") {
+				textList.add((new TranslationTextComponent("item." + PortableBeaconsMod.MODID + ".tooltip.on_hit")).withStyle(TextFormatting.GOLD));
+			}
+			else {
+				textList.add((new TranslationTextComponent(Curios.MODID + ".modifiers." + slotId)).withStyle(TextFormatting.GOLD));
+			}
 			for(Pair<Attribute, AttributeModifier> pair : list1) {
 				AttributeModifier attributemodifier2 = pair.getSecond();
 				double d0 = attributemodifier2.getAmount();

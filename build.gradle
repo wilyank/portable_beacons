@@ -13,7 +13,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '0.2'
-group = 'com.wilyan_kramer.portable_beacons' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'wilyan_kramer.portable_beacons' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'portable_beacons'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.

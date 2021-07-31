@@ -1,0 +1,20 @@
+{
+	"type":"crafting_shaped",
+	"pattern":
+	[
+		" S ",
+		" L ",
+		" L "
+	],
+	"key":{
+		"S": {
+			"item":"minecraft:sponge"
+		},
+		"L": {
+			"tag":"minecraft:logs"
+		}
+	},
+	"result": {
+		"item":"portable_beacons:bonk_stick"
+	}
+}

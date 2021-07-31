@@ -22,4 +22,5 @@ public class ItemList {
 	public static Item beacon_backpack_3;
 	public static Item beacon_backpack_4;
 	public static Item glowberries;
+	public static Item bonk_stick;
 }
