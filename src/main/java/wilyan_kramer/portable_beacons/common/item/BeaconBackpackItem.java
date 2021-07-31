@@ -80,12 +80,12 @@ public class BeaconBackpackItem extends Item implements ICurioItem {
 
 	@Override
 	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-		if (!livingEntity.level.isClientSide && (livingEntity.tickCount % 20) == 0) {
+		if (!livingEntity.level.isClientSide && (livingEntity.tickCount % 200) == 0) {
 			if (stack.hasTag()) {
 				double beaconRange = this.getRange();
-				for (EffectInstance effInst : PotionUtils.getMobEffects(stack)) {
+				for (EffectInstance effInst : EffectHelper.setProperties(PotionUtils.getMobEffects(stack))) {
 					if (Config.COMMON.beaconSelf.get()) {
-						livingEntity.addEffect(new EffectInstance(effInst.getEffect(), 300, effInst.getAmplifier(), true, true, true));
+						livingEntity.addEffect(effInst);
 					}
 					if (Config.COMMON.beaconOthers.get()) {
 						for (PlayerEntity player : livingEntity.level.getNearbyPlayers(new EntityPredicate(), livingEntity, 
@@ -96,7 +96,7 @@ public class BeaconBackpackItem extends Item implements ICurioItem {
 										livingEntity.getX() + beaconRange, 
 										livingEntity.getY() + beaconRange, 
 										livingEntity.getZ() + beaconRange))) {
-							player.addEffect(new EffectInstance(effInst.getEffect(), 300, effInst.getAmplifier(), true, true, true));
+							player.addEffect(effInst);
 						}
 					}
 				}
