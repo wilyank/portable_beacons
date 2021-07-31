@@ -1,12 +1,11 @@
-package com.wilyan_kramer.portable_beacons;
-
-import com.wilyan_kramer.portable_beacons.common.item.ItemList;
+package wilyan_kramer.portable_beacons;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import wilyan_kramer.portable_beacons.common.item.ItemList;
 
 public class EventListeners {
 

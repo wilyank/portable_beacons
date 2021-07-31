@@ -1,4 +1,4 @@
-package com.wilyan_kramer.portable_beacons.common.item;
+package wilyan_kramer.portable_beacons.common.item;
 
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;

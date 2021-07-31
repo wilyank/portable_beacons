@@ -1,4 +1,4 @@
-package com.wilyan_kramer.portable_beacons.common.item;
+package wilyan_kramer.portable_beacons.common.item;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,10 +9,6 @@ import javax.annotation.Nullable;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.wilyan_kramer.portable_beacons.PortableBeaconsMod;
-import com.wilyan_kramer.portable_beacons.client.render.model.BackpackModel;
-import com.wilyan_kramer.portable_beacons.common.config.Config;
-import com.wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -48,6 +44,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurio.SoundInfo;
+import wilyan_kramer.portable_beacons.PortableBeaconsMod;
+import wilyan_kramer.portable_beacons.client.render.model.BackpackModel;
+import wilyan_kramer.portable_beacons.common.config.Config;
+import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class BeaconBackpackItem extends Item implements ICurioItem {

@@ -1,4 +1,4 @@
-package com.wilyan_kramer.portable_beacons.common.item;
+package wilyan_kramer.portable_beacons.common.item;
 
 import java.util.List;
 
@@ -7,9 +7,6 @@ import javax.annotation.Nullable;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.wilyan_kramer.portable_beacons.PortableBeaconsMod;
-import com.wilyan_kramer.portable_beacons.client.render.model.NecklaceModel;
-import com.wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -30,6 +27,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurio.SoundInfo;
+import wilyan_kramer.portable_beacons.PortableBeaconsMod;
+import wilyan_kramer.portable_beacons.client.render.model.NecklaceModel;
+import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class BeaconNecklaceItem extends Item implements ICurioItem {

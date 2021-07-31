@@ -1,6 +1,4 @@
-package com.wilyan_kramer.portable_beacons.common.item;
-
-import com.wilyan_kramer.portable_beacons.PortableBeaconsMod;
+package wilyan_kramer.portable_beacons.common.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
@@ -8,6 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 
 public class ItemRegistry {
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)

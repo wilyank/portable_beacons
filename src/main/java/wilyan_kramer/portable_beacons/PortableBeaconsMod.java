@@ -1,11 +1,7 @@
-package com.wilyan_kramer.portable_beacons;
+package wilyan_kramer.portable_beacons;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.wilyan_kramer.portable_beacons.common.config.Config;
-import com.wilyan_kramer.portable_beacons.common.item.ItemColorizer;
-import com.wilyan_kramer.portable_beacons.common.item.ItemList;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -21,6 +17,9 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import top.theillusivec4.curios.api.SlotTypeMessage;
+import wilyan_kramer.portable_beacons.common.config.Config;
+import wilyan_kramer.portable_beacons.common.item.ItemColorizer;
+import wilyan_kramer.portable_beacons.common.item.ItemList;
 
 @Mod("portable_beacons")
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)

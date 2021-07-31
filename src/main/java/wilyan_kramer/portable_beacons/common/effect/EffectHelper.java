@@ -1,4 +1,4 @@
-package com.wilyan_kramer.portable_beacons.common.effect;
+package wilyan_kramer.portable_beacons.common.effect;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,8 +8,6 @@ import java.util.Map.Entry;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
-import com.wilyan_kramer.portable_beacons.common.config.Config;
-import com.wilyan_kramer.portable_beacons.common.item.BeaconBackpackItem;
 
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -30,6 +28,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.Curios;
+import wilyan_kramer.portable_beacons.common.config.Config;
+import wilyan_kramer.portable_beacons.common.item.BeaconBackpackItem;
 
 public class EffectHelper {
 	// a class containing helper functions for handling effects on items

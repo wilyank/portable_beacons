@@ -1,10 +1,8 @@
-package com.wilyan_kramer.portable_beacons.common.config;
+package wilyan_kramer.portable_beacons.common.config;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.wilyan_kramer.portable_beacons.PortableBeaconsMod;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
@@ -13,6 +11,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 
 public class Config {
 	private static final Logger LOGGER = LogManager.getLogger();
