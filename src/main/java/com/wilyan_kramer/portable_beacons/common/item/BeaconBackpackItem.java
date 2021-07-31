@@ -11,6 +11,8 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import com.wilyan_kramer.portable_beacons.client.render.model.BackpackModel;
+import com.wilyan_kramer.portable_beacons.common.config.Config;
+import com.wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -25,6 +27,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.item.Items;
 import net.minecraft.item.Rarity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -69,7 +72,10 @@ public class BeaconBackpackItem extends Item implements ICurioItem {
 		return this.beaconTier;
 	}
 	public double getRange() {
-		return this.beaconTier * 2.0F + 1.0F;
+		return this.beaconTier * Config.COMMON.beaconRangeA.get() + Config.COMMON.beaconRangeB.get();
+	}
+	public boolean isFireResistant() {
+		return true;
 	}
 
 	@Override
@@ -78,16 +84,20 @@ public class BeaconBackpackItem extends Item implements ICurioItem {
 			if (stack.hasTag()) {
 				double beaconRange = this.getRange();
 				for (EffectInstance effInst : PotionUtils.getMobEffects(stack)) {
-					livingEntity.addEffect(new EffectInstance(effInst.getEffect(), 300, effInst.getAmplifier(), true, true, true));
-					for (PlayerEntity player : livingEntity.level.getNearbyPlayers(new EntityPredicate(), livingEntity, 
-							new AxisAlignedBB(
-									livingEntity.getX() - beaconRange, 
-									livingEntity.getY() - beaconRange, 
-									livingEntity.getZ() - beaconRange, 
-									livingEntity.getX() + beaconRange, 
-									livingEntity.getY() + beaconRange, 
-									livingEntity.getZ() + beaconRange))) {
-						player.addEffect(new EffectInstance(effInst.getEffect(), 300, effInst.getAmplifier(), true, true, true));
+					if (Config.COMMON.beaconSelf.get()) {
+						livingEntity.addEffect(new EffectInstance(effInst.getEffect(), 300, effInst.getAmplifier(), true, true, true));
+					}
+					if (Config.COMMON.beaconOthers.get()) {
+						for (PlayerEntity player : livingEntity.level.getNearbyPlayers(new EntityPredicate(), livingEntity, 
+								new AxisAlignedBB(
+										livingEntity.getX() - beaconRange, 
+										livingEntity.getY() - beaconRange, 
+										livingEntity.getZ() - beaconRange, 
+										livingEntity.getX() + beaconRange, 
+										livingEntity.getY() + beaconRange, 
+										livingEntity.getZ() + beaconRange))) {
+							player.addEffect(new EffectInstance(effInst.getEffect(), 300, effInst.getAmplifier(), true, true, true));
+						}
 					}
 				}
 			}
@@ -125,8 +135,10 @@ public class BeaconBackpackItem extends Item implements ICurioItem {
 		// add Conduit Power to backpack when right clicking Conduit and backpack is not full
 		if (block == Blocks.CONDUIT) {
 			if (EffectHelper.getAllEffects(backpack).size() <= ((BeaconBackpackItem) backpack.getItem()).getTier() ) {
-				EffectHelper.addUniqueCustomPotionEffects(backpack, new ArrayList<>(Arrays.asList(new EffectInstance(Effects.CONDUIT_POWER, 300, 0, true, true, true))));
-				context.getPlayer().hurt(DamageSource.MAGIC, context.getPlayer().getMaxHealth() - 1);
+				if (Config.COMMON.canCopyFromConduit.get()) {
+					EffectHelper.addUniqueCustomPotionEffects(backpack, new ArrayList<>(Arrays.asList(new EffectInstance(Effects.CONDUIT_POWER, 300, 0, true, true, true))));
+					context.getPlayer().hurt(DamageSource.MAGIC, context.getPlayer().getMaxHealth() - 1);
+				}
 				return ActionResultType.SUCCESS;
 			}
 			return ActionResultType.CONSUME;
@@ -180,7 +192,26 @@ public class BeaconBackpackItem extends Item implements ICurioItem {
 		super.appendHoverText(stack, world, list, flag);
 		EffectHelper.addPotionTooltip(stack, list, 0, "back");
 		if (!stack.hasTag()) {
-			list.add(new TranslationTextComponent("item.portable_beacons.beacon_backpack.tooltip.help").withStyle(TextFormatting.GRAY));
+			if (Config.COMMON.canCopyFromBeacon.get() && Config.COMMON.canCopyFromConduit.get()) {
+				list.add(new TranslationTextComponent(
+						"item.portable_beacons.beacon_backpack.tooltip.help", new TranslationTextComponent("item.portable_beacons.tooltip.or", 
+								new TranslationTextComponent(Items.BEACON.getDescriptionId()).withStyle(TextFormatting.AQUA),
+								new TranslationTextComponent(Items.CONDUIT.getDescriptionId()).withStyle(TextFormatting.AQUA)
+						)).withStyle(TextFormatting.GRAY));
+			}
+			else if (Config.COMMON.canCopyFromBeacon.get()) {
+				list.add(new TranslationTextComponent(
+						"item.portable_beacons.beacon_backpack.tooltip.help", 
+						new TranslationTextComponent(Items.BEACON.getDescriptionId()).withStyle(TextFormatting.AQUA)
+						).withStyle(TextFormatting.GRAY) );
+			}
+			else if (Config.COMMON.canCopyFromConduit.get()) {
+				list.add(new TranslationTextComponent(
+						"item.portable_beacons.beacon_backpack.tooltip.help", 
+						new TranslationTextComponent(Items.CONDUIT.getDescriptionId()).withStyle(TextFormatting.AQUA)
+						).withStyle(TextFormatting.GRAY) );
+			}
+
 		}
 	}
 }

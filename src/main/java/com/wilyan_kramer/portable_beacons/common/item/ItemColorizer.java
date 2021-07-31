@@ -2,6 +2,8 @@ package com.wilyan_kramer.portable_beacons.common.item;
 
 import java.awt.Color;
 
+import com.wilyan_kramer.portable_beacons.common.effect.EffectHelper;
+
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemStack;
 

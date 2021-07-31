@@ -8,5 +8,7 @@
     "item.portable_beacons.beacon_backpack_2": "Tier 3 Beacon Backpack",
     "item.portable_beacons.beacon_backpack_3": "Tier 4 Beacon Backpack",
     "item.portable_beacons.beacon_backpack_4": "Tier 5 Beacon Backpack",
-    "item.portable_beacons.beacon_backpack.tooltip.help": "Use on Beacon or Conduit to infuse"
+    "item.portable_beacons.beacon_backpack.tooltip.help": "Use on %s to infuse",
+    "item.portable_beacons.tooltip.or": "%s or %s",
+    "item.portable_beacons.glowberries": "Glowberries"
 }

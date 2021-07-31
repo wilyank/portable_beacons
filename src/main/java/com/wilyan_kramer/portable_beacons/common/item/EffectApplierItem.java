@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.wilyan_kramer.portable_beacons.PortableBeaconsMod;
+import com.wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,4 +1,4 @@
-package com.wilyan_kramer.portable_beacons.common.item;
+package com.wilyan_kramer.portable_beacons.common.effect;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +8,8 @@ import java.util.Map.Entry;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
+import com.wilyan_kramer.portable_beacons.common.config.Config;
+import com.wilyan_kramer.portable_beacons.common.item.BeaconBackpackItem;
 
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -30,6 +32,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.Curios;
 
 public class EffectHelper {
+	// a class containing helper functions for handling effects on items
+	
 //	private static final Logger LOGGER = LogManager.getLogger();
 	private static final IFormattableTextComponent NO_EFFECT = (new TranslationTextComponent("effect.none")).withStyle(TextFormatting.GRAY);
 
@@ -72,7 +76,7 @@ public class EffectHelper {
 	}
 	public static List<EffectInstance> setProperties(List<EffectInstance> effInstList) {
 		for (int i = 0; i < effInstList.size(); i++) {
-			effInstList.set(i, new EffectInstance(effInstList.get(i).getEffect(), 300, effInstList.get(i).getAmplifier()));
+			effInstList.set(i, new EffectInstance(effInstList.get(i).getEffect(), 300, effInstList.get(i).getAmplifier(), true, true, true));
 			effInstList.get(i).setCurativeItems(curativeItems);
 		}
 		return effInstList;
@@ -90,7 +94,10 @@ public class EffectHelper {
 		EffectHelper.removeEffects(offhandItemStack);
 		return mainhandItemStack;
 	}
-	public static List<EffectInstance> getBeaconEffects(BeaconTileEntity beaconTE){
+	public static List<EffectInstance> getBeaconEffects(BeaconTileEntity beaconTE) {
+		if (!Config.COMMON.canCopyFromBeacon.get()) {
+			return new ArrayList<EffectInstance>();
+		}
 		List<EffectInstance> effInstList = new ArrayList<EffectInstance>();
 		
 		int primaryEffId = beaconTE.getUpdateTag().getInt("Primary");
@@ -111,6 +118,7 @@ public class EffectHelper {
 		}
 		return effInstList;
 	}
+	
 	public static int getPotionColor(ItemStack stack) {
 		if (PotionUtils.getPotion(stack) != Potions.EMPTY) {
 			return PotionUtils.getColor(stack);
@@ -118,11 +126,12 @@ public class EffectHelper {
 		if (getAllEffects(stack).size() > 0) {
 			return PotionUtils.getColor(getAllEffects(stack));
 		}
-		return 0; //16253176
+		return 16253176; //default potion color
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	public static void addPotionTooltip(ItemStack stack, List<ITextComponent> textList, float flag, String slotId) {
+		// This is a modified version of the vanilla function PotionUtils.addPotionTooltip()
 		List<EffectInstance> list = getAllEffects(stack);
 		List<Pair<Attribute, AttributeModifier>> list1 = Lists.newArrayList();
 		if (list.isEmpty()) {

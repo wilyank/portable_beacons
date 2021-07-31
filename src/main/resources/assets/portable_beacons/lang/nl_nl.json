@@ -1,0 +1,15 @@
+{
+	"itemGroup.portable_beaconsTab": "Draagbare bakens",
+    "item.portable_beacons.infused_star": "Doordrenkte ster",
+    "item.portable_beacons.infused_star.tooltip.help": "Gebruik met een drank in andere hand om effecten toe te voegen",
+    "item.portable_beacons.beacon_necklace": "Bakenketting",
+    "item.portable_beacons.beacon_backpack_0": "Rang 1 bakenrugzak",
+    "item.portable_beacons.beacon_backpack_1": "Rang 2 bakenrugzak",
+    "item.portable_beacons.beacon_backpack_2": "Rang 3 bakenrugzak",
+    "item.portable_beacons.beacon_backpack_3": "Rang 4 bakenrugzak",
+    "item.portable_beacons.beacon_backpack_4": "Rang 5 bakenrugzak",
+    "item.portable_beacons.beacon_backpack.tooltip.help": "Gebruik op een %s om effecten toe te voegen",
+    "item.portable_beacons.tooltip.or": "%s of %s",
+    "item.portable_beacons.glowberries": "Gloeibessen"
+    
+}

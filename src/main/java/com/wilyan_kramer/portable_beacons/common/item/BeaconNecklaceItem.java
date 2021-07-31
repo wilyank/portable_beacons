@@ -9,6 +9,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import com.wilyan_kramer.portable_beacons.client.render.model.NecklaceModel;
+import com.wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
