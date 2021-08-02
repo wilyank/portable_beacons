@@ -7,6 +7,9 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
@@ -17,7 +20,6 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -27,7 +29,6 @@ import net.minecraft.item.Items;
 import net.minecraft.item.Rarity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.potion.PotionUtils;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.BeaconTileEntity;
 import net.minecraft.util.ActionResultType;
@@ -44,15 +45,15 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurio.SoundInfo;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import wilyan_kramer.portable_beacons.client.render.model.BackpackModel;
 import wilyan_kramer.portable_beacons.common.config.Config;
 import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class BeaconBackpackItem extends Item implements ICurioItem {
 
-//	private static final Logger LOGGER = LogManager.getLogger();
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	private Object model;
 	private final int beaconTier;
@@ -80,30 +81,32 @@ public class BeaconBackpackItem extends Item implements ICurioItem {
 
 	@Override
 	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-		if (!livingEntity.level.isClientSide && (livingEntity.tickCount % 200) == 0) {
-			if (stack.hasTag()) {
-				double beaconRange = this.getRange();
-				for (EffectInstance effInst : EffectHelper.setProperties(PotionUtils.getMobEffects(stack))) {
-					if (Config.COMMON.beaconSelf.get()) {
-						livingEntity.addEffect(effInst);
-					}
-					if (Config.COMMON.beaconOthers.get()) {
-						for (PlayerEntity player : livingEntity.level.getNearbyPlayers(new EntityPredicate(), livingEntity, 
-								new AxisAlignedBB(
-										livingEntity.getX() - beaconRange, 
-										livingEntity.getY() - beaconRange, 
-										livingEntity.getZ() - beaconRange, 
-										livingEntity.getX() + beaconRange, 
-										livingEntity.getY() + beaconRange, 
-										livingEntity.getZ() + beaconRange))) {
-							player.addEffect(effInst);
+		if (!livingEntity.level.isClientSide) {
+			if (livingEntity.level.getGameTime() %  Config.COMMON.effectCooldown.get() == 0) {
+				if (stack.hasTag()) {
+					if (Config.COMMON.beaconOthers.get() || Config.COMMON.beaconSelf.get() ) {
+						AxisAlignedBB axisalignedbb = (new AxisAlignedBB(livingEntity.blockPosition())).inflate(this.getRange());
+						List<PlayerEntity> playerList = livingEntity.level.getEntitiesOfClass(PlayerEntity.class, axisalignedbb);
+						List<EffectInstance> effList = EffectHelper.getAllEffects(stack);
+						for (PlayerEntity player : playerList) {
+							if (player == livingEntity && !(Config.COMMON.beaconSelf.get())) {
+								continue;
+							}
+							if (player != livingEntity && !(Config.COMMON.beaconOthers.get())) {
+								continue;
+							}
+							for (EffectInstance effInst : effList) {
+								LOGGER.info("Applying {} to {}", effInst.getEffect().getRegistryName(), player);
+								player.addEffect(effInst);
+							}
 						}
 					}
 				}
+
 			}
 		}
 	}
-	
+
 	@Override
 	public ActionResultType useOn(ItemUseContext context) {
 		ItemStack backpack = context.getItemInHand();

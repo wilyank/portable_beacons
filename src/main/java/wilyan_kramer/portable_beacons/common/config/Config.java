@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
+import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
@@ -23,6 +24,8 @@ public class Config {
 		public final DoubleValue beaconRangeB;
 		public final BooleanValue beaconSelf;
 		public final BooleanValue beaconOthers;
+		public final IntValue effectCooldown;
+		public final IntValue effectDuration;
 
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.comment("Common config for Portable Beacons").push("portable_beacons");
@@ -54,6 +57,14 @@ public class Config {
 					.comment("Whether the Beacon Backpack applies effects to players around the wearer")
 					.worldRestart()
 					.define("beaconOthers", true);
+			this.effectCooldown = builder
+					.comment("The time in ticks between refreshing the effects on a Beacon Backpack wearer")
+					.worldRestart()
+					.defineInRange("effectCooldown", 200, 2, 10000);
+			this.effectDuration = builder
+					.comment("The length in ticks of the effect applied by the Beacon Backpack")
+					.worldRestart()
+					.defineInRange("effectDuration", 400, 1, 10000);
 			builder.pop();
 		}
 	}

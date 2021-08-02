@@ -79,7 +79,7 @@ public class EffectHelper {
 	}
 	public static List<EffectInstance> setProperties(List<EffectInstance> effInstList) {
 		for (int i = 0; i < effInstList.size(); i++) {
-			effInstList.set(i, new EffectInstance(effInstList.get(i).getEffect(), 300, effInstList.get(i).getAmplifier(), true, true, true));
+			effInstList.set(i, new EffectInstance(effInstList.get(i).getEffect(), Config.COMMON.effectDuration.get(), effInstList.get(i).getAmplifier(), true, true, true));
 			effInstList.get(i).setCurativeItems(curativeItems);
 		}
 		return effInstList;
@@ -108,18 +108,18 @@ public class EffectHelper {
 		
 		if(secondaryEffId == primaryEffId) {
 			if (primaryEffId != -1 && secondaryEffId != -1) {
-				effInstList.add(new EffectInstance(Effect.byId(primaryEffId), 300, 1, true, true, true));
+				effInstList.add(new EffectInstance(Effect.byId(primaryEffId)));
 			}
 		}
 		else {
 			if (primaryEffId != -1){
-				effInstList.add(new EffectInstance(Effect.byId(primaryEffId), 300, 0, true, true, true));
+				effInstList.add(new EffectInstance(Effect.byId(primaryEffId)));
 			}
 			if (secondaryEffId != -1) {
-				effInstList.add(new EffectInstance(Effect.byId(secondaryEffId), 300, 0, true, true, true));
+				effInstList.add(new EffectInstance(Effect.byId(secondaryEffId)));
 			}
 		}
-		return effInstList;
+		return setProperties(effInstList);
 	}
 	
 	public static int getPotionColor(ItemStack stack) {
