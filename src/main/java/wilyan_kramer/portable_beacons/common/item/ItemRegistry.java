@@ -4,6 +4,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
+import net.minecraft.item.Rarity;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -19,7 +20,7 @@ public class ItemRegistry {
     	public static void onItemsRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
     		itemRegistryEvent.getRegistry().registerAll(
     				ItemList.infused_star = new EffectApplierItem(new Item.Properties()).setRegistryName(new ResourceLocation("portable_beacons","infused_star")),
-    				ItemList.beacon_necklace = new BeaconNecklaceItem(),
+    				ItemList.potion_necklace = new PotionNecklaceItem(),
     				ItemList.beacon_backpack_0 = new BeaconBackpackItem("beacon_backpack_0", 0),
     				ItemList.beacon_backpack_1 = new BeaconBackpackItem("beacon_backpack_1", 1),
     				ItemList.beacon_backpack_2 = new BeaconBackpackItem("beacon_backpack_2", 2),
@@ -27,7 +28,7 @@ public class ItemRegistry {
     				ItemList.beacon_backpack_4 = new BeaconBackpackItem("beacon_backpack_4", 4),
     				ItemList.glowberries = new BlockNamedItem(BlockList.glowberry_bush, new Properties().stacksTo(16).tab(PortableBeaconsMod.TAB_PORTABLE_BEACONS).food(ItemList.GLOWBERRIES)).setRegistryName(PortableBeaconsMod.MODID, "glowberries"),
     				ItemList.bonk_stick = new BonkStickItem(ItemTier.WOOD, 0, 1, new Properties().stacksTo(1).defaultDurability(100).tab(PortableBeaconsMod.TAB_PORTABLE_BEACONS)).setRegistryName(PortableBeaconsMod.MODID, "bonk_stick"),
-    				ItemList.nether_star_block = new BlockItem(BlockList.nether_star_block, new Properties().tab(PortableBeaconsMod.TAB_PORTABLE_BEACONS)).setRegistryName(BlockList.nether_star_block.getRegistryName())
+    				ItemList.nether_star_block = new BlockItem(BlockList.nether_star_block, new Properties().tab(PortableBeaconsMod.TAB_PORTABLE_BEACONS).rarity(Rarity.EPIC)).setRegistryName(BlockList.nether_star_block.getRegistryName())
     				);
     	}
     }

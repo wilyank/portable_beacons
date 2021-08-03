@@ -15,7 +15,7 @@ public class ItemList {
 
 	
 	public static Item infused_star;
-	public static Item beacon_necklace;
+	public static Item potion_necklace;
 	public static Item beacon_backpack_0;
 	public static Item beacon_backpack_1;
 	public static Item beacon_backpack_2;

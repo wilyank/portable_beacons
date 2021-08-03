@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-  "layer0": "portable_beacons:item/beacon_necklace",
-  "layer1": "portable_beacons:item/beacon_necklace_overlay"
-  }
-}

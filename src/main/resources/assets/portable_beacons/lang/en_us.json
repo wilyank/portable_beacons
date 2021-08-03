@@ -2,7 +2,7 @@
 	"itemGroup.portable_beaconsTab": "Portable Beacons",
     "item.portable_beacons.infused_star": "Infused Star",
     "item.portable_beacons.infused_star.tooltip.help": "Use Potion in offhand to infuse",
-    "item.portable_beacons.beacon_necklace": "Beacon Necklace",
+    "item.portable_beacons.potion_necklace": "Potion Necklace",
     "item.portable_beacons.beacon_backpack_0": "Tier 1 Beacon Backpack",
     "item.portable_beacons.beacon_backpack_1": "Tier 2 Beacon Backpack",
     "item.portable_beacons.beacon_backpack_2": "Tier 3 Beacon Backpack",

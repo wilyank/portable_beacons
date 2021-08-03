@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+  "layer0": "portable_beacons:item/potion_necklace",
+  "layer1": "portable_beacons:item/potion_necklace_overlay"
+  }
+}

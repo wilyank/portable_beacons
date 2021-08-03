@@ -77,7 +77,7 @@ public class PortableBeaconsMod {
     @SubscribeEvent
     public static void onColorHandlerEvent(ColorHandlerEvent.Item event)
     {
-    	event.getItemColors().register(new ItemColorizer(), ItemList.infused_star, ItemList.beacon_necklace);
+    	event.getItemColors().register(new ItemColorizer(), ItemList.infused_star, ItemList.potion_necklace);
     }
     public static final ItemGroup TAB_PORTABLE_BEACONS = new ItemGroup("portable_beaconsTab") {
     	@Override

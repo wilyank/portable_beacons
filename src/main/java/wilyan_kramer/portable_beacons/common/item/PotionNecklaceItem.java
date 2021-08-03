@@ -29,25 +29,26 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurio.SoundInfo;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import wilyan_kramer.portable_beacons.client.render.model.NecklaceModel;
+import wilyan_kramer.portable_beacons.common.config.Config;
 import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class BeaconNecklaceItem extends Item implements ICurioItem {
+public class PotionNecklaceItem extends Item implements ICurioItem {
 	private Object model;
 
 	private static final ResourceLocation BEACON_NECKLACE_TEXTURE = new ResourceLocation(PortableBeaconsMod.MODID, "textures/entity/beacon_necklace.png");
-	public BeaconNecklaceItem() {
+	public PotionNecklaceItem() {
 		super(new Item.Properties().tab(PortableBeaconsMod.TAB_PORTABLE_BEACONS).stacksTo(1).durability(0).rarity(Rarity.EPIC));
-		this.setRegistryName("portable_beacons", "beacon_necklace");
+		this.setRegistryName("portable_beacons", "potion_necklace");
 	}
 
 	@Override
 	public void curioTick(String identifier, int index, LivingEntity livingEntity, ItemStack stack) {
-		if (!livingEntity.level.isClientSide && (livingEntity.tickCount % 20) == 0) {
-			if (stack.getItem() == ItemList.beacon_necklace) {
+		if (!livingEntity.level.isClientSide && (livingEntity.tickCount % Config.COMMON.effectCooldown.get()) == 0) {
+			if (stack.getItem() == ItemList.potion_necklace) {
 				if (stack.hasTag()) {
-					for (EffectInstance effInst : PotionUtils.getMobEffects(stack)) {
-						livingEntity.addEffect(new EffectInstance(effInst.getEffect(), 300, effInst.getAmplifier(), true, true, true));
+					for (EffectInstance effInst : EffectHelper.setProperties(PotionUtils.getMobEffects(stack))) {
+						livingEntity.addEffect(effInst);
 					}
 				}
 			}

@@ -1,0 +1,15 @@
+{
+	"type":"smithing",
+	"base":
+	{
+		"item": "minecraft:lingering_potion"
+	},
+	"addition":
+	{
+		"item": "portable_beacons:potion_necklace"
+	},
+	"result":
+	{
+		"item":"portable_beacons:potion_necklace"
+	}
+}
