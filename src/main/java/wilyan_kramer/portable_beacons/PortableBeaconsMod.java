@@ -25,7 +25,7 @@ import wilyan_kramer.portable_beacons.common.item.ItemList;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PortableBeaconsMod {
 	public static final String MODID = "portable_beacons";
-	
+
 	// Directly reference a log4j logger.
 //    private static final Logger LOGGER = LogManager.getLogger();
 
@@ -40,8 +40,7 @@ public class PortableBeaconsMod {
         MinecraftForge.EVENT_BUS.register(new EventListeners());
     }
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
+    private void setup(final FMLCommonSetupEvent event) {
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "portable_beacons:block/glowberry_bush_stage3"
+  }
+}
