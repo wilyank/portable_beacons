@@ -94,7 +94,8 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		.define('I', Items.IRON_BLOCK)
 		.define('n', Items.NETHERITE_INGOT)
 		.group("")
-		.unlockedBy("has_item", has(Items.BEACON));
+		.unlockedBy("has_item", has(Items.BEACON))
+		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.beacon_backpack_0.toString()));;
 		
 		ShapedRecipeBuilder.shaped(ItemList.beacon_backpack_1)
 		.pattern("ooo")
