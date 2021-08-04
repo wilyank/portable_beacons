@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ooo",
+    "oxo",
+    "ooo"
+  ],
+  "key": {
+    "o": {
+      "item": "minecraft:gold_block"
+    },
+    "x": {
+      "item": "portable_beacons:beacon_backpack_0"
+    }
+  },
+  "result": {
+    "item": "portable_beacons:beacon_backpack_1"
+  }
+}

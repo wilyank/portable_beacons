@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "portable_beacons:potion_necklace"
+    },
+    {
+      "item": "portable_beacons:glowberries"
+    }
+  ],
+  "result": {
+    "item": "portable_beacons:potion_necklace",
+    "nbt": {"CustomPotionEffects":[{"Id":24}]}
+  }
+}

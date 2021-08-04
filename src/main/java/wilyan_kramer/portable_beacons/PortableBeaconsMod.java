@@ -79,7 +79,7 @@ public class PortableBeaconsMod {
     {
     	event.getItemColors().register(new ItemColorizer(), ItemList.infused_star, ItemList.potion_necklace);
     }
-    public static final ItemGroup TAB_PORTABLE_BEACONS = new ItemGroup("portable_beaconsTab") {
+    public static final ItemGroup TAB_PORTABLE_BEACONS = new ItemGroup("portable_beacons") {
     	@Override
     	public ItemStack makeIcon() {
     		return new ItemStack(ItemList.infused_star);

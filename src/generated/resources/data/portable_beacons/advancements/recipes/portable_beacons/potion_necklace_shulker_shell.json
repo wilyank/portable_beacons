@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "portable_beacons:potion_necklace_shulker_shell"
+    ]
+  },
+  "criteria": {
+    "has_necklace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "portable_beacons:potion_necklace"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "portable_beacons:potion_necklace_shulker_shell"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_necklace",
+      "has_the_recipe"
+    ]
+  ]
+}

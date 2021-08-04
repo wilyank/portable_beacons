@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "cCc",
+    "RBR",
+    "InI"
+  ],
+  "key": {
+    "c": {
+      "item": "minecraft:chain"
+    },
+    "C": {
+      "item": "minecraft:conduit"
+    },
+    "R": {
+      "item": "minecraft:blaze_rod"
+    },
+    "B": {
+      "item": "minecraft:beacon"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "n": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "result": {
+    "item": "portable_beacons:potion_necklace"
+  }
+}

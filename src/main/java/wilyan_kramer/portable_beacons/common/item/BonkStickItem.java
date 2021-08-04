@@ -10,6 +10,7 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -33,7 +34,7 @@ public class BonkStickItem extends SwordItem {
 	@Override
 	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> list, ITooltipFlag flag) {
 		super.appendHoverText(stack, world, list, flag);
-		list.add(new TranslationTextComponent("item." + PortableBeaconsMod.MODID + ".bonk_stick.tooltip"));
+		list.add(new TranslationTextComponent("item." + PortableBeaconsMod.MODID + ".bonk_stick.tooltip").withStyle(TextFormatting.GRAY));
 	}
 	
 }

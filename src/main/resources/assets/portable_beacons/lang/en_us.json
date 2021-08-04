@@ -1,5 +1,5 @@
 {
-	"itemGroup.portable_beaconsTab": "Portable Beacons",
+	"itemGroup.portable_beacons": "Portable Beacons",
     "item.portable_beacons.infused_star": "Infused Star",
     "item.portable_beacons.infused_star.tooltip.help": "Use Potion in offhand to infuse",
     "item.portable_beacons.potion_necklace": "Potion Necklace",

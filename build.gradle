@@ -102,7 +102,7 @@ minecraft {
             args '--mod', 'portable_beacons', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                examplemod {
+                portable_beacons {
                     source sourceSets.main
                 }
             }

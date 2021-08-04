@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xxx",
+    "xxx",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "portable_beacons:nether_star_block"
+  }
+}
