@@ -5,11 +5,11 @@
       "item": "portable_beacons:potion_necklace"
     },
     {
-      "item": "minecraft:fermented_spider_eye"
+      "item": "minecraft:pufferfish"
     }
   ],
   "result": {
     "item": "portable_beacons:potion_necklace",
-    "nbt": {"Potion":"minecraft:weakness"}
+    "nbt": {"Potion":"minecraft:water_breathing"}
   }
 }

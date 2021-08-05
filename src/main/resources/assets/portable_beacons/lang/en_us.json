@@ -12,6 +12,7 @@
     "item.portable_beacons.tooltip.or": "%s or %s",
     "item.portable_beacons.glowberries": "Glowberries",
     "item.portable_beacons.bonk_stick": "Bonk Stick",
+    "item.portable_beacons.infused_dagger": "Infused Dagger",
     "item.portable_beacons.bonk_stick.tooltip":"A sobering experience",
     "block.portable_beacons.nether_star_block": "Nether Star Block"
 }

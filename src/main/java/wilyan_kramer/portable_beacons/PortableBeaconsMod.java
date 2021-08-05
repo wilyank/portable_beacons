@@ -65,19 +65,10 @@ public class PortableBeaconsMod {
 
     }
 
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-//        @SubscribeEvent
-//        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-//            // register a new block here
-//            LOGGER.info("HELLO from Register Block");
-//        }
-    }
-
     @SubscribeEvent
     public static void onColorHandlerEvent(ColorHandlerEvent.Item event)
     {
-    	event.getItemColors().register(new ItemColorizer(), ItemList.infused_star, ItemList.potion_necklace);
+    	event.getItemColors().register(new ItemColorizer(), ItemList.infused_star, ItemList.potion_necklace, ItemList.infused_dagger);
     }
     public static final ItemGroup TAB_PORTABLE_BEACONS = new ItemGroup("portable_beacons") {
     	@Override

@@ -78,8 +78,11 @@ public class EffectHelper {
 		return stack;
 	}
 	public static List<EffectInstance> setProperties(List<EffectInstance> effInstList) {
+		return setProperties(effInstList, Config.COMMON.effectDuration.get());
+	}
+	public static List<EffectInstance> setProperties(List<EffectInstance> effInstList, int duration) {
 		for (int i = 0; i < effInstList.size(); i++) {
-			effInstList.set(i, new EffectInstance(effInstList.get(i).getEffect(), Config.COMMON.effectDuration.get(), effInstList.get(i).getAmplifier(), true, true, true));
+			effInstList.set(i, new EffectInstance(effInstList.get(i).getEffect(), duration, effInstList.get(i).getAmplifier(), true, true, true));
 			effInstList.get(i).setCurativeItems(curativeItems);
 		}
 		return effInstList;

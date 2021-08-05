@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sCs",
+    "LBL",
+    "InI"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:string"
+    },
+    "C": {
+      "item": "minecraft:conduit"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "n": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "B": {
+      "item": "minecraft:beacon"
+    }
+  },
+  "result": {
+    "item": "portable_beacons:beacon_backpack_0"
+  }
+}

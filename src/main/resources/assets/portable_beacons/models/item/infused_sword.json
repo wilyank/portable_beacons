@@ -1,0 +1,21 @@
+{
+	"parent":"minecraft:item/handheld",
+	"textures":{
+		"layer0":"portable_beacons:item/infused_sword",
+		"layer1":"portable_beacons:item/infused_sword_overlay"
+	},
+	"display":{
+		"firstperson_righthand": 
+		{
+			"rotation": [ 0, 90, 45 ],
+            "translation": [ 0, 12, 0 ],
+            "scale": [ 1.5, 1.5, 1.5 ]
+        },
+        "thirdperson_righthand": 
+        {
+            "rotation": [ 0, 90, 45 ],
+            "translation": [ 0, 12, 0 ],
+            "scale": [ 1.5, 1.5, 1.5 ]
+        }
+	}
+}

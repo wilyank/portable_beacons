@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "portable_beacons:potion_necklace_fermented_spider_eye"
+      "portable_beacons:infused_dagger_magma_cream"
     ]
   },
   "criteria": {
-    "has_necklace": {
+    "has_dagger": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "portable_beacons:potion_necklace"
+            "item": "portable_beacons:infused_dagger"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "portable_beacons:potion_necklace_fermented_spider_eye"
+        "recipe": "portable_beacons:infused_dagger_magma_cream"
       }
     }
   },
   "requirements": [
     [
-      "has_necklace",
+      "has_dagger",
       "has_the_recipe"
     ]
   ]

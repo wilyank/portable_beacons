@@ -11,6 +11,9 @@
     "item.portable_beacons.beacon_backpack.tooltip.help": "Gebruik op een %s om effecten toe te voegen",
     "item.portable_beacons.tooltip.or": "%s of %s",
     "item.portable_beacons.glowberries": "Gloeibessen",
+    "item.portable_beacons.bonk_stick": "Bonkstok",
+    "item.portable_beacons.infused_dagger": "Doordrenkte dolk",
+    "item.portable_beacons.bonk_stick.tooltip":"Een ontnuchterende ervaring",
     "block.portable_beacons.nether_star_block": "Nethersterblok"
     
 }

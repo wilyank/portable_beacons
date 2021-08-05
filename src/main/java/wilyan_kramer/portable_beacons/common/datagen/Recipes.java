@@ -31,7 +31,6 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 				Items.GOLDEN_CARROT, 
 				Items.SUGAR, 
 				Items.BLAZE_POWDER, 
-				Items.FERMENTED_SPIDER_EYE, 
 				Items.RABBIT_FOOT, 
 				Items.PHANTOM_MEMBRANE, 
 				Items.SHULKER_SHELL,
@@ -46,6 +45,14 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 			.group("")
 			.unlockedBy("has_necklace", has(ItemList.potion_necklace))
 			.save(consumer, new ResourceLocation("portable_beacons", ItemList.potion_necklace.toString().concat("_").concat(item.toString())));
+			
+			ShapelessRecipeBuilder.shapeless(ItemList.infused_dagger)
+			.requires(ItemList.infused_dagger)
+			.requires(item)
+			.requires(Items.FERMENTED_SPIDER_EYE)
+			.group("")
+			.unlockedBy("has_dagger", has(ItemList.infused_dagger))
+			.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.infused_dagger.toString().concat("_").concat(item.toString())));
 		}
 		
 		ShapelessRecipeBuilder.shapeless(ItemList.glowberries)
@@ -93,6 +100,7 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		.define('L', Items.LEATHER)
 		.define('I', Items.IRON_BLOCK)
 		.define('n', Items.NETHERITE_INGOT)
+		.define('B', Items.BEACON)
 		.group("")
 		.unlockedBy("has_item", has(Items.BEACON))
 		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.beacon_backpack_0.toString()));;
@@ -146,5 +154,16 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		.group("")
 		.unlockedBy("has_item", has(Items.SPONGE))
 		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.bonk_stick.toString()));
+		
+		ShapedRecipeBuilder.shaped(ItemList.infused_dagger)
+		.pattern("wnw")
+		.pattern("wnw")
+		.pattern(" R ")
+		.define('w', Items.NETHER_WART)
+		.define('n', Items.NETHERITE_INGOT)
+		.define('R', Items.BLAZE_ROD)
+		.group("")
+		.unlockedBy("has_netherite", has(Items.NETHERITE_INGOT))
+		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.infused_dagger.toString()));
 	}
 }	

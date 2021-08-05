@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "portable_beacons:infused_dagger"
+    },
+    {
+      "item": "portable_beacons:glowberries"
+    }
+  ],
+  "result": {
+    "item": "portable_beacons:infused_dagger",
+    "nbt": {"CustomPotionEffects":[{"Id":24}]}
+  }
+}

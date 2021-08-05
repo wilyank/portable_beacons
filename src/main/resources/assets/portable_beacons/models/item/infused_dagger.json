@@ -1,0 +1,7 @@
+{
+    "parent":"minecraft:item/handheld",
+    "textures": {
+        "layer0": "portable_beacons:item/infused_dagger",
+        "layer1": "portable_beacons:item/infused_dagger_overlay"
+    }
+}

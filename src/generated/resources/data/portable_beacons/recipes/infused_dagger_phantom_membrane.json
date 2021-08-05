@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "portable_beacons:infused_dagger"
+    },
+    {
+      "item": "minecraft:phantom_membrane"
+    }
+  ],
+  "result": {
+    "item": "portable_beacons:infused_dagger",
+    "nbt": {"Potion": "minecraft:slow_falling"}
+  }
+}
