@@ -2,14 +2,16 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "portable_beacons:potion_necklace"
+      "item": "minecraft:golden_carrot"
     },
     {
-      "item": "minecraft:golden_carrot"
+      "item": "portable_beacons:potion_necklace"
     }
   ],
   "result": {
     "item": "portable_beacons:potion_necklace",
-    "nbt": {"Potion":"minecraft:night_vision"}
+    "nbt": {
+      "Potion": "minecraft:night_vision"
+    }
   }
 }

@@ -2,14 +2,32 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "portable_beacons:infused_dagger"
+      "item": "minecraft:phantom_membrane"
     },
     {
-      "item": "minecraft:phantom_membrane"
+      "item": "portable_beacons:infused_dagger"
     }
   ],
   "result": {
     "item": "portable_beacons:infused_dagger",
-    "nbt": {"Potion": "minecraft:slow_falling"}
+    "nbt": {
+      "CustomPotionEffects": [
+        {
+          "Ambient": 1,
+          "CurativeItems": [
+            {
+              "id": "minecraft:milk_bucket",
+              "Count": 1
+            }
+          ],
+          "ShowIcon": 1,
+          "ShowParticles": 1,
+          "Duration": 50,
+          "Id": 28,
+          "Amplifier": 0
+        }
+      ],
+      "Damage": 0
+    }
   }
 }

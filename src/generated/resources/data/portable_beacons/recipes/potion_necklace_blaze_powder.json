@@ -2,14 +2,16 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "portable_beacons:potion_necklace"
+      "item": "minecraft:blaze_powder"
     },
     {
-      "item": "minecraft:blaze_powder"
+      "item": "portable_beacons:potion_necklace"
     }
   ],
   "result": {
     "item": "portable_beacons:potion_necklace",
-    "nbt": {"Potion":"minecraft:strength"}
+    "nbt": {
+      "Potion": "minecraft:strength"
+    }
   }
 }

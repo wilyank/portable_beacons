@@ -26,9 +26,13 @@ public class Config {
 		public final BooleanValue beaconOthers;
 		public final IntValue effectCooldown;
 		public final IntValue effectDuration;
+		public final IntValue bonkStickDamage;
+		public final IntValue bonkStickDurability;
+		public final IntValue infusedDaggerDamage; 
+		public final IntValue infusedDaggerDurability;
 
 		Common(ForgeConfigSpec.Builder builder) {
-			builder.comment("Common config for Portable Beacons").push("portable_beacons");
+			builder.comment("Common config for Portable Beacons").push("Beacon Backpack Config");
 			this.canCopyFromBeacon = builder
 					.comment("Whether effects can be copied from Beacons unto Beacon Backpacks")
 					.worldRestart()
@@ -65,6 +69,24 @@ public class Config {
 					.comment("The length in ticks of the effect applied by the Beacon Backpack")
 					.worldRestart()
 					.defineInRange("effectDuration", 400, 1, 10000);
+			builder.pop();
+			builder.push("Weapons Config");
+			this.bonkStickDamage = builder
+					.comment("Base damage of the Bonk Stick")
+					.worldRestart()
+					.defineInRange("bonkStickDamage", 0, 0, 500);
+			this.bonkStickDurability = builder
+					.comment("Base durability of the Bonk Stick")
+					.worldRestart()
+					.defineInRange("bonkStickDurability", 100, 1, 1000000);
+			this.infusedDaggerDamage = builder
+					.comment("Base damage of the Bonk Stick")
+					.worldRestart()
+					.defineInRange("infusedDaggerDamage", 3, 0, 500);
+			this.infusedDaggerDurability = builder
+					.comment("Base durability of the Infused Dagger")
+					.worldRestart()
+					.defineInRange("infusedDaggerDurability", 100, 1, 1000000);
 			builder.pop();
 		}
 	}

@@ -2,14 +2,16 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "portable_beacons:potion_necklace"
+      "item": "minecraft:sugar"
     },
     {
-      "item": "minecraft:sugar"
+      "item": "portable_beacons:potion_necklace"
     }
   ],
   "result": {
     "item": "portable_beacons:potion_necklace",
-    "nbt": {"Potion":"minecraft:swiftness"}
+    "nbt": {
+      "Potion": "minecraft:swiftness"
+    }
   }
 }

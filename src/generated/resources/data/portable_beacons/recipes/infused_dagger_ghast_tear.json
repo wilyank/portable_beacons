@@ -2,10 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:golden_carrot"
-    },
-    {
-      "item": "minecraft:fermented_spider_eye"
+      "item": "minecraft:ghast_tear"
     },
     {
       "item": "portable_beacons:infused_dagger"
@@ -25,8 +22,8 @@
           ],
           "ShowIcon": 1,
           "ShowParticles": 1,
-          "Duration": 50,
-          "Id": 15,
+          "Duration": 20,
+          "Id": 10,
           "Amplifier": 0
         }
       ],

@@ -14,7 +14,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import wilyan_kramer.portable_beacons.common.config.Config;
 import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 
 public class InfusedSwordItem extends SwordItem {
@@ -26,7 +25,7 @@ public class InfusedSwordItem extends SwordItem {
 	@Override
 	public boolean hurtEnemy(ItemStack stack, LivingEntity enemy, LivingEntity player) {
 		if (!player.level.isClientSide && stack.hasTag()) {
-			for (EffectInstance effInst : EffectHelper.setProperties(EffectHelper.getAllEffects(stack), Config.COMMON.effectDuration.get())) {
+			for (EffectInstance effInst : EffectHelper.getAllEffects(stack)) {
 				enemy.addEffect(effInst);
 			}
 		}
@@ -35,6 +34,6 @@ public class InfusedSwordItem extends SwordItem {
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> list, ITooltipFlag flag) {
 		super.appendHoverText(stack, world, list, flag);
-		EffectHelper.addPotionTooltip(stack, list, 0, "necklace");
+		EffectHelper.addPotionTooltip(stack, list, 0, "hit");
 	}
 }

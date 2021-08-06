@@ -2,14 +2,16 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "portable_beacons:potion_necklace"
+      "item": "minecraft:magma_cream"
     },
     {
-      "item": "minecraft:magma_cream"
+      "item": "portable_beacons:potion_necklace"
     }
   ],
   "result": {
     "item": "portable_beacons:potion_necklace",
-    "nbt": {"Potion":"minecraft:fire_resistance"}
+    "nbt": {
+      "Potion": "minecraft:fire_resistance"
+    }
   }
 }

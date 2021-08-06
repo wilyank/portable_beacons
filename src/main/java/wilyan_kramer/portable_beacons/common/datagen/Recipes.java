@@ -2,7 +2,6 @@ package wilyan_kramer.portable_beacons.common.datagen;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Consumer;
 
 import net.minecraft.data.DataGenerator;
@@ -11,7 +10,14 @@ import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
@@ -27,38 +33,32 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 	@Override
 	protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
 		
-		List<Item> itemList = new ArrayList<Item>(Arrays.asList(
-				Items.GOLDEN_CARROT, 
-				Items.SUGAR, 
-				Items.BLAZE_POWDER, 
-				Items.RABBIT_FOOT, 
-				Items.PHANTOM_MEMBRANE, 
-				Items.SHULKER_SHELL,
-				Items.MAGMA_CREAM,
-				Items.TURTLE_HELMET,
-				ItemList.glowberries));
+		this.addInfusionRecipe(consumer, ItemList.potion_necklace, Items.GOLDEN_CARROT, Potions.NIGHT_VISION);
+		this.addInfusionRecipe(consumer, ItemList.potion_necklace, Items.SUGAR, Potions.SWIFTNESS);
+		this.addInfusionRecipe(consumer, ItemList.potion_necklace, Items.BLAZE_POWDER, Potions.STRENGTH);
+		this.addInfusionRecipe(consumer, ItemList.potion_necklace, Items.RABBIT_FOOT, Potions.LEAPING);
+		this.addInfusionRecipe(consumer, ItemList.potion_necklace, Items.PHANTOM_MEMBRANE, Potions.SLOW_FALLING);
+		this.addInfusionRecipe(consumer, ItemList.potion_necklace, Items.MAGMA_CREAM, Potions.FIRE_RESISTANCE);
+		this.addInfusionRecipe(consumer, ItemList.potion_necklace, Items.TURTLE_HELMET, Potions.TURTLE_MASTER);
 		
-		for (Item item : itemList) {
-			ShapelessRecipeBuilder.shapeless(ItemList.potion_necklace)
-			.requires(ItemList.potion_necklace)
-			.requires(item)
-			.group("")
-			.unlockedBy("has_necklace", has(ItemList.potion_necklace))
-			.save(consumer, new ResourceLocation("portable_beacons", ItemList.potion_necklace.toString().concat("_").concat(item.toString())));
-			
-			ShapelessRecipeBuilder.shapeless(ItemList.infused_dagger)
-			.requires(ItemList.infused_dagger)
-			.requires(item)
-			.requires(Items.FERMENTED_SPIDER_EYE)
-			.group("")
-			.unlockedBy("has_dagger", has(ItemList.infused_dagger))
-			.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.infused_dagger.toString().concat("_").concat(item.toString())));
-		}
+		this.addInfusionRecipe(consumer, ItemList.potion_necklace, ItemList.glowberries, Effects.GLOWING, 400);
+		this.addInfusionRecipe(consumer, ItemList.potion_necklace, Items.SHULKER_SHELL, Effects.LEVITATION, 400);
+
+		
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.BLAZE_POWDER, Items.FERMENTED_SPIDER_EYE, Effects.WEAKNESS, 50);
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.SUGAR, Items.FERMENTED_SPIDER_EYE, Effects.MOVEMENT_SLOWDOWN, 50);
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.GOLDEN_CARROT, Items.FERMENTED_SPIDER_EYE, Effects.BLINDNESS, 50);
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.PHANTOM_MEMBRANE, Effects.SLOW_FALLING, 50);
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.SPONGE, Effects.DIG_SLOWDOWN, 100);
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.SPIDER_EYE, Effects.POISON, 20);
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.GHAST_TEAR, Effects.REGENERATION, 20);
+
+
+
 		
 		ShapelessRecipeBuilder.shapeless(ItemList.glowberries)
 		.requires(Items.SWEET_BERRIES)
-		.requires(Items.GLOWSTONE_DUST)
-		.requires(Items.GLOWSTONE_DUST)
+		.requires(Items.GLOWSTONE_DUST, 2)
 		.group("")
 		.unlockedBy("has_item", has(Items.SWEET_BERRIES))
 		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.glowberries.toString()));
@@ -105,45 +105,10 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		.unlockedBy("has_item", has(Items.BEACON))
 		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.beacon_backpack_0.toString()));;
 		
-		ShapedRecipeBuilder.shaped(ItemList.beacon_backpack_1)
-		.pattern("ooo")
-		.pattern("oxo")
-		.pattern("ooo")
-		.define('o', Items.GOLD_BLOCK)
-		.define('x', ItemList.beacon_backpack_0)
-		.group("")
-		.unlockedBy("has_item", has(ItemList.beacon_backpack_0))
-		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.beacon_backpack_1.toString()));
-		
-		ShapedRecipeBuilder.shaped(ItemList.beacon_backpack_2)
-		.pattern("ooo")
-		.pattern("oxo")
-		.pattern("ooo")
-		.define('o', Items.DIAMOND_BLOCK)
-		.define('x', ItemList.beacon_backpack_1)
-		.group("")
-		.unlockedBy("has_item", has(ItemList.beacon_backpack_1))
-		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.beacon_backpack_2.toString()));
-		
-		ShapedRecipeBuilder.shaped(ItemList.beacon_backpack_3)
-		.pattern("ooo")
-		.pattern("oxo")
-		.pattern("ooo")
-		.define('o', Items.EMERALD_BLOCK)
-		.define('x', ItemList.beacon_backpack_2)
-		.group("")
-		.unlockedBy("has_item", has(ItemList.beacon_backpack_2))
-		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.beacon_backpack_3.toString()));
-		
-		ShapedRecipeBuilder.shaped(ItemList.beacon_backpack_4)
-		.pattern("ooo")
-		.pattern("oxo")
-		.pattern("ooo")
-		.define('o', Items.NETHERITE_BLOCK)
-		.define('x', ItemList.beacon_backpack_3)
-		.group("")
-		.unlockedBy("has_item", has(ItemList.beacon_backpack_3))
-		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.beacon_backpack_4.toString()));
+		this.addUpgradingRecipe(consumer, ItemList.beacon_backpack_0, ItemList.beacon_backpack_1, Items.GOLD_BLOCK);
+		this.addUpgradingRecipe(consumer, ItemList.beacon_backpack_1, ItemList.beacon_backpack_2, Items.DIAMOND_BLOCK);
+		this.addUpgradingRecipe(consumer, ItemList.beacon_backpack_2, ItemList.beacon_backpack_3, Items.EMERALD_BLOCK);
+		this.addUpgradingRecipe(consumer, ItemList.beacon_backpack_3, ItemList.beacon_backpack_4, Items.NETHERITE_BLOCK);
 		
 		ShapedRecipeBuilder.shaped(ItemList.bonk_stick)
 		.pattern("S")
@@ -165,5 +130,64 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		.group("")
 		.unlockedBy("has_netherite", has(Items.NETHERITE_INGOT))
 		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.infused_dagger.toString()));
+	}
+	
+	private void addUpgradingRecipe(Consumer<IFinishedRecipe> consumer, Item input, Item output, Item upgrader) {
+		ShapedRecipeBuilder.shaped(output)
+		.pattern("ooo")
+		.pattern("oxo")
+		.pattern("ooo")
+		.define('o', upgrader)
+		.define('x', input)
+		.group("")
+		.unlockedBy("has_item", has(input))
+		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, output.toString()));
+	}
+	
+	@SuppressWarnings("unused")
+	private void addInfusionRecipe(Consumer<IFinishedRecipe> consumer, Item infused, Item primaryInput, Item secondaryInput, Potion potion) {
+		ShapelessNBTRecipeBuilder.shapeless(PotionUtils.setPotion(new ItemStack(infused), potion))
+		.requires(primaryInput)
+		.requires(secondaryInput)
+		.requires(infused)
+		.group("")
+		.unlockedBy("has_dagger", has(infused))
+		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, infused.toString().concat("_").concat(primaryInput.toString())));
+	}
+	private void addInfusionRecipe(Consumer<IFinishedRecipe> consumer, Item infused, Item input, Potion potion) {
+		ShapelessNBTRecipeBuilder.shapeless(PotionUtils.setPotion(new ItemStack(infused), potion))
+		.requires(input)
+		.requires(infused)
+		.group("")
+		.unlockedBy("has_dagger", has(infused))
+		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, infused.toString().concat("_").concat(input.toString())));
+	}
+	
+	private void addInfusionRecipe(Consumer<IFinishedRecipe> consumer, Item infused, Item input, Effect effect, int effectDuration) {
+		EffectInstance effInst = new EffectInstance(effect, effectDuration, 0, true, true, true);
+		effInst.setCurativeItems(new ArrayList<ItemStack>(Arrays.asList(new ItemStack(Items.MILK_BUCKET))));
+
+		ShapelessNBTRecipeBuilder.shapeless(PotionUtils.setCustomEffects(new ItemStack(infused), new ArrayList<EffectInstance>(Arrays.asList(effInst))))
+		.requires(input)
+		.requires(infused)
+		.group("")
+		.unlockedBy("has_dagger", has(infused))
+		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, infused.toString().concat("_").concat(input.toString())));
+	}
+	
+	private void addInfusionRecipe(Consumer<IFinishedRecipe> consumer, Item infused, Item primaryInput, Item secondaryInput, Effect effect, int effectDuration) {
+		addInfusionRecipe(consumer, infused, primaryInput, secondaryInput, effect, effectDuration, 0);
+	}
+	private void addInfusionRecipe(Consumer<IFinishedRecipe> consumer, Item infused, Item primaryInput, Item secondaryInput, Effect effect, int effectDuration, int amplifier) {
+		EffectInstance effInst = new EffectInstance(effect, effectDuration, amplifier, true, true, true);
+		effInst.setCurativeItems(new ArrayList<ItemStack>(Arrays.asList(new ItemStack(Items.MILK_BUCKET))));
+		
+		ShapelessNBTRecipeBuilder.shapeless(PotionUtils.setCustomEffects(new ItemStack(infused), new ArrayList<EffectInstance>(Arrays.asList(effInst))))
+		.requires(primaryInput)
+		.requires(secondaryInput)
+		.requires(infused)
+		.group("")
+		.unlockedBy("has_dagger", has(infused))
+		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, infused.toString().concat("_").concat(primaryInput.toString())));
 	}
 }	

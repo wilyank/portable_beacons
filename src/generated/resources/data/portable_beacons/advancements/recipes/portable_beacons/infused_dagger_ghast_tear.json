@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "portable_beacons:infused_dagger_shulker_shell"
+      "portable_beacons:infused_dagger_ghast_tear"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "portable_beacons:infused_dagger_shulker_shell"
+        "recipe": "portable_beacons:infused_dagger_ghast_tear"
       }
     }
   },

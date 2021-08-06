@@ -2,14 +2,16 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "portable_beacons:potion_necklace"
+      "item": "minecraft:rabbit_foot"
     },
     {
-      "item": "minecraft:rabbit_foot"
+      "item": "portable_beacons:potion_necklace"
     }
   ],
   "result": {
     "item": "portable_beacons:potion_necklace",
-    "nbt": {"Potion":"minecraft:leaping"}
+    "nbt": {
+      "Potion": "minecraft:leaping"
+    }
   }
 }

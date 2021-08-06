@@ -2,14 +2,16 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "portable_beacons:potion_necklace"
+      "item": "minecraft:phantom_membrane"
     },
     {
-      "item": "minecraft:phantom_membrane"
+      "item": "portable_beacons:potion_necklace"
     }
   ],
   "result": {
     "item": "portable_beacons:potion_necklace",
-    "nbt": {"Potion":"minecraft:slow_falling"}
+    "nbt": {
+      "Potion": "minecraft:slow_falling"
+    }
   }
 }

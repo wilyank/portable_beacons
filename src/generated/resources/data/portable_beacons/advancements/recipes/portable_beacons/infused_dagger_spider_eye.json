@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "portable_beacons:infused_dagger_rabbit_foot"
+      "portable_beacons:infused_dagger_spider_eye"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "portable_beacons:infused_dagger_rabbit_foot"
+        "recipe": "portable_beacons:infused_dagger_spider_eye"
       }
     }
   },

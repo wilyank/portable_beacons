@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "wnw",
+    "wnw",
+    " R "
+  ],
+  "key": {
+    "w": {
+      "item": "minecraft:nether_wart"
+    },
+    "n": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "R": {
+      "item": "minecraft:blaze_rod"
+    }
+  },
+  "result": {
+    "item": "portable_beacons:infused_dagger"
+  }
+}

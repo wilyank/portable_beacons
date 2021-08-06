@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "portable_beacons:infused_dagger_magma_cream"
+      "portable_beacons:infused_dagger"
     ]
   },
   "criteria": {
-    "has_dagger": {
+    "has_netherite": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "portable_beacons:infused_dagger"
+            "item": "minecraft:netherite_ingot"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "portable_beacons:infused_dagger_magma_cream"
+        "recipe": "portable_beacons:infused_dagger"
       }
     }
   },
   "requirements": [
     [
-      "has_dagger",
+      "has_netherite",
       "has_the_recipe"
     ]
   ]
