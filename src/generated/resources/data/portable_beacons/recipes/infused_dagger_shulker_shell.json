@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:phantom_membrane"
+      "item": "minecraft:shulker_shell"
     },
     {
       "item": "portable_beacons:infused_dagger"
@@ -22,8 +22,8 @@
           ],
           "ShowIcon": 1,
           "ShowParticles": 1,
-          "Duration": 400,
-          "Id": 28,
+          "Duration": 200,
+          "Id": 25,
           "Amplifier": 0
         }
       ],

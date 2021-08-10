@@ -45,13 +45,14 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		this.addInfusionRecipe(consumer, ItemList.potion_necklace, Items.SHULKER_SHELL, Effects.LEVITATION, 400);
 
 		
-		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.BLAZE_POWDER, Items.FERMENTED_SPIDER_EYE, Effects.WEAKNESS, 50);
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.BLAZE_POWDER, Items.FERMENTED_SPIDER_EYE, Effects.WEAKNESS, 400);
 		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.SUGAR, Items.FERMENTED_SPIDER_EYE, Effects.MOVEMENT_SLOWDOWN, 50);
 		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.GOLDEN_CARROT, Items.FERMENTED_SPIDER_EYE, Effects.BLINDNESS, 50);
-		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.PHANTOM_MEMBRANE, Effects.SLOW_FALLING, 50);
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.PHANTOM_MEMBRANE, Effects.SLOW_FALLING, 400);
 		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.SPONGE, Effects.DIG_SLOWDOWN, 100);
-		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.SPIDER_EYE, Effects.POISON, 20);
-		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.GHAST_TEAR, Effects.REGENERATION, 20);
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.SPIDER_EYE, Effects.POISON, 60);
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.GHAST_TEAR, Effects.REGENERATION, 100);
+		this.addInfusionRecipe(consumer,  ItemList.infused_dagger, Items.SHULKER_SHELL, Effects.LEVITATION, 200);
 
 
 

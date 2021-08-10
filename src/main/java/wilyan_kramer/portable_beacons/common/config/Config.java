@@ -30,6 +30,8 @@ public class Config {
 		public final IntValue bonkStickDurability;
 		public final IntValue infusedDaggerDamage; 
 		public final IntValue infusedDaggerDurability;
+		public final BooleanValue witchArmor;
+		public final IntValue witchArmorChance;
 
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.comment("Common config for Portable Beacons").push("Beacon Backpack Config");
@@ -87,6 +89,16 @@ public class Config {
 					.comment("Base durability of the Infused Dagger")
 					.worldRestart()
 					.defineInRange("infusedDaggerDurability", 100, 1, 1000000);
+			builder.pop();
+			builder.push("Gameplay Config");
+			this.witchArmor = builder
+					.comment("Whether the Witch applies potion effects to entities hitting it")
+					.worldRestart()
+					.define("witchArmor", true);
+			this.witchArmorChance = builder
+					.comment("One in this many chance that witch armor activates.")
+					.worldRestart()
+					.defineInRange("witchAmorChance", 3, 1, 10000000);
 			builder.pop();
 		}
 	}

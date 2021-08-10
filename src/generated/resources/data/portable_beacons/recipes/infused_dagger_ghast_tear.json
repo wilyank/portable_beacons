@@ -22,7 +22,7 @@
           ],
           "ShowIcon": 1,
           "ShowParticles": 1,
-          "Duration": 20,
+          "Duration": 100,
           "Id": 10,
           "Amplifier": 0
         }
