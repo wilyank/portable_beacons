@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "triggered=false": {
+      "model": "portable_beacons:block/diffuser"
+    },
+    "triggered=true": {
+      "model": "portable_beacons:block/diffuser_triggered"
+    }
+  }
+}

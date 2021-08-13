@@ -1,4 +1,4 @@
-package wilyan_kramer.portable_beacons;
+package wilyan_kramer.portable_beacons.common;
 
 import java.util.Arrays;
 import java.util.Random;

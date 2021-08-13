@@ -38,7 +38,7 @@ public class PotionNecklaceItem extends Item implements ICurioItem {
 
 	private static final ResourceLocation BEACON_NECKLACE_TEXTURE = new ResourceLocation(PortableBeaconsMod.MODID, "textures/entity/beacon_necklace.png");
 	public PotionNecklaceItem() {
-		super(new Item.Properties().tab(PortableBeaconsMod.TAB_PORTABLE_BEACONS).stacksTo(1).durability(0).rarity(Rarity.EPIC));
+		super(new Item.Properties().tab(InventoryTabs.TAB_PORTABLE_BEACONS).stacksTo(1).durability(0).rarity(Rarity.EPIC));
 		this.setRegistryName("portable_beacons", "potion_necklace");
 	}
 

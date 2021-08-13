@@ -15,6 +15,7 @@
     "item.portable_beacons.infused_dagger": "Doordrenkte dolk",
     "item.portable_beacons.bonk_stick.tooltip":"Een ontnuchterende ervaring",
     "item.portable_beacons.tooltip.on_hit": "Geraakte vijand:",
-    "block.portable_beacons.nether_star_block": "Nethersterblok"
+    "block.portable_beacons.nether_star_block": "Nethersterblok",
+    "block.portable_beacons.diffuser": "Verstuiver"
     
 }

@@ -15,5 +15,6 @@
     "item.portable_beacons.infused_dagger": "Infused Dagger",
     "item.portable_beacons.bonk_stick.tooltip":"A sobering experience",
     "item.portable_beacons.tooltip.on_hit": "On hit:",
-    "block.portable_beacons.nether_star_block": "Nether Star Block"
+    "block.portable_beacons.nether_star_block": "Nether Star Block",
+    "block.portable_beacons.diffuser": "Diffuser"
 }

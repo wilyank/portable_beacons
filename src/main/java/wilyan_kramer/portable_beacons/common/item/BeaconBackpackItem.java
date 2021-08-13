@@ -50,6 +50,7 @@ import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import wilyan_kramer.portable_beacons.client.render.model.BackpackModel;
 import wilyan_kramer.portable_beacons.common.config.Config;
 import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
+import wilyan_kramer.portable_beacons.setup.CommonSetup;
 
 public class BeaconBackpackItem extends Item implements ICurioItem {
 
@@ -64,7 +65,7 @@ public class BeaconBackpackItem extends Item implements ICurioItem {
 	}
 
 	public BeaconBackpackItem(String name, int tier) {
-		super(new Item.Properties().tab(PortableBeaconsMod.TAB_PORTABLE_BEACONS).stacksTo(1).durability(0).rarity(Rarity.EPIC));
+		super(new Item.Properties().tab(InventoryTabs.TAB_PORTABLE_BEACONS).stacksTo(1).durability(0).rarity(Rarity.EPIC));
 		this.setRegistryName("portable_beacons", name);
 		this.beaconTier = tier;
 	}

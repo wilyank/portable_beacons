@@ -27,7 +27,7 @@ import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 public class EffectApplierItem extends Item {
     
 	public EffectApplierItem(Properties p_i48487_1_) {
-		super(p_i48487_1_.stacksTo(1).durability(0).tab(PortableBeaconsMod.TAB_PORTABLE_BEACONS).rarity(Rarity.RARE));
+		super(p_i48487_1_.stacksTo(1).durability(0).tab(InventoryTabs.TAB_PORTABLE_BEACONS).rarity(Rarity.RARE));
 	}
 	
 	public boolean isFoil(@Nonnull ItemStack stack) {

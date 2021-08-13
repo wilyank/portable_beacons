@@ -35,10 +35,16 @@ public class BlockRegistry {
     						.randomTicks()
     						.noCollission()
     						.sound(SoundType.SWEET_BERRY_BUSH)
-    						).setRegistryName(PortableBeaconsMod.MODID, "glowberry_bush")
+    						).setRegistryName(PortableBeaconsMod.MODID, "glowberry_bush"),
+    				BlockList.diffuser = new DiffuserBlock(
+    						AbstractBlock.Properties
+    						.of(Material.STONE)
+    						.sound(SoundType.STONE)
+    						).setRegistryName(PortableBeaconsMod.MODID, "diffuser")
     				);
     		if (FMLEnvironment.dist == Dist.CLIENT) {
     			RenderTypeLookup.setRenderLayer(BlockList.glowberry_bush, RenderType.cutout());
+    			RenderTypeLookup.setRenderLayer(BlockList.diffuser, RenderType.translucent());
     		}
     	}
     }

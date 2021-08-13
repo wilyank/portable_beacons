@@ -111,6 +111,19 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		this.addUpgradingRecipe(consumer, ItemList.beacon_backpack_2, ItemList.beacon_backpack_3, Items.EMERALD_BLOCK);
 		this.addUpgradingRecipe(consumer, ItemList.beacon_backpack_3, ItemList.beacon_backpack_4, Items.NETHERITE_BLOCK);
 		
+		ShapedRecipeBuilder.shaped(ItemList.diffuser)
+		.pattern("GCG")
+		.pattern("GNG")
+		.pattern("BOB")
+		.define('C', Items.CHISELED_NETHER_BRICKS)
+		.define('G', Items.GOLD_BLOCK)
+		.define('N', Items.NETHERITE_BLOCK)
+		.define('B', Items.NETHER_BRICKS)
+		.define('O', Items.OBSIDIAN)
+		.group("")
+		.unlockedBy("has_item", has(Items.NETHERITE_BLOCK))
+		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.diffuser.toString()));
+		
 		ShapedRecipeBuilder.shaped(ItemList.bonk_stick)
 		.pattern("S")
 		.pattern("L")

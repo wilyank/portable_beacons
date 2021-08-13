@@ -26,6 +26,7 @@ public class Config {
 		public final BooleanValue beaconOthers;
 		public final IntValue effectCooldown;
 		public final IntValue effectDuration;
+		public final DoubleValue diffuserRange;
 		public final IntValue bonkStickDamage;
 		public final IntValue bonkStickDurability;
 		public final IntValue infusedDaggerDamage; 
@@ -71,6 +72,10 @@ public class Config {
 					.comment("The length in ticks of the effect applied by the Beacon Backpack")
 					.worldRestart()
 					.defineInRange("effectDuration", 400, 1, 10000);
+			this.diffuserRange = builder
+					.comment("The range of the Diffuser")
+					.worldRestart()
+					.defineInRange("diffuserRange", 40F, 1F, 128);
 			builder.pop();
 			builder.push("Weapons Config");
 			this.bonkStickDamage = builder
