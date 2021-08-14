@@ -4,6 +4,7 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
@@ -18,6 +19,7 @@ public class ClientSetup {
     	ScreenManager.register(ContainerList.diffuserContainer, DiffuserScreen::new);
 	}
 	
+	@OnlyIn(Dist.CLIENT)
 	@SubscribeEvent
     public static void onColorHandlerEvent(ColorHandlerEvent.Item event)
     {
