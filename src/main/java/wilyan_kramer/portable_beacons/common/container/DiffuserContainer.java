@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.util.IntReferenceHolder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -16,6 +17,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import wilyan_kramer.portable_beacons.common.block.BlockList;
+import wilyan_kramer.portable_beacons.common.tileentity.DiffuserTileEntity;
 
 public class DiffuserContainer extends Container {
 
@@ -31,12 +33,68 @@ public class DiffuserContainer extends Container {
 
 		if (tileEntity != null) {
 			tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-				addSlot(new SlotItemHandler(h, 0, 64, 24));
+				addSlot(new SlotItemHandler(h, 0, 26, 35));
 			});
 		}
-		layoutPlayerInventorySlots(10, 70);
+		layoutPlayerInventorySlots(8, 84);
+		trackEffect();
 	}
 	
+	private void trackEffect() {
+		// first half of the duration data slot
+		addDataSlot(new IntReferenceHolder() {
+			@Override
+			public int get() {
+				return getDuration() & 0xffff;
+			}
+			@Override
+			public void set(int value) {
+				if (tileEntity instanceof DiffuserTileEntity) {
+					int durationStored = ((DiffuserTileEntity) tileEntity).getDuration() & 0xffff0000;
+					((DiffuserTileEntity) tileEntity).setDuration(durationStored + (value & 0xffff));
+				}
+			}
+		});
+		// second half of the duration data slot
+		addDataSlot(new IntReferenceHolder() {
+			@Override
+			public int get() {
+				return (getDuration() >> 16) & 0xffff;
+			}
+			@Override
+			public void set(int value) {
+				if (tileEntity instanceof DiffuserTileEntity) {
+					int durationStored = ((DiffuserTileEntity) tileEntity).getDuration() & 0x0000ffff;
+					((DiffuserTileEntity) tileEntity).setDuration(durationStored | (value << 16));
+				}
+			}
+		});
+
+	}
+	public int getDuration() {
+		if (tileEntity instanceof DiffuserTileEntity) {
+			return ((DiffuserTileEntity) tileEntity).getDuration();
+		}
+		else {
+			return 0;
+		}
+	}
+	public int[] getEffectIds() {
+		if (tileEntity instanceof DiffuserTileEntity) {
+			return ((DiffuserTileEntity) tileEntity).getEffectIds();
+		}
+		else {
+			return new int[] {-1};
+		}
+	}
+	public int[] getAmplifiers() {
+		if (tileEntity instanceof DiffuserTileEntity) {
+			return ((DiffuserTileEntity) tileEntity).getAmplifiers();
+		}
+		else {
+			return new int[] {0};
+		}
+	}
 
 	@Override
 	public ContainerType<?> getType() {

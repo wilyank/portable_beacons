@@ -75,7 +75,7 @@ public class Config {
 			this.diffuserRange = builder
 					.comment("The range of the Diffuser")
 					.worldRestart()
-					.defineInRange("diffuserRange", 40F, 1F, 128);
+					.defineInRange("diffuserRange", 50F, 1F, 128);
 			builder.pop();
 			builder.push("Weapons Config");
 			this.bonkStickDamage = builder

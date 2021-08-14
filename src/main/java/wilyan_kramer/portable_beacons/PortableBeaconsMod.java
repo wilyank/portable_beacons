@@ -21,7 +21,7 @@ public class PortableBeaconsMod {
 	public static final String MODID = "portable_beacons";
 
 	// Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public PortableBeaconsMod() {
     	Config.init();

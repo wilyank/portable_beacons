@@ -73,7 +73,7 @@ public class DiffuserBlock extends Block {
 	public int getAnalogOutputSignal(BlockState state, World world, BlockPos pos) {
 		TileEntity tileEntity = world.getBlockEntity(pos);
 		if (tileEntity instanceof DiffuserTileEntity) {
-			int value = (int) Math.floor( (Math.log10( ((DiffuserTileEntity) tileEntity).getDuration()) )/(Math.log10(2F)));
+			int value = (int) Math.floor( (Math.log10( ((DiffuserTileEntity) tileEntity).getDuration() / 20) )/(Math.log10(2F)));
 			value = value > 0 ? value < 15 ? value : 15 : 0;
 			return value;
 		}

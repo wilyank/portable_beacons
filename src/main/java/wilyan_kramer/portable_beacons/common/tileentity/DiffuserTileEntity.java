@@ -1,13 +1,11 @@
 package wilyan_kramer.portable_beacons.common.tileentity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,9 +14,11 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -26,6 +26,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.LazyOptional;
@@ -36,14 +37,13 @@ import wilyan_kramer.portable_beacons.common.config.Config;
 import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 
 public class DiffuserTileEntity extends TileEntity implements ITickableTileEntity {
-    private static final Logger LOGGER = LogManager.getLogger();
     
     private double range = Config.COMMON.diffuserRange.get();
     private ItemStackHandler itemHandler = createItemHandler();
     private LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
-    private int[] effects;
-    private int durationLeft;
-    private int[] amplifiers;
+    private int[] effects = new int[] {-1};
+    private int durationLeft = 0;
+    private int[] amplifiers = new int[] {-1};
 
 	private Random random = new Random();
 
@@ -67,12 +67,25 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 					durationLeft--;
 					if (random.nextInt(20) == 0) {
 						this.level.playSound(
-								null, 
+								null, //target player (on server, this means everyone except this player)
 								this.worldPosition, 
 								SoundEvents.BREWING_STAND_BREW, 
-								SoundCategory.BLOCKS, 
-								1F, 
-								0.9F + 0.2F * (float) random.nextGaussian());
+								SoundCategory.BLOCKS,
+								1F, // volume
+								0.9F + 0.2F * (float) random.nextGaussian()); // pitch
+					}
+					if (this.level instanceof ServerWorld) {
+						((ServerWorld) this.level).sendParticles(
+								ParticleTypes.EFFECT , // the effect type
+								(double) this.worldPosition.getX() + 0.5D, // x coord
+								(double) this.worldPosition.getY() + 0.5D, // y coord
+								(double) this.worldPosition.getZ() + 0.5D, // z coord
+								3, // the particle intensity
+								0.1D, // particle spread in x-direction
+								0.1D, // particle spread in y-direction
+								0.1D, // particle spread in z-direction
+								0.1D // whether the particles rise up or something
+								);
 					}
 				}	
 			}
@@ -83,6 +96,15 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 			}
 		}
 		this.setChanged();
+		
+	}
+	@SuppressWarnings("unused")
+	private int getColor() {
+		List<EffectInstance> effInstList = new ArrayList<>();
+		for (int i = 0; i < this.effects.length; i++) {
+			effInstList.add(new EffectInstance(Effect.byId(this.effects[i]), this.durationLeft, this.amplifiers[i]));
+		}
+		return PotionUtils.getColor(effInstList);
 	}
 	@Override
 	public void load(BlockState state, CompoundNBT compound) {
@@ -172,6 +194,21 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 	}
 	public int getDuration() {
 		return this.durationLeft;
+	}
+	public void setDuration(int duration) {
+		this.durationLeft = duration;
+	}
+	public int[] getEffectIds() {
+		return this.effects;
+	}
+	public void setEffectIds(int[] ids) {
+		this.effects = ids;
+	}
+	public int[] getAmplifiers() {
+		return this.amplifiers;
+	}
+	public void setAmplifiers(int[] amps) {
+		this.amplifiers = amps;
 	}
 	
 	private void applyEffects() {
