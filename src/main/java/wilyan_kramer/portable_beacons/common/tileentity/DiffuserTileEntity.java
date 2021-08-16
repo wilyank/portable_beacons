@@ -62,8 +62,9 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 	}
 	@Override
 	public void tick() {
-		if (this.level.getBlockState(this.worldPosition).getValue(BlockStateProperties.TRIGGERED) == true ) {
-			if (durationLeft > 0) {
+		//if ( ) {
+		if (durationLeft > 0) {
+			if (this.level.getBlockState(this.worldPosition).getValue(BlockStateProperties.TRIGGERED) == true) {
 				if (!this.level.isClientSide) {
 					applyEffects();
 					durationLeft--;
@@ -86,17 +87,18 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 								0.1D, // particle spread in x-direction
 								0.1D, // particle spread in y-direction
 								0.1D, // particle spread in z-direction
-								0.1D // whether the particles rise up or something
+								0.1D // particles rising speed or something
 								);
 					}
 				}	
 			}
-			else {
-				this.effects = new int[] {-1};
-				this.durationLeft = 0;
-				this.amplifiers = new int[] {-1};
-			}
 		}
+		else {
+			this.effects = new int[] {-1,-1,-1,-1};
+			this.durationLeft = 0;
+			this.amplifiers = new int[] {0,0,0,0};
+		}
+		//}
 		this.setChanged();
 	}
 	@SuppressWarnings("unused")
