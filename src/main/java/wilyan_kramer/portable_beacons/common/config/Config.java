@@ -27,6 +27,7 @@ public class Config {
 		public final IntValue effectCooldown;
 		public final IntValue effectDuration;
 		public final DoubleValue diffuserRange;
+		public final BooleanValue diffuserMobs;
 		public final IntValue bonkStickDamage;
 		public final IntValue bonkStickDurability;
 		public final IntValue infusedDaggerDamage; 
@@ -55,7 +56,7 @@ public class Config {
 			this.beaconRangeB = builder
 					.comment("Parameter B in calculating the Beacon Backpack's range. Range = A*(Tier-1) + B. Vanilla Beacons have B = 10")
 					.worldRestart()
-					.defineInRange("beaconRangeB", 5.0F, 0.0F, 0.0F);
+					.defineInRange("beaconRangeB", 5.0F, 0.0F, 100.0F);
 			this.beaconSelf = builder
 					.comment("Whether the Beacon Backpack applies effects to the wearer")
 					.worldRestart()
@@ -76,6 +77,10 @@ public class Config {
 					.comment("The range of the Diffuser")
 					.worldRestart()
 					.defineInRange("diffuserRange", 50F, 1F, 128);
+			this.diffuserMobs = builder
+					.comment("Whether the Diffuser applies effects to all mobs")
+					.worldRestart()
+					.define("diffuserMobs", false);
 			builder.pop();
 			builder.push("Weapons Config");
 			this.bonkStickDamage = builder

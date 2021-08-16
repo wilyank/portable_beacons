@@ -8,6 +8,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -149,20 +150,22 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 		return new ItemStackHandler(1) {
 			@Override
 			protected void onContentsChanged(int slot) {
-				ItemStack stack = this.getStackInSlot(slot);
-				List<EffectInstance> effInstList = EffectHelper.getAllEffects(stack); 
-				if (effInstList.size() > 0) {
-					effects = new int[effInstList.size()];
-					amplifiers = new int[effInstList.size()];
-					durationLeft = 0;
-					for (int i = 0; i < effInstList.size(); i++) {
-						EffectInstance effInst = effInstList.get(i);
-						effects[i] = Effect.getId(effInst.getEffect());
-						if (effInst.getDuration() > durationLeft)
-							durationLeft = effInst.getDuration();
-						amplifiers[i] = effInst.getAmplifier();
+				if (slot == 0) {
+					ItemStack stack = this.getStackInSlot(slot);
+					List<EffectInstance> effInstList = EffectHelper.getAllEffects(stack); 
+					if (effInstList.size() > 0) {
+						effects = new int[effInstList.size()];
+						amplifiers = new int[effInstList.size()];
+						durationLeft = 0;
+						for (int i = 0; i < effInstList.size(); i++) {
+							EffectInstance effInst = effInstList.get(i);
+							effects[i] = Effect.getId(effInst.getEffect());
+							if (effInst.getDuration() > durationLeft)
+								durationLeft = effInst.getDuration();
+							amplifiers[i] = effInst.getAmplifier();
+						}
+						this.setStackInSlot(slot, new ItemStack(Items.GLASS_BOTTLE));
 					}
-					this.setStackInSlot(slot, new ItemStack(Items.GLASS_BOTTLE));
 				}
 				setChanged();
 			}
@@ -213,19 +216,25 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 	
 	private void applyEffects() {
 		AxisAlignedBB axisalignedbb = (new AxisAlignedBB(this.worldPosition)).inflate(range);
-        List<PlayerEntity> list = this.level.getEntitiesOfClass(PlayerEntity.class, axisalignedbb);
+		List<LivingEntity> list;
+		if (Config.COMMON.diffuserMobs.get()) {
+			list = this.level.getEntitiesOfClass(LivingEntity.class, axisalignedbb);
+		}
+		else {
+			list = this.level.getEntitiesOfClass(PlayerEntity.class, axisalignedbb);
 
-        for(PlayerEntity playerentity : list) {
+		}
+        for(LivingEntity entity : list) {
         	for (int i = 0; i < effects.length; i++) {
         		if (effects[i] > 0 && amplifiers[i] >= 0) {
         			if (Effect.byId(effects[i]) == Effects.NIGHT_VISION) {
-            			playerentity.addEffect(new EffectInstance(Effect.byId(effects[i]), 300, amplifiers[i], true, true));
+            			entity.addEffect(new EffectInstance(Effect.byId(effects[i]), 300, amplifiers[i], true, true));
         			}
         			else if (Effect.byId(effects[i]) == Effects.HARM || Effect.byId(effects[i]) == Effects.HEAL) {
         				//do not apply it
         			}
         			else {
-        				playerentity.addEffect(new EffectInstance(Effect.byId(effects[i]), 40, amplifiers[i], true, true));
+        				entity.addEffect(new EffectInstance(Effect.byId(effects[i]), 40, amplifiers[i], true, true));
         			}
         		}
         	}
