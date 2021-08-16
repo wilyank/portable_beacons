@@ -6,9 +6,12 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.EffectUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StringUtils;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import wilyan_kramer.portable_beacons.common.container.DiffuserContainer;
@@ -31,11 +34,40 @@ public class DiffuserScreen extends ContainerScreen<DiffuserContainer> {
 	@Override
 	protected void renderLabels(MatrixStack mStack, int mouseX, int mouseY) {
 		if (menu.getDuration() <= 0) {
-			drawTextComponent(mStack, new TranslationTextComponent("effect.none"), 0);
+			clearTextBox(mStack);
+			drawTextComponent(mStack, new TranslationTextComponent("effect.none").withStyle(TextFormatting.GRAY), 0);
 		}
+//		if (false) {
+//			drawTextComponent(mStack, new TranslationTextComponent("screen.portable_beacons.diffuser.time_left", StringUtils.formatTickDuration(menu.getDuration())) , 0);
+//		}
 		if (menu.getDuration() > 0) {
-			drawTextComponent(mStack, new TranslationTextComponent("screen.portable_beacons.diffuser.time_left", StringUtils.formatTickDuration(menu.getDuration())) , 0);
+			clearTextBox(mStack);
+			int[] effs = menu.getEffectIds();
+			int duration = menu.getDuration();
+			int[] amps = menu.getAmplifiers();
+			PortableBeaconsMod.LOGGER.info("Duration: {}", duration);
+			PortableBeaconsMod.LOGGER.info("Effects: {}, {}, {}, {}", effs[0], effs[1], effs[2], effs[3]);
+			int j = 0;
+			for (int i = 0; i < 4; i++) {
+				if (effs[i] > 0) {
+					EffectInstance effectinstance = new EffectInstance(Effect.byId(effs[i]), duration, amps[i]);
+					IFormattableTextComponent iformattabletextcomponent = new TranslationTextComponent(effectinstance.getDescriptionId());
+					if (effectinstance.getAmplifier() > 0) {
+						iformattabletextcomponent = new TranslationTextComponent("potion.withAmplifier", iformattabletextcomponent, new TranslationTextComponent("potion.potency." + effectinstance.getAmplifier()));
+					}
+					if (effectinstance.getDuration() > 0) {
+						iformattabletextcomponent = new TranslationTextComponent("potion.withDuration", iformattabletextcomponent, EffectUtils.formatDuration(effectinstance, 1));
+					}
+					drawTextComponent(mStack, iformattabletextcomponent.withStyle(effectinstance.getEffect().getCategory().getTooltipFormatting()), j);
+					j++;
+				}
+			}
+			if (j == 0) {
+				drawTextComponent(mStack, new TranslationTextComponent("effect.none").withStyle(TextFormatting.GRAY), 0);
+			}
+				
 		}
+
 		super.renderLabels(mStack, mouseX, mouseY);
 	}
 
@@ -48,11 +80,15 @@ public class DiffuserScreen extends ContainerScreen<DiffuserContainer> {
 		int relX = (this.width - this.getXSize()) / 2;
 		int relY = (this.height - this.getYSize()) / 2;
 		this.blit(mStack, relX, relY, 0, 0, this.getXSize(), this.getYSize());		
-		
-	}
-	private void drawTextComponent(MatrixStack mStack, ITextComponent text, int lineIndex) {
-		drawString(mStack, font, text.getString(), 67, 23 + 11 * lineIndex, 0xffffff);
 	}
 	
-
+	private void drawTextComponent(MatrixStack mStack, ITextComponent text, int lineIndex) {
+		drawString(mStack, font, text.getString(), 67, 23 + 11 * lineIndex, text.getStyle().getColor().getValue());
+	}
+	
+	private void clearTextBox(MatrixStack mStack) {
+		for (int i = 0; i < 4; i++) {
+			drawString(mStack, font, "", 67, 23 + 11 * i, 0x000000);
+		}
+	}
 }

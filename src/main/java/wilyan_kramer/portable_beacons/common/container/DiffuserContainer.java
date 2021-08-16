@@ -8,8 +8,8 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.IntReferenceHolder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -24,76 +24,44 @@ public class DiffuserContainer extends Container {
 	private PlayerEntity playerEntity;
 	private IItemHandler playerInventory;
 	private TileEntity tileEntity;
+	private final IIntArray data;
 
 	public DiffuserContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
 		super(ContainerList.diffuserContainer, windowId);
 		tileEntity = world.getBlockEntity(pos);
 		this.playerEntity = player;
 		this.playerInventory = new InvWrapper(playerInventory);
-
+		if (this.tileEntity instanceof DiffuserTileEntity) {
+			this.data = ((DiffuserTileEntity) tileEntity).dataAccess;
+		}
+		else {
+			throw new IllegalStateException("DiffuserContainer being used for non-diffuser TileEntity");
+		}
 		if (tileEntity != null) {
 			tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-				addSlot(new SlotItemHandler(h, 0, 26, 35));
+				addSlot(new SlotItemHandler(h, 0, 26, 35)); // arguments: ItemHandler, slot index, x pixel coordinate, y pixel coordinate
 			});
 		}
 		layoutPlayerInventorySlots(8, 84);
-		trackEffect();
-	}
-	
-	private void trackEffect() {
-		// first half of the duration data slot
-		addDataSlot(new IntReferenceHolder() {
-			@Override
-			public int get() {
-				return getDuration() & 0xffff;
-			}
-			@Override
-			public void set(int value) {
-				if (tileEntity instanceof DiffuserTileEntity) {
-					int durationStored = ((DiffuserTileEntity) tileEntity).getDuration() & 0xffff0000;
-					((DiffuserTileEntity) tileEntity).setDuration(durationStored + (value & 0xffff));
-				}
-			}
-		});
-		// second half of the duration data slot
-		addDataSlot(new IntReferenceHolder() {
-			@Override
-			public int get() {
-				return (getDuration() >> 16) & 0xffff;
-			}
-			@Override
-			public void set(int value) {
-				if (tileEntity instanceof DiffuserTileEntity) {
-					int durationStored = ((DiffuserTileEntity) tileEntity).getDuration() & 0x0000ffff;
-					((DiffuserTileEntity) tileEntity).setDuration(durationStored | (value << 16));
-				}
-			}
-		});
-
+		if (tileEntity instanceof DiffuserTileEntity)
+			addDataSlots(((DiffuserTileEntity) tileEntity).dataAccess);
 	}
 	public int getDuration() {
-		if (tileEntity instanceof DiffuserTileEntity) {
-			return ((DiffuserTileEntity) tileEntity).getDuration();
-		}
-		else {
-			return 0;
-		}
+		return this.data.get(0);
 	}
 	public int[] getEffectIds() {
-		if (tileEntity instanceof DiffuserTileEntity) {
-			return ((DiffuserTileEntity) tileEntity).getEffectIds();
+		int[] effs = new int[4];
+		for (int i = 0; i < 4; i++) {
+			effs[i] = data.get(i+1);
 		}
-		else {
-			return new int[] {-1};
-		}
+		return effs;
 	}
 	public int[] getAmplifiers() {
-		if (tileEntity instanceof DiffuserTileEntity) {
-			return ((DiffuserTileEntity) tileEntity).getAmplifiers();
+		int[] effs = new int[4];
+		for (int i = 0; i < 4; i++) {
+			effs[i] = data.get(i+5);
 		}
-		else {
-			return new int[] {0};
-		}
+		return effs;
 	}
 
 	@Override

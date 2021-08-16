@@ -24,6 +24,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.IIntArray;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -42,9 +43,9 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
     private double range = Config.COMMON.diffuserRange.get();
     private ItemStackHandler itemHandler = createItemHandler();
     private LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
-    private int[] effects = new int[] {-1};
-    private int durationLeft = 0;
-    private int[] amplifiers = new int[] {-1};
+    private int[] effects;
+    private int durationLeft;
+    private int[] amplifiers;
 
 	private Random random = new Random();
 
@@ -97,7 +98,6 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 			}
 		}
 		this.setChanged();
-		
 	}
 	@SuppressWarnings("unused")
 	private int getColor() {
@@ -172,7 +172,7 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 
 			@Override
 			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-				return (stack.getItem() == Items.POTION || stack.getItem() == Items.GLASS_BOTTLE);
+					return (stack.getItem() == Items.POTION || stack.getItem() == Items.GLASS_BOTTLE);
 			}
 
 			@Nonnull
@@ -195,6 +195,125 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 		}
 		return super.getCapability(cap, side);
 	}
+	public final IIntArray dataAccess = new IIntArray() {
+	      public int get(int index) {
+	         switch(index) {
+	         case 0:
+	            return DiffuserTileEntity.this.durationLeft;
+	         case 1:
+	        	 if (DiffuserTileEntity.this.effects.length > 0) {
+	        		 return DiffuserTileEntity.this.effects[0];
+	        	 }
+	        	 else {
+	        		 return -1;
+	        	 }
+	         case 2:
+	        	 if (DiffuserTileEntity.this.effects.length > 1) {
+	        		 return DiffuserTileEntity.this.effects[1];
+	        	 }
+	        	 else {
+	        		 return -1;
+	        	 }
+	         case 3:
+	        	 if (DiffuserTileEntity.this.effects.length > 2) {
+	        		 return DiffuserTileEntity.this.effects[2];
+	        	 }
+	        	 else {
+	        		 return -1;
+	        	 }
+	         case 4:
+	        	 if (DiffuserTileEntity.this.effects.length > 3) {
+	        		 return DiffuserTileEntity.this.effects[3];
+	        	 }
+	        	 else {
+	        		 return -1;
+	        	 }
+	         case 5:
+	        	 if (DiffuserTileEntity.this.amplifiers.length > 0) {
+	        		 return DiffuserTileEntity.this.amplifiers[0];
+	        	 }
+	        	 else {
+	        		 return 0;
+	        	 }
+	         case 6:
+	        	 if (DiffuserTileEntity.this.amplifiers.length > 1) {
+	        		 return DiffuserTileEntity.this.amplifiers[1];
+	        	 }
+	        	 else {
+	        		 return 0;
+	        	 }
+	         case 7:
+	        	 if (DiffuserTileEntity.this.amplifiers.length > 2) {
+	        		 return DiffuserTileEntity.this.amplifiers[2];
+	        	 }
+	        	 else {
+	        		 return 0;
+	        	 }
+	         case 8:
+	        	 if (DiffuserTileEntity.this.amplifiers.length > 3) {
+	        		 return DiffuserTileEntity.this.amplifiers[3];
+	        	 }
+	        	 else {
+	        		 return 0;
+	        	 }
+	         default:
+	            return 0;
+	         }
+	      }
+
+	      public void set(int index, int value) {
+	         switch(index) {
+	         case 0:
+	            DiffuserTileEntity.this.durationLeft = value;
+	            break;
+	         case 1:
+	        	 if (DiffuserTileEntity.this.effects.length > 0) {
+	        		 DiffuserTileEntity.this.effects[0] = value;
+	        	 }
+	            break;
+	         case 2:
+	        	if (DiffuserTileEntity.this.effects.length > 1) {
+	        		DiffuserTileEntity.this.effects[1] = value;
+	        	}
+	            break;
+	         case 3:
+	        	 if (DiffuserTileEntity.this.effects.length > 2) {
+	        		 DiffuserTileEntity.this.effects[2] = value;
+	        	 }
+	        	 break;
+	         case 4:
+	        	 if (DiffuserTileEntity.this.effects.length > 3) {
+	        		 DiffuserTileEntity.this.effects[3] = value;
+	        	 }
+	        	 break;
+	         case 5:
+	        	 if (DiffuserTileEntity.this.amplifiers.length > 0) {
+	        		 DiffuserTileEntity.this.amplifiers[0] = value;
+	        	 }
+	        	 break;
+	         case 6:
+	        	 if (DiffuserTileEntity.this.amplifiers.length > 1) {
+	        		 DiffuserTileEntity.this.amplifiers[1] = value;
+	        	 }
+	        	 break;
+	         case 7:
+	        	 if (DiffuserTileEntity.this.amplifiers.length > 2) {
+	        		 DiffuserTileEntity.this.amplifiers[2] = value;
+	        	 }
+	        	 break;	 
+	         case 8:
+	        	 if (DiffuserTileEntity.this.amplifiers.length > 3) {
+	        		 DiffuserTileEntity.this.amplifiers[3] = value;
+	        	 }
+	        	 break;
+	         }
+
+	      }
+
+	      public int getCount() {
+	         return 9;
+	      }
+	   };
 	public int getDuration() {
 		return this.durationLeft;
 	}

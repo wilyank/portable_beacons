@@ -3,10 +3,9 @@ package wilyan_kramer.portable_beacons.common.item;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.Rarity;
-import net.minecraft.item.Item.Properties;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -20,7 +19,8 @@ public class ItemRegistry {
     	@SubscribeEvent
     	public static void onItemsRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
     		itemRegistryEvent.getRegistry().registerAll(
-    				ItemList.infused_star = new EffectApplierItem(new Item.Properties()).setRegistryName(new ResourceLocation("portable_beacons","infused_star")),
+    				ItemList.infused_star = new EffectApplierItem(new Item.Properties()).setRegistryName(PortableBeaconsMod.MODID,"infused_star"),
+    				ItemList.data_item = new Item(new Item.Properties().stacksTo(1)).setRegistryName(PortableBeaconsMod.MODID, "data_item"),
     				ItemList.potion_necklace = new PotionNecklaceItem(),
     				ItemList.beacon_backpack_0 = new BeaconBackpackItem("beacon_backpack_0", 0),
     				ItemList.beacon_backpack_1 = new BeaconBackpackItem("beacon_backpack_1", 1),
