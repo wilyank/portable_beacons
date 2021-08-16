@@ -11,6 +11,7 @@ import net.minecraft.potion.EffectUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
@@ -37,9 +38,6 @@ public class DiffuserScreen extends ContainerScreen<DiffuserContainer> {
 			clearTextBox(mStack);
 			drawTextComponent(mStack, new TranslationTextComponent("effect.none").withStyle(TextFormatting.GRAY), 0);
 		}
-//		if (false) {
-//			drawTextComponent(mStack, new TranslationTextComponent("screen.portable_beacons.diffuser.time_left", StringUtils.formatTickDuration(menu.getDuration())) , 0);
-//		}
 		if (menu.getDuration() > 0) {
 			clearTextBox(mStack);
 			int[] effs = menu.getEffectIds();
@@ -50,15 +48,20 @@ public class DiffuserScreen extends ContainerScreen<DiffuserContainer> {
 			int j = 0;
 			for (int i = 0; i < 4; i++) {
 				if (effs[i] > 0) {
-					EffectInstance effectinstance = new EffectInstance(Effect.byId(effs[i]), duration, amps[i]);
-					IFormattableTextComponent iformattabletextcomponent = new TranslationTextComponent(effectinstance.getDescriptionId());
-					if (effectinstance.getAmplifier() > 0) {
-						iformattabletextcomponent = new TranslationTextComponent("potion.withAmplifier", iformattabletextcomponent, new TranslationTextComponent("potion.potency." + effectinstance.getAmplifier()));
+					if (effs[i] == 6 || effs[i] == 7) {
+						drawTextComponent(mStack, new StringTextComponent("secretmessage").withStyle(TextFormatting.OBFUSCATED).withStyle(TextFormatting.DARK_PURPLE), j);
 					}
-					if (effectinstance.getDuration() > 0) {
-						iformattabletextcomponent = new TranslationTextComponent("potion.withDuration", iformattabletextcomponent, EffectUtils.formatDuration(effectinstance, 1));
+					else {
+						EffectInstance effectinstance = new EffectInstance(Effect.byId(effs[i]), duration, amps[i]);
+						IFormattableTextComponent iformattabletextcomponent = new TranslationTextComponent(effectinstance.getDescriptionId());
+						if (effectinstance.getAmplifier() > 0) {
+							iformattabletextcomponent = new TranslationTextComponent("potion.withAmplifier", iformattabletextcomponent, new TranslationTextComponent("potion.potency." + effectinstance.getAmplifier()));
+						}
+						if (effectinstance.getDuration() > 0) {
+							iformattabletextcomponent = new TranslationTextComponent("potion.withDuration", iformattabletextcomponent, EffectUtils.formatDuration(effectinstance, 1));
+						}
+						drawTextComponent(mStack, iformattabletextcomponent.withStyle(effectinstance.getEffect().getCategory().getTooltipFormatting()), j);
 					}
-					drawTextComponent(mStack, iformattabletextcomponent.withStyle(effectinstance.getEffect().getCategory().getTooltipFormatting()), j);
 					j++;
 				}
 			}
@@ -81,7 +84,7 @@ public class DiffuserScreen extends ContainerScreen<DiffuserContainer> {
 	}
 	
 	private void drawTextComponent(MatrixStack mStack, ITextComponent text, int lineIndex) {
-		drawString(mStack, font, text.getString(), 49, 23 + 11 * lineIndex, text.getStyle().getColor().getValue());
+		drawString(mStack, font, text, 49, 23 + 11 * lineIndex, text.getStyle().getColor().getValue());
 	}
 	
 	private void clearTextBox(MatrixStack mStack) {

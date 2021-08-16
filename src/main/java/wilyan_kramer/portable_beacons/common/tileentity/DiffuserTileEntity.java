@@ -25,9 +25,12 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
+import net.minecraft.util.INameable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
@@ -38,7 +41,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import wilyan_kramer.portable_beacons.common.config.Config;
 import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 
-public class DiffuserTileEntity extends TileEntity implements ITickableTileEntity {
+public class DiffuserTileEntity extends TileEntity implements ITickableTileEntity, INameable {
     
     private double range = Config.COMMON.diffuserRange.get();
     private ItemStackHandler itemHandler = createItemHandler();
@@ -46,6 +49,7 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
     private int[] effects;
     private int durationLeft;
     private int[] amplifiers;
+    private ITextComponent name;
 
 	private Random random = new Random();
 
@@ -115,6 +119,9 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 		effects = compound.getIntArray("Effects");
 		durationLeft = compound.getInt("Duration");
 		amplifiers = compound.getIntArray("Amplifiers");
+		if (compound.contains("CustomName", 8)) {
+	         this.name = ITextComponent.Serializer.fromJson(compound.getString("CustomName"));
+	      }
 		super.load(state, compound);
 	}
 	@Override
@@ -123,6 +130,9 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 		compound.putIntArray("Effects", effects);
 		compound.putInt("Duration", durationLeft);
 		compound.putIntArray("Amplifiers", amplifiers);
+		if (this.name != null) {
+			compound.putString("CustomName", ITextComponent.Serializer.toJson(this.name));
+	    }
 		return super.save(compound);
 	}
 	@Override
@@ -360,5 +370,28 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
         		}
         	}
         }
+	}
+	@Override
+	public ITextComponent getName() {
+		return this.name != null ? this.name : this.getDefaultName();
+	}
+	private ITextComponent getDefaultName() {
+		return new TranslationTextComponent("block.portable_beacons.diffuser");
+	}
+	@Override
+	public boolean hasCustomName() {
+		return this.getCustomName() != null;
+	}
+	@Override
+	public ITextComponent getDisplayName() {
+		return this.getName();
+	}
+	@Nullable
+	@Override
+	public ITextComponent getCustomName() {
+		return this.name;
+	}
+	public void setCustomName(ITextComponent name) {
+	   this.name = name;
 	}
 }

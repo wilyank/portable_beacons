@@ -5,11 +5,13 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -22,7 +24,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -95,6 +96,17 @@ public class DiffuserBlock extends Block {
 
 	}
 	
+	@Override
+	public void setPlacedBy(World world, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
+		if (stack.hasCustomHoverName()) {
+			TileEntity tileEntity = world.getBlockEntity(pos);
+			if (tileEntity instanceof DiffuserTileEntity) {
+				((DiffuserTileEntity) tileEntity).setCustomName(stack.getHoverName());
+			}
+			
+		}
+	}
+
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (state.getValue(BlockStateProperties.TRIGGERED)) {
@@ -119,7 +131,7 @@ public class DiffuserBlock extends Block {
 				INamedContainerProvider containerProvider = new INamedContainerProvider() {
 					@Override
 					public ITextComponent getDisplayName() {
-						return new TranslationTextComponent("screen.portable_beacons.diffuser");
+						return ((DiffuserTileEntity) tileEntity).getName();
 					}
 
 					@Override
@@ -130,7 +142,7 @@ public class DiffuserBlock extends Block {
 				NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, tileEntity.getBlockPos());
 			}
 			else {
-				throw new IllegalStateException("huh?");
+				throw new IllegalStateException("huh? You right clicked on a diffuser, but it does not have an associated diffuser tile entity");
 			}
 		}
 		return ActionResultType.SUCCESS;
