@@ -39,7 +39,7 @@ public class DiffuserContainer extends Container {
 		}
 		if (tileEntity != null) {
 			tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-				addSlot(new SlotItemHandler(h, 0, 26, 35)); // arguments: ItemHandler, slot index, x pixel coordinate, y pixel coordinate
+				addSlot(new SlotItemHandler(h, 0, 17, 35)); // arguments: ItemHandler, slot index, x pixel coordinate, y pixel coordinate
 			});
 		}
 		layoutPlayerInventorySlots(8, 84);

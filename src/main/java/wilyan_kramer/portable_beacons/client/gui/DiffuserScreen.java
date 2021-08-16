@@ -65,9 +65,7 @@ public class DiffuserScreen extends ContainerScreen<DiffuserContainer> {
 			if (j == 0) {
 				drawTextComponent(mStack, new TranslationTextComponent("effect.none").withStyle(TextFormatting.GRAY), 0);
 			}
-				
 		}
-
 		super.renderLabels(mStack, mouseX, mouseY);
 	}
 
@@ -83,12 +81,12 @@ public class DiffuserScreen extends ContainerScreen<DiffuserContainer> {
 	}
 	
 	private void drawTextComponent(MatrixStack mStack, ITextComponent text, int lineIndex) {
-		drawString(mStack, font, text.getString(), 67, 23 + 11 * lineIndex, text.getStyle().getColor().getValue());
+		drawString(mStack, font, text.getString(), 49, 23 + 11 * lineIndex, text.getStyle().getColor().getValue());
 	}
 	
 	private void clearTextBox(MatrixStack mStack) {
 		for (int i = 0; i < 4; i++) {
-			drawString(mStack, font, "", 67, 23 + 11 * i, 0x000000);
+			drawString(mStack, font, "", 49, 23 + 11 * i, 0x000000);
 		}
 	}
 }
