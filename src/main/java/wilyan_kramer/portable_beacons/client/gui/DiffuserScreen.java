@@ -43,8 +43,6 @@ public class DiffuserScreen extends ContainerScreen<DiffuserContainer> {
 			int[] effs = menu.getEffectIds();
 			int duration = menu.getDuration();
 			int[] amps = menu.getAmplifiers();
-			PortableBeaconsMod.LOGGER.info("Duration: {}", duration);
-			PortableBeaconsMod.LOGGER.info("Effects: {}, {}, {}, {}", effs[0], effs[1], effs[2], effs[3]);
 			int j = 0;
 			for (int i = 0; i < 4; i++) {
 				if (effs[i] > 0) {

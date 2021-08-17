@@ -7,9 +7,6 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
@@ -50,11 +47,8 @@ import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import wilyan_kramer.portable_beacons.client.render.model.BackpackModel;
 import wilyan_kramer.portable_beacons.common.config.Config;
 import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
-import wilyan_kramer.portable_beacons.setup.CommonSetup;
 
 public class BeaconBackpackItem extends Item implements ICurioItem {
-
-	private static final Logger LOGGER = LogManager.getLogger();
 
 	private Object model;
 	private final int beaconTier;
@@ -97,7 +91,6 @@ public class BeaconBackpackItem extends Item implements ICurioItem {
 								continue;
 							}
 							for (EffectInstance effInst : effList) {
-								LOGGER.info("Applying {} to {}", effInst.getEffect().getRegistryName(), player);
 								player.addEffect(effInst);
 							}
 						}
@@ -153,6 +146,27 @@ public class BeaconBackpackItem extends Item implements ICurioItem {
 			if (waterLevel > 0) {
 				((CauldronBlock) block).setWaterLevel(context.getLevel(), context.getClickedPos(), context.getLevel().getBlockState(context.getClickedPos()), waterLevel - 1);
 				EffectHelper.removeEffects(backpack);
+				return ActionResultType.SUCCESS;
+			}
+			return ActionResultType.CONSUME;
+		}
+		if(block.getRegistryName().toString().equals("netherite_plus:netherite_beacon")) {
+			List<EffectInstance> beaconEffects = EffectHelper.getNetheriteBeaconEffects(context.getLevel().getBlockEntity(context.getClickedPos()));
+			int tier = ((BeaconBackpackItem) backpack.getItem()).getTier();
+			boolean flag = false;
+			for (int i = 0; i < beaconEffects.size(); i++) {
+				ItemStack stack = backpack.copy();
+				if (EffectHelper.getAllEffects(
+						EffectHelper.addUniqueCustomPotionEffects(stack, 
+								new ArrayList<>(Arrays.asList(beaconEffects.get(i))))).size() <= tier + 1) {
+					EffectHelper.addUniqueCustomPotionEffects(
+							backpack, 
+							new ArrayList<>(Arrays.asList(beaconEffects.get(i))));
+					flag = true;
+				}
+			}
+			if (flag) {
+				context.getPlayer().hurt(DamageSource.MAGIC, context.getPlayer().getMaxHealth() - 1);
 				return ActionResultType.SUCCESS;
 			}
 			return ActionResultType.CONSUME;

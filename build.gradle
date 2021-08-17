@@ -12,7 +12,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.5.1'
+version = '0.6.0'
 group = 'wilyan_kramer.portable_beacons' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'portable_beacons'
 

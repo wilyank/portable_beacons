@@ -1,11 +1,18 @@
 package wilyan_kramer.portable_beacons.common.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.common.collect.Lists;
+
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
+import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,7 +26,8 @@ public class Config {
 	public static class Common {
 		public final BooleanValue canCopyFromBeacon;
 		public final BooleanValue canCopyFromConduit;
-//		public final BooleanValue canCopyFromNetheriteBeacon;
+		public final BooleanValue canCopyFromNetheriteBeacon;
+		public final BooleanValue onlyCopyFromFullBeacon;
 		public final DoubleValue beaconRangeA;
 		public final DoubleValue beaconRangeB;
 		public final BooleanValue beaconSelf;
@@ -34,6 +42,7 @@ public class Config {
 		public final IntValue infusedDaggerDurability;
 		public final BooleanValue witchArmor;
 		public final IntValue witchArmorChance;
+		public final ConfigValue<List<? extends String>> witchArmorEffects;
 
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.comment("Common config for Portable Beacons").push("Beacon Backpack Config");
@@ -45,10 +54,14 @@ public class Config {
 					.comment("Whether the Conduit Power effect can be applied to Beacon Backpacks by right clicking a Conduit")
 					.worldRestart()
 					.define("canCopyFromConduit", true);
-//			this.canCopyFromNetheriteBeacon = builder
-//					.comment("Whether effects can be copied from Netherite Beacons (from Netherite Plus mod) unto Beacon Backpacks ")
-//					.worldRestart()
-//					.define("canCopyFromNetheriteBeacon", false);
+			this.canCopyFromNetheriteBeacon = builder
+					.comment("Whether effects can be copied from Netherite Beacons (from Netherite Plus mod) unto Beacon Backpacks ")
+					.worldRestart()
+					.define("canCopyFromNetheriteBeacon", false);
+			this.onlyCopyFromFullBeacon = builder
+					.comment("Whether the Beacon Backpack can only get effects from full (9x9) beacons")
+					.worldRestart()
+					.define("onlyCopyFromFullBeacon", false);
 			this.beaconRangeA = builder
 					.comment("Parameter A in calculating the Beacon Backpack's range. Range = A*(Tier-1) + B. Vanilla Beacons have A = 10")
 					.worldRestart()
@@ -73,6 +86,8 @@ public class Config {
 					.comment("The length in ticks of the effect applied by the Beacon Backpack")
 					.worldRestart()
 					.defineInRange("effectDuration", 400, 1, 10000);
+			builder.pop();
+			builder.push("Diffuser Config");
 			this.diffuserRange = builder
 					.comment("The range of the Diffuser")
 					.worldRestart()
@@ -109,6 +124,20 @@ public class Config {
 					.comment("One in this many chance that witch armor activates.")
 					.worldRestart()
 					.defineInRange("witchAmorChance", 3, 1, 10000000);
+			this.witchArmorEffects = builder
+					.comment("List of effects id's that the witch can apply to an attacker. The format is \"effectId,duration\", where the duration is in ticks.")
+					.worldRestart()
+					.defineList("witchArmorEffects", Lists.newArrayList(
+							"15,40", //blindness
+							"24,400", //glowing
+							"25,200", //levitation
+							"4,400", //mining fatigue
+							"9,300", //nausea
+							"19,40", //poison
+							"28,200", // slow falling
+							"18,200", // weakness
+							"20,40", //wither)
+							"4,500"), o -> o instanceof String);
 			builder.pop();
 		}
 	}
@@ -149,5 +178,19 @@ public class Config {
 				//maybe do something idk
 			}
 		}
+	}
+	public static List<Pair<Integer, Integer>> unpackList(ConfigValue<List<? extends String>> configList) {
+		List<Pair<Integer, Integer>> result = new ArrayList<Pair<Integer,Integer>>();
+		for (String val : configList.get()) {
+			String[] pair = val.split(",");
+			try {
+				result.add(new ImmutablePair<Integer, Integer>(Integer.parseInt(pair[0]), Integer.parseInt(pair[1])));
+			}
+			catch(Exception ex) {
+				PortableBeaconsMod.LOGGER.info("Config syntax is incorrect: {}. The correct format is \"int,int\"", configList.get());
+				ex.printStackTrace();
+			}
+		}
+		return result;
 	}
 }

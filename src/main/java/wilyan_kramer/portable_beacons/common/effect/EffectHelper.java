@@ -18,9 +18,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.tileentity.BeaconTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
@@ -104,6 +106,9 @@ public class EffectHelper {
 		if (!Config.COMMON.canCopyFromBeacon.get()) {
 			return new ArrayList<EffectInstance>();
 		}
+		if (Config.COMMON.onlyCopyFromFullBeacon.get() && beaconTE.getUpdateTag().getInt("Levels") < 4) {
+			return new ArrayList<EffectInstance>();
+		}
 		List<EffectInstance> effInstList = new ArrayList<EffectInstance>();
 		
 		int primaryEffId = beaconTE.getUpdateTag().getInt("Primary");
@@ -111,7 +116,7 @@ public class EffectHelper {
 		
 		if(secondaryEffId == primaryEffId) {
 			if (primaryEffId != -1 && secondaryEffId != -1) {
-				effInstList.add(new EffectInstance(Effect.byId(primaryEffId)));
+				effInstList.add(new EffectInstance(Effect.byId(primaryEffId), 0, 1));
 			}
 		}
 		else {
@@ -124,7 +129,57 @@ public class EffectHelper {
 		}
 		return setProperties(effInstList);
 	}
-	
+	public static List<EffectInstance> getNetheriteBeaconEffects(TileEntity tileEntity) {
+		if (!Config.COMMON.canCopyFromNetheriteBeacon.get()) {
+			return new ArrayList<EffectInstance>();
+		}
+		if (Config.COMMON.onlyCopyFromFullBeacon.get() && tileEntity.getUpdateTag().getInt("Levels") < 4) {
+			return new ArrayList<EffectInstance>();
+		}
+		List<EffectInstance> effInstList = new ArrayList<EffectInstance>();
+		int primaryId = tileEntity.getUpdateTag().getInt("Primary");
+		int secondaryId = tileEntity.getUpdateTag().getInt("Secondary");
+		int tertiaryId = tileEntity.getUpdateTag().getInt("Tertiary");
+		if (secondaryId == primaryId) {
+			if (tertiaryId == primaryId) {
+				if (primaryId != -1) {
+					effInstList.add(new EffectInstance(Effect.byId(primaryId), 0, 2));
+				}
+			}
+			else {
+				if (primaryId != -1) {
+					effInstList.add(new EffectInstance(Effect.byId(primaryId), 0, 1));
+				}
+				if (tertiaryId != -1) {
+					effInstList.add(new EffectInstance(Effect.byId(tertiaryId)));
+				}
+			}
+		}
+		else if (secondaryId == tertiaryId) {
+			if (primaryId != -1) {
+				effInstList.add(new EffectInstance(Effect.byId(primaryId)));
+			}
+			if (secondaryId != -1) {
+				effInstList.add(new EffectInstance(Effect.byId(secondaryId), 0, 1));
+			}
+		}
+		else {
+			if (primaryId != -1) {
+				effInstList.add(new EffectInstance(Effect.byId(primaryId)));
+			}
+			if (secondaryId != -1) {
+				effInstList.add(new EffectInstance(Effect.byId(secondaryId)));
+			}
+			if (secondaryId != -1) {
+				effInstList.add(new EffectInstance(Effect.byId(tertiaryId)));
+			}
+		}
+		if (tileEntity.getUpdateTag().getInt("NetheriteLevel") > 9) {
+			effInstList.add(new EffectInstance(Effects.FIRE_RESISTANCE));
+		}
+		return setProperties(effInstList);
+	}
+ 	
 	public static int getPotionColor(ItemStack stack) {
 		if (PotionUtils.getPotion(stack) != Potions.EMPTY) {
 			return PotionUtils.getColor(stack);
