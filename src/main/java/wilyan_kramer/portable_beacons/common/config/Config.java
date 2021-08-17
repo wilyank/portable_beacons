@@ -36,6 +36,8 @@ public class Config {
 		public final IntValue effectDuration;
 		public final DoubleValue diffuserRange;
 		public final BooleanValue diffuserMobs;
+		public final IntValue diffuserCooldown;
+		public final IntValue diffuserDuration;
 		public final IntValue bonkStickDamage;
 		public final IntValue bonkStickDurability;
 		public final IntValue infusedDaggerDamage; 
@@ -96,6 +98,14 @@ public class Config {
 					.comment("Whether the Diffuser applies effects to all mobs")
 					.worldRestart()
 					.define("diffuserMobs", false);
+			this.diffuserCooldown = builder
+					.comment("How fast the Diffuser applies effects")
+					.worldRestart()
+					.defineInRange("diffuserCooldown", 200, 1, 6000);
+			this.diffuserDuration = builder
+					.comment("How long the effect given by the Diffuser lasts")
+					.worldRestart()
+					.defineInRange("diffuserDuration", 300, 0, 600);
 			builder.pop();
 			builder.push("Weapons Config");
 			this.bonkStickDamage = builder

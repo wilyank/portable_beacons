@@ -66,11 +66,12 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 	}
 	@Override
 	public void tick() {
-		//if ( ) {
 		if (durationLeft > 0) {
 			if (this.level.getBlockState(this.worldPosition).getValue(BlockStateProperties.TRIGGERED) == true) {
 				if (!this.level.isClientSide) {
-					applyEffects();
+					if (this.durationLeft % Config.COMMON.diffuserCooldown.get() == 0) {
+						applyEffects();
+					}
 					durationLeft--;
 					if (random.nextInt(20) == 0) {
 						this.level.playSound(
@@ -359,13 +360,13 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
         	for (int i = 0; i < effects.length; i++) {
         		if (effects[i] > 0 && amplifiers[i] >= 0) {
         			if (Effect.byId(effects[i]) == Effects.NIGHT_VISION) {
-            			entity.addEffect(new EffectInstance(Effect.byId(effects[i]), 300, amplifiers[i], true, true));
+            			entity.addEffect(new EffectInstance(Effect.byId(effects[i]), Config.COMMON.diffuserDuration.get(), amplifiers[i], true, true));
         			}
         			else if (Effect.byId(effects[i]) == Effects.HARM || Effect.byId(effects[i]) == Effects.HEAL) {
         				//do not apply it
         			}
         			else {
-        				entity.addEffect(new EffectInstance(Effect.byId(effects[i]), 40, amplifiers[i], true, true));
+        				entity.addEffect(new EffectInstance(Effect.byId(effects[i]), Config.COMMON.diffuserDuration.get(), amplifiers[i], true, true));
         			}
         		}
         	}
