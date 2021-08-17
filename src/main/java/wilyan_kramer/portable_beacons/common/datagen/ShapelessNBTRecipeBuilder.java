@@ -5,9 +5,6 @@ import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -31,7 +28,6 @@ import net.minecraft.util.ResourceLocation;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 
 public class ShapelessNBTRecipeBuilder {
-	private static final Logger LOGGER = LogManager.getLogger();
 	private final ItemStack result;
 	private final List<Ingredient> ingredients = Lists.newArrayList();
 	private final Advancement.Builder advancement = Advancement.Builder.advancement();

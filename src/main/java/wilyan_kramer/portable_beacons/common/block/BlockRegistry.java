@@ -7,6 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ToolType;
@@ -34,12 +35,17 @@ public class BlockRegistry {
     						.of(Material.PLANT)
     						.randomTicks()
     						.noCollission()
+    						.lightLevel((state) -> {
+    							return 6*state.getValue(BlockStateProperties.AGE_3);
+    							})
     						.sound(SoundType.SWEET_BERRY_BUSH)
     						).setRegistryName(PortableBeaconsMod.MODID, "glowberry_bush"),
     				BlockList.diffuser = new DiffuserBlock(
     						AbstractBlock.Properties
     						.of(Material.STONE)
-    						.sound(SoundType.STONE)
+    						.sound(SoundType.NETHER_BRICKS)
+    						.harvestTool(ToolType.PICKAXE)
+    						.strength(3.0F, 3.0F)
     						).setRegistryName(PortableBeaconsMod.MODID, "diffuser")
     				);
     		if (FMLEnvironment.dist == Dist.CLIENT) {
