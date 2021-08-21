@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.EffectUtils;
 import net.minecraft.potion.Effects;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
@@ -213,6 +214,9 @@ public class EffectHelper {
 				if (effectinstance.getAmplifier() > 0) {
 					iformattabletextcomponent = new TranslationTextComponent("potion.withAmplifier", iformattabletextcomponent, new TranslationTextComponent("potion.potency." + effectinstance.getAmplifier()));
 				}
+				if (effectinstance.getDuration() > 20 && slotId == "hit") {
+		            iformattabletextcomponent = new TranslationTextComponent("potion.withDuration", iformattabletextcomponent, EffectUtils.formatDuration(effectinstance, 1F));
+		        }
 
 				textList.add(iformattabletextcomponent.withStyle(effect.getCategory().getTooltipFormatting()));
 			}

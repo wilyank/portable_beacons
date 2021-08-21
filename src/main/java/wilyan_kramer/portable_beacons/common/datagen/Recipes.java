@@ -53,6 +53,7 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.SPIDER_EYE, Effects.POISON, 60);
 		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.GHAST_TEAR, Effects.REGENERATION, 100);
 		this.addInfusionRecipe(consumer,  ItemList.infused_dagger, Items.SHULKER_SHELL, Effects.LEVITATION, 200);
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, ItemList.glowberries, Effects.GLOWING, 400);
 
 
 

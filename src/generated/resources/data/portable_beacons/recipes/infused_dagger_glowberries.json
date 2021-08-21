@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "portable_beacons:glowberries"
+    },
+    {
+      "item": "portable_beacons:infused_dagger"
+    }
+  ],
+  "result": {
+    "item": "portable_beacons:infused_dagger",
+    "nbt": {
+      "CustomPotionEffects": [
+        {
+          "Ambient": 1,
+          "CurativeItems": [
+            {
+              "id": "minecraft:milk_bucket",
+              "Count": 1
+            }
+          ],
+          "ShowIcon": 1,
+          "ShowParticles": 1,
+          "Duration": 400,
+          "Id": 24,
+          "Amplifier": 0
+        }
+      ],
+      "Damage": 0
+    }
+  }
+}
