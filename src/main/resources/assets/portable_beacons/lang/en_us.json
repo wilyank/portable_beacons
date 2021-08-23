@@ -16,5 +16,8 @@
     "item.portable_beacons.bonk_stick.tooltip":"A sobering experience",
     "item.portable_beacons.tooltip.on_hit": "On hit:",
     "block.portable_beacons.nether_star_block": "Nether Star Block",
-    "block.portable_beacons.diffuser": "Diffuser"
+    "block.portable_beacons.diffuser": "Diffuser",
+    "message.portable_beacons.command.infuse.add": "Infused %s into %s",
+    "message.portable_beacons.command.infuse.clear": "Cleared all effects from %s",
+    "message.portable_beacons.command.infuse.error": "Cannot infuse this item"
 }

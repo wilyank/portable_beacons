@@ -18,7 +18,6 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.TranslationTextComponent;
-import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 import wilyan_kramer.portable_beacons.common.item.ItemList;
 
@@ -42,11 +41,8 @@ public class InfuseCommand {
 	}
 
 	private static int infuse(CommandSource source, ServerPlayerEntity player, Effect effect, int duration, int amplifier) {
-		PortableBeaconsMod.LOGGER.info("Infuse command used with arguments {}, {}, {}, {}", player.getName().getString(), effect.getDescriptionId(), duration, amplifier);
-		source.sendSuccess(new TranslationTextComponent("message.portable_beacons.command.infuse.add"), false);
-		
 		ItemStack itemStack = player.getItemInHand(Hand.MAIN_HAND);
-		if (itemStack != null) {
+		if (!itemStack.isEmpty()) {
 			if (
 					itemStack.getItem() == ItemList.beacon_backpack_0 ||
 					itemStack.getItem() == ItemList.beacon_backpack_1 ||
@@ -58,16 +54,28 @@ public class InfuseCommand {
 					itemStack.getItem() == Items.POTION ||
 					itemStack.getItem() == Items.LINGERING_POTION ||
 					itemStack.getItem() == Items.SPLASH_POTION
-					)
+					) {
 			EffectHelper.addUniqueCustomPotionEffects(itemStack, new ArrayList<EffectInstance>(Arrays.asList(new EffectInstance(effect, duration, amplifier))));
+			source.sendSuccess(
+					new TranslationTextComponent("message.portable_beacons.command.infuse.add", 
+							new TranslationTextComponent("potion.withAmplifier", new TranslationTextComponent(effect.getDescriptionId()), new TranslationTextComponent("potion.potency." + amplifier)),
+							new TranslationTextComponent(itemStack.getDescriptionId())
+							), false);
+			}
+		}
+		else {
+			source.sendFailure(new TranslationTextComponent("message.portable_beacons.command.infuse.error"));
 		}
 		return 0;
 	}
 	private static int clearEffects(CommandSource source, ServerPlayerEntity player) {
-		source.sendSuccess(new TranslationTextComponent("message.portable_beacons.command.infuse.clear"), false);
 		ItemStack itemStack = player.getItemInHand(Hand.MAIN_HAND);
-		if (itemStack != null) {
+		if (!itemStack.isEmpty()) {
 			EffectHelper.removeEffects(itemStack);
+			source.sendSuccess(new TranslationTextComponent("message.portable_beacons.command.infuse.clear", new TranslationTextComponent(itemStack.getDescriptionId())), false);
+		}
+		else {
+			source.sendFailure(new TranslationTextComponent("message.portable_beacons.command.infuse.error"));
 		}
 		return 0;
 	}
