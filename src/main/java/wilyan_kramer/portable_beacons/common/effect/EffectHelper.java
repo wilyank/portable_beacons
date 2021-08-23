@@ -49,9 +49,8 @@ public class EffectHelper {
 		return PotionUtils.getAllEffects(stack.getTag());
 	}
 	
-	public static ItemStack addUniqueCustomPotionEffects(ItemStack stack, List<EffectInstance> effInstList) {
-		List<EffectInstance> effInstListBase = setProperties(getAllEffects(stack));
-		List<EffectInstance> effInstListAddition = setProperties(effInstList);
+	public static ItemStack addUniqueCustomPotionEffects(ItemStack stack, List<EffectInstance> effInstListAddition) {
+		List<EffectInstance> effInstListBase = getAllEffects(stack);
 		
 		boolean flag = false;
 		for (int i = 0; i < effInstListAddition.size(); i++) {
@@ -60,6 +59,11 @@ public class EffectHelper {
 					if (effInstListAddition.get(i).getAmplifier() > effInstListBase.get(j).getAmplifier()) {
 						effInstListBase.set(j, effInstListAddition.get(i));
 					}
+					if (effInstListAddition.get(i).getAmplifier() == effInstListBase.get(i).getAmplifier()) {
+						if (effInstListAddition.get(i).getDuration() > effInstListBase.get(i).getDuration()) {
+							effInstListBase.set(j, effInstListAddition.get(i));
+						}
+					}
 					flag = true;
 				}
 			}
@@ -67,6 +71,7 @@ public class EffectHelper {
 				effInstListBase.add(effInstListAddition.get(i));
 			}
 		}
+		PotionUtils.setPotion(stack, Potions.EMPTY);
 		PotionUtils.setCustomEffects(stack, effInstListBase);
 		return stack;
 	}
