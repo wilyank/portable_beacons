@@ -33,7 +33,7 @@ public class PortableBeaconsMod {
         MinecraftForge.EVENT_BUS.register(new CommonSetup());
         MinecraftForge.EVENT_BUS.register(new EventListeners());
     }
-
+    //for some reason, I can't figure out how to move this to InterModCommunications.class
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
         InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("necklace").build());

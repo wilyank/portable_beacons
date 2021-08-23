@@ -23,6 +23,14 @@ public class ClientSetup {
 	@SubscribeEvent
     public static void onColorHandlerEvent(ColorHandlerEvent.Item event)
     {
-    	event.getItemColors().register(new ItemColorizer(), ItemList.infused_star, ItemList.potion_necklace, ItemList.infused_dagger);
+    	event.getItemColors().register(new ItemColorizer(), 
+    			ItemList.infused_star, 
+    			ItemList.potion_necklace, 
+    			ItemList.infused_dagger, 
+    			ItemList.beacon_backpack_0,
+    			ItemList.beacon_backpack_1,
+    			ItemList.beacon_backpack_2,
+    			ItemList.beacon_backpack_3,
+    			ItemList.beacon_backpack_4);
     }
 }
