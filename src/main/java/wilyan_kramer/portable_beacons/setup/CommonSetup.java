@@ -15,6 +15,5 @@ public class CommonSetup {
 	
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
-
     }
 }

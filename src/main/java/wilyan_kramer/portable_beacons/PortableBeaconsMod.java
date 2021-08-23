@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -11,6 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import wilyan_kramer.portable_beacons.common.EventListeners;
+import wilyan_kramer.portable_beacons.common.command.ModCommands;
 import wilyan_kramer.portable_beacons.common.config.Config;
 import wilyan_kramer.portable_beacons.setup.ClientSetup;
 import wilyan_kramer.portable_beacons.setup.CommonSetup;
@@ -30,7 +33,7 @@ public class PortableBeaconsMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);
 
-//        MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new EventListeners());
     }
 
@@ -47,8 +50,8 @@ public class PortableBeaconsMod {
 //                map(m->m.getMessageSupplier().get()).
 //                collect(Collectors.toList()));
     }
-    
-
-    
-    
+    @SubscribeEvent
+    public void registerCommands(RegisterCommandsEvent event) {
+    	ModCommands.register(event.getDispatcher());
+    }
 }
