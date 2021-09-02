@@ -25,6 +25,7 @@ import net.minecraft.potion.Potions;
 import net.minecraft.tileentity.BeaconTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -32,6 +33,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 import top.theillusivec4.curios.Curios;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import wilyan_kramer.portable_beacons.common.config.Config;
@@ -182,6 +184,7 @@ public class EffectHelper {
 		}
 		if (tileEntity.getUpdateTag().getInt("NetheriteLevel") > 9) {
 			effInstList.add(new EffectInstance(Effects.FIRE_RESISTANCE));
+			effInstList.add(new EffectInstance(ForgeRegistries.POTIONS.getValue(new ResourceLocation("netherite_plus", "lava_vision"))));
 		}
 		return setProperties(effInstList);
 	}
