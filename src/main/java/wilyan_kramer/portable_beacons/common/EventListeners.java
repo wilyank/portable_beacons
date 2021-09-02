@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.WitchEntity;
 import net.minecraft.item.ItemStack;
@@ -42,11 +40,12 @@ public class EventListeners {
 		if (Config.COMMON.witchArmor.get()) {
 			if (event.getEntity() instanceof WitchEntity) {
 				if (random.nextInt(Config.COMMON.witchArmorChance.get()) == 0 && Config.COMMON.witchArmorEffects.get().size() > 0) {
-					List<Pair<Integer, Integer>> config = Config.unpackList(Config.COMMON.witchArmorEffects);
-					Pair<Integer, Integer> pair = config.get(random.nextInt(config.size()));
+//					List<Pair<Integer, Integer>> config = Config.unpackList(Config.COMMON.witchArmorEffects);
+					List<int[]> config = Config.unpackList(Config.COMMON.witchArmorEffects);
+					int[] triplet = config.get(random.nextInt(config.size()));
 					if (event.getSource().getDirectEntity() != null) {
 						if (event.getSource().getDirectEntity() instanceof LivingEntity) {
-							EffectInstance effInst = new EffectInstance(Effect.byId(pair.getLeft()), pair.getRight());
+							EffectInstance effInst = new EffectInstance(Effect.byId(triplet[0]), triplet[1], triplet[2]);
 							effInst.setCurativeItems(Arrays.asList(new ItemStack(Items.MILK_BUCKET)));
 							if (!(event.getEntity().level.isClientSide))
 								((LivingEntity) event.getSource().getDirectEntity()).addEffect(effInst);

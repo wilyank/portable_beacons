@@ -3,7 +3,6 @@ package wilyan_kramer.portable_beacons.common.config;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -135,19 +134,20 @@ public class Config {
 					.worldRestart()
 					.defineInRange("witchAmorChance", 3, 1, 10000000);
 			this.witchArmorEffects = builder
-					.comment("List of effects id's that the witch can apply to an attacker. The format is \"effectId,duration\", where the duration is in ticks.")
+					.comment("List of effects id's that the witch can apply to an attacker. The format is \"effectId, duration, amplifier\" or \"effectId,duration\", where the duration is in ticks.")
 					.worldRestart()
 					.defineList("witchArmorEffects", Lists.newArrayList(
 							"15,40", //blindness
 							"24,400", //glowing
-							"25,200", //levitation
+							"25,200,1", //levitation
 							"4,400", //mining fatigue
 							"9,300", //nausea
 							"19,40", //poison
 							"28,200", // slow falling
 							"18,200", // weakness
 							"20,40", //wither)
-							"4,500"), o -> o instanceof String);
+							"4,500" //slowness
+							), o -> o instanceof String);
 			builder.pop();
 		}
 	}
@@ -189,18 +189,36 @@ public class Config {
 			}
 		}
 	}
-	public static List<Pair<Integer, Integer>> unpackList(ConfigValue<List<? extends String>> configList) {
-		List<Pair<Integer, Integer>> result = new ArrayList<Pair<Integer,Integer>>();
-		for (String val : configList.get()) {
-			String[] pair = val.split(",");
-			try {
-				result.add(new ImmutablePair<Integer, Integer>(Integer.parseInt(pair[0]), Integer.parseInt(pair[1])));
-			}
-			catch(Exception ex) {
-				PortableBeaconsMod.LOGGER.info("Config syntax is incorrect: {}. The correct format is \"int,int\"", configList.get());
-				ex.printStackTrace();
+//	public static List<Pair<Integer, Integer>> unpackList(ConfigValue<List<? extends String>> configList) {
+//		List<Pair<Integer, Integer>> result = new ArrayList<Pair<Integer,Integer>>();
+//		for (String val : configList.get()) {
+//			String[] pair = val.split(",");
+//			try {
+//				result.add(new ImmutablePair<Integer, Integer>(Integer.parseInt(pair[0]), Integer.parseInt(pair[1])));
+//			}
+//			catch(Exception ex) {
+//				PortableBeaconsMod.LOGGER.info("Config syntax is incorrect: {}. The correct format is \"int,int\"", configList.get());
+//				ex.printStackTrace();
+//			}
+//		}
+//		return result;
+//	}
+	public static List<int[]> unpackList(ConfigValue<List<? extends String>> configList) {
+		List<int[]> result = new ArrayList<int[]>();
+		for (String line : configList.get()) {
+			String[] val = line.split(",");
+			switch(val.length) {
+			case 2:
+				result.add(new int[] {Integer.parseInt(val[0]), Integer.parseInt(val[1]), 0});
+				break;
+			case 3:
+				result.add(new int[] {Integer.parseInt(val[0]), Integer.parseInt(val[1]), Integer.parseInt(val[2])});
+				break;
+			default:
+				PortableBeaconsMod.LOGGER.info("Invalid list in config. The format is \"int,int,int\" or \"int,int\"");
 			}
 		}
+		
 		return result;
 	}
 }
