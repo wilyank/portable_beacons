@@ -1,0 +1,15 @@
+{
+    "name": "Diffuser",
+    "icon": "portable_beacons:diffuser",
+    "category": "portable_beacons:blocks",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The Diffuser can diffuse a potion over a wide area. It works rather slow and requires a redstone signal to operate."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:diffuser"
+        }
+    ]
+}

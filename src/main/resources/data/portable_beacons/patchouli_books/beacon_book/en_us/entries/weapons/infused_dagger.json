@@ -1,0 +1,35 @@
+{
+    "name": "Infused Dagger",
+    "icon": "portable_beacons:infused_dagger",
+    "category": "portable_beacons:weapons",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Great for stabbing. May cause some health defects. $(br)$(br)The infused dagger can be infused with many different substances to produce different consequences in the stabbee."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:infused_dagger",
+            "recipe2": "portable_beacons:infused_dagger_ghast_tear"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "portable_beacons:infused_dagger_glowberries",
+            "recipe2": "portable_beacons:infused_dagger_golden_carrot"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "portable_beacons:infused_dagger_phantom_membrane",
+            "recipe2": "portable_beacons:infused_dagger_shulker_shell"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "portable_beacons:infused_dagger_spider_eye",
+            "recipe2": "portable_beacons:infused_dagger_sponge"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "portable_beacons:infused_dagger_sugar"
+        }
+    ]
+}

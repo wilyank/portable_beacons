@@ -19,5 +19,6 @@
     "block.portable_beacons.diffuser": "Diffuser",
     "message.portable_beacons.command.infuse.add": "Infused %s into %s",
     "message.portable_beacons.command.infuse.clear": "Cleared all effects from %s",
-    "message.portable_beacons.command.infuse.error": "Cannot infuse this item"
+    "message.portable_beacons.command.infuse.error": "Cannot infuse this item",
+    "item.portable_beacons.book": "Beacons 102"
 }

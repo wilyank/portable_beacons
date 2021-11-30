@@ -1,0 +1,15 @@
+{
+    "name": "Bonk Stick",
+    "icon": "portable_beacons:bonk_stick",
+    "category": "portable_beacons:weapons",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Hit your friend over their head to instantly cure them of their hubris. This can be exceptionally useful when fighting someone who has a Beacon Backpack equipped."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:bonk_stick"
+        }
+    ]
+}

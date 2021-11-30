@@ -1,0 +1,16 @@
+{
+    "name": "Netherite Beacon",
+    "icon": "netherite_plus:netherite_beacon",
+    "category": "portable_beacons:mod_integration",
+    "advancement":"netherite_plus:netherite_plus/root",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "You can infuse effects from the Netherite Beacon into the Beacon Backpack in the same way you infuse effects from a normal Beacon. Simply right click with the Beacon Backpack in hand."
+        },
+        {
+            "type": "patchouli:image",
+            "images": ["portable_beacons:textures/gui/book/netherite_beacon_image.png"]
+        }
+    ]
+}

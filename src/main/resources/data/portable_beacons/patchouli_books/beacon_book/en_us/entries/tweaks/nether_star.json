@@ -1,0 +1,15 @@
+{
+    "name": "Nether Star Beacon Payment",
+    "icon": "minecraft:nether_star",
+    "category": "portable_beacons:tweaks",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Nether stars can be used as Beacon payment. Wooohoo! Finally a use for that junk."
+        },
+        {
+            "type": "patchouli:image",
+            "images": ["portable_beacons:textures/gui/book/nether_star_beacon_payment_image.png"]
+        }
+    ]
+}

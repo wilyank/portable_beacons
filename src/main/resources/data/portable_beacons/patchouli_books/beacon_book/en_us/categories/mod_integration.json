@@ -1,0 +1,7 @@
+{
+    "name": "Mod Integration",
+    "description": "The Portable Beacons mod has built-in integration for some mods.",
+    "icon": "netherite_plus:netherite_horse_armor",
+    "sortnum": 999,
+    "secret": true
+}

@@ -1,0 +1,25 @@
+{
+    "name": "Beacon Backpack",
+    "icon": "minecraft:beacon",
+    "category": "portable_beacons:curios",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Combine the powers of the activated Beacon and the Conduit and tie it around your neck with a string. Now you can take your beacon anywhere you want for you and your friends to enjoy. For comfort, leater straps are recommended.$(br)Right-click an active Beacon or Conduit to copy it's effects onto the Backpack.$(br)The Beacon Backpack can be upgraded for a higher capacity."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:beacon_backpack_0",
+            "recipe2":"portable_beacons:beacon_backpack_1"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:beacon_backpack_2",
+            "recipe2":"portable_beacons:beacon_backpack_3"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:beacon_backpack_4"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "name": "Potion Necklace",
+    "icon": "portable_beacons:potion_necklace",
+    "category": "portable_beacons:curios",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Somehow, encasing a Beacon and a Conduit in Blaze Rods gives it a power similar to a Brewing Stand, but wearable.$(br)Absorb different materials into the Potion Necklace to store a Potion Effect."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:potion_necklace",
+            "recipe2":"portable_beacons:potion_necklace_blaze_powder"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:potion_necklace_glowberries",
+            "recipe2":"portable_beacons:potion_necklace_golden_carrot"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:potion_necklace_magma_cream",
+            "recipe2":"portable_beacons:potion_necklace_phantom_membrane"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:potion_necklace_rabbit_foot",
+            "recipe2":"portable_beacons:potion_necklace_shulker_shell"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:potion_necklace_sugar",
+            "recipe2":"portable_beacons:potion_necklace_turtle_helmet"
+        }
+    ]
+}

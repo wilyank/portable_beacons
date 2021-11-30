@@ -1,0 +1,16 @@
+{
+    "name": "Nether Star Block",
+    "icon": "portable_beacons:nether_star_block",
+    "category": "portable_beacons:blocks",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "A handy storage block for all your Nether Stars. Can be used as a Beacon Base."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:nether_star_to_nether_star_block",
+            "recipe2": "portable_beacons:nether_star_block_to_nether_star"
+        }
+    ]
+}

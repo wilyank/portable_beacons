@@ -1,0 +1,15 @@
+{
+    "name": "Glowberries",
+    "icon": "portable_beacons:glowberries",
+    "category": "portable_beacons:tweaks",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Glowing berries to light up your belly and your yard."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "portable_beacons:glowberries"
+        }
+    ]
+}

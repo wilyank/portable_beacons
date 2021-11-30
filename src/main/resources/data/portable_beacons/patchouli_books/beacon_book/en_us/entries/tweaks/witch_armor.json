@@ -1,0 +1,15 @@
+{
+    "name": "Witch Armor",
+    "icon": "minecraft:chainmail_helmet",
+    "category": "portable_beacons:tweaks",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Witches appear to have some reactive curses they reflexively cast on any attacker. There is a certain chance a negative effect will be applied to any entity that attempts to hurt a witch.$(br)The types, durations, levels and chance of the effects can be changed in the configuration files."
+        },
+        {
+            "type": "patchouli:image",
+            "images": ["portable_beacons:textures/gui/book/witch_armor_image.png"]
+        }
+    ]
+}
