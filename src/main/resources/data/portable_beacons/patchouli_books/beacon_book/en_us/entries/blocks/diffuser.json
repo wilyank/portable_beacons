@@ -5,7 +5,11 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The Diffuser can diffuse a potion over a wide area. It works rather slow and requires a redstone signal to operate."
+            "text": "The Diffuser can diffuse a potion over a wide area. It works rather slowly and requires a redstone signal to operate."
+        },
+        {
+        	"type": "patchouli:image",
+        	"images": ["portable_beacons:textures/gui/book/diffuser_image.png"]
         },
         {
             "type": "patchouli:crafting",
