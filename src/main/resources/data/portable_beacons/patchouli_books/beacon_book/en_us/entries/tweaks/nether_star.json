@@ -1,11 +1,11 @@
 {
-    "name": "book.portable_beacons.tweaks.nether_star.title",
+    "name": "portable_beacons.entry.nether_star.title",
     "icon": "minecraft:nether_star",
     "category": "portable_beacons:tweaks",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "book.portable_beacons.tweaks.nether_star.page.0"
+            "text": "portable_beacons.entry.nether_star.page.0"
         },
         {
             "type": "patchouli:image",

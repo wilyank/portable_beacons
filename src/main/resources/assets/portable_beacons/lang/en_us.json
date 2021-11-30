@@ -1,40 +1,76 @@
 {
 	"itemGroup.portable_beacons": "Portable Beacons",
+	
     "item.portable_beacons.infused_star": "Infused Star",
     "item.portable_beacons.infused_star.tooltip.help": "Use Potion in offhand to infuse",
+    
     "item.portable_beacons.potion_necklace": "Potion Necklace",
+    
+    "item.portable_beacons.beacon_backpack": "Beacon Backpack",
     "item.portable_beacons.beacon_backpack_0": "Tier 1 Beacon Backpack",
     "item.portable_beacons.beacon_backpack_1": "Tier 2 Beacon Backpack",
     "item.portable_beacons.beacon_backpack_2": "Tier 3 Beacon Backpack",
     "item.portable_beacons.beacon_backpack_3": "Tier 4 Beacon Backpack",
     "item.portable_beacons.beacon_backpack_4": "Tier 5 Beacon Backpack",
+    
     "item.portable_beacons.beacon_backpack.tooltip.help": "Use on %s to infuse",
     "item.portable_beacons.tooltip.or": "%s or %s",
+    
     "item.portable_beacons.glowberries": "Glowberries",
+    
     "item.portable_beacons.bonk_stick": "Bonk Stick",
-    "item.portable_beacons.infused_dagger": "Infused Dagger",
     "item.portable_beacons.bonk_stick.tooltip":"A sobering experience",
+    
+    "item.portable_beacons.infused_dagger": "Infused Dagger",
     "item.portable_beacons.tooltip.on_hit": "On hit:",
+    
     "block.portable_beacons.nether_star_block": "Nether Star Block",
+    
     "block.portable_beacons.diffuser": "Diffuser",
+    
     "message.portable_beacons.command.infuse.add": "Infused %s into %s",
     "message.portable_beacons.command.infuse.clear": "Cleared all effects from %s",
     "message.portable_beacons.command.infuse.error": "Cannot infuse this item",
-    "item.portable_beacons.book": "Portable Beacons Guide Book",
-    "book.portable_beacons.blocks.diffuser.page.0": "The Diffuser can diffuse a potion over a wide area. It works rather slowly and requires a redstone signal to operate.",
-    "book.portable_beacons.blocks.diffuser.page.1": "The Diffuser can be automated using hoppers and Redstone.",
-    "book.portable_beacons.blocks.nether_star_block.page.0": "A handy storage block for all your Nether Stars. Can be used as a Beacon Base.",
-    "book.portable_beacons.curios.beacon_backpack.page.0": "Combine the powers of the activated Beacon and the Conduit and tie it around your neck with a string. Now you can take your beacon anywhere you want for you and your friends to enjoy. For comfort, leater straps are recommended.$(br)Right-click an active Beacon or Conduit to copy it's effects onto the Backpack.$(br)The Beacon Backpack can be upgraded for a higher capacity.",
-    "book.portable_beacons.curios.potion_necklace.page.0": "Somehow, encasing a Beacon and a Conduit in Blaze Rods gives it a power similar to a Brewing Stand, but wearable.$(br)Absorb different materials into the Potion Necklace to store a Potion Effect.",
-    "book.portable_beacons.mod_integration.configured.title": "Configuration",
-    "book.portable_beacons.mod_integration.configured.page.0": "Many aspects of this mod can be configured. This can be done even easier using the Configured mod.",
-    "book.portable_beacons.mod_integration.netherite_plus.page.0": "You can infuse effects from the Netherite Beacon into the Beacon Backpack in the same way you infuse effects from a normal Beacon. Simply right click with the Beacon Backpack in hand.",
-    "book.portable_beacons.tweaks.glowberries.page.0": "Glowing berries to light up your belly and your yard.",
-    "book.portable_beacons.tweaks.nether_star.title": "Nether Star Beacon Payment",
-    "book.portable_beacons.tweaks.nether_star.page.0": "Nether stars can be used as Beacon payment. Wooohoo! Finally a use for that junk.",
-    "book.portable_beacons.tweaks.witch_armor.title": "Witch Armor",
-    "book.portable_beacons.tweaks.witch_armor.page.0": "Witches appear to have some reactive curses they reflexively cast on any attacker. There is a certain chance a negative effect will be applied to any entity that attempts to hurt a witch.$(br)The types, durations, levels and chance of the effects can be changed in the configuration files.",
-    "book.portable_beacons.tweaks.witch_armor.page.1": "*hehe*",
-    "book.portable_beacons.weapons.bonk_stick.page.0": "Hit your friend over their head to instantly cure them of their hubris. This can be exceptionally useful when fighting someone who has a Beacon Backpack equipped.",
-    "book.portable_beacons.weapons.infused_dagger.page.0": "Great for stabbing. May cause some health defects. $(br)$(br)The infused dagger can be infused with many different substances to produce different consequences in the stabbee."
+    
+    "item.portable_beacons.book": "Beacon Manual",
+    "portable_beacons.landing_text": "Portable Beacons is a mod that opens up new ways to apply potion effects.",
+    
+    "portable_beacons.category.blocks": "Blocks",
+    "portable_beacons.category.blocks.desc": "Blocks added by Portable Beacons",
+    "portable_beacons.category.curios": "Wearables",
+    "portable_beacons.category.curios.desc": "Wear a Beacon on your back! Don't worry if you don't like sharing. There is the Potion Necklace as well.",
+    "portable_beacons.category.mod_integration": "Mod Integration",
+    "portable_beacons.category.mod_integration.desc": "The Portable Beacons mod has built-in integration for some mods.",
+    "portable_beacons.category.tweaks": "Tweaks",
+    "portable_beacons.category.tweaks.desc": "The Portable Beacons mod tweaks some vanilla behaviour to unleash its full potential.",
+    "portable_beacons.category.weapons": "Weapons",
+    "portable_beacons.category.weapons.desc": "Things to stab and slug your friends with.",
+    
+    "portable_beacons.entry.diffuser.page.0": "The Diffuser can diffuse a potion over a wide area. It works rather slowly and requires a redstone signal to operate.",
+    "portable_beacons.entry.diffuser.page.1": "The Diffuser can be automated using hoppers and Redstone.",
+    
+    "portable_beacons.entry.nether_star_block.page.0": "A handy storage block for all your Nether Stars. Can be used as a Beacon Base.",
+    
+    "portable_beacons.entry.beacon_backpack.page.0": "Combine the powers of the activated Beacon and the Conduit and tie the assembly around your neck with a string. Now you can take your beacon anywhere you want for you and your friends to enjoy. $(br)Right-click an active Beacon or Conduit to copy it's effects onto the Backpack. This may sting a little.",
+    "portable_beacons.entry.beacon_backpack.page.1": "The Beacon Backpack can be upgraded for a higher capacity and range. (See next page.)",
+    
+    "portable_beacons.entry.potion_necklace.page.0": "Somehow, encasing a Beacon and a Conduit in Blaze Rods gives it a power similar to a Brewing Stand, but wearable.$(br)Absorb different materials into the Potion Necklace to store a Potion Effect.",
+    
+    "portable_beacons.entry.configured.title": "Configuration",
+    "portable_beacons.entry.configured.page.0": "Many aspects of this mod can be configured. This can be done even easier using the Configured mod. Keep in mind that the Configured mod is incompatible with Netherite Plus.",
+    
+    "portable_beacons.entry.netherite_plus.page.0": "You can infuse effects from the Netherite Beacon into the Beacon Backpack in the same way you infuse effects from a normal Beacon. Simply right click with the Beacon Backpack in hand.",
+    
+    "portable_beacons.entry.glowberries.page.0": "Glowing berries to light up your belly and your yard.",
+    
+    "portable_beacons.entry.nether_star.title": "Nether Star",
+    "portable_beacons.entry.nether_star.page.0": "Nether stars can be used as Beacon payment. Finally a use for that junk.",
+    
+    "portable_beacons.entry.witch_armor.title": "Witch Armor",
+    "portable_beacons.entry.witch_armor.page.0": "Witches appear to have some reactive curses they reflexively cast on any attacker. There is a certain chance a negative effect will be applied to any entity that attempts to hurt a witch.$(br)The types, durations, levels and chance of the effects can be changed in the configuration files.",
+    "portable_beacons.entry.witch_armor.page.1": "*hehe*",
+    
+    "portable_beacons.entry.bonk_stick.page.0": "Hit your friend over their head to instantly cure them of their hubris. This can be exceptionally useful when fighting someone who has a Beacon Backpack equipped.",
+    
+    "portable_beacons.entry.infused_dagger.page.0": "Great for stabbing. May cause some health defects. $(br)$(br)The infused dagger can be infused with many different substances to produce different consequences in the stabbee."
 }

@@ -5,7 +5,7 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "book.portable_beacons.weapons.bonk_stick.page.0"
+            "text": "portable_beacons.entry.bonk_stick.page.0"
         },
         {
             "type": "patchouli:crafting",

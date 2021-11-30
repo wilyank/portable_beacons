@@ -5,7 +5,7 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "book.portable_beacons.tweaks.glowberries.page.0"
+            "text": "portable_beacons.entry.glowberries.page.0"
         },
         {
             "type": "patchouli:crafting",

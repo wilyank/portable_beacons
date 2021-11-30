@@ -1,7 +1,9 @@
 {
     "name": "item.portable_beacons.book",
-    "landing_text": "Portable Beacons is a mod that opens up new ways to apply potion effects.",
-    "version": 105,
+    "landing_text": "portable_beacons.landing_text",
+    "version": 106,
+    "i18n": true,
     "book_texture": "patchouli:textures/gui/book_gray.png",
-    "model": "portable_beacons:book"
+    "model": "portable_beacons:book",
+    "creative_tab":"portable_beacons"
 }

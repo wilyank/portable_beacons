@@ -1,16 +1,16 @@
 {
-    "name": "book.portable_beacons.tweaks.witch_armor.title",
+    "name": "portable_beacons.entry.witch_armor.title",
     "icon": "minecraft:chainmail_helmet",
     "category": "portable_beacons:tweaks",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "book.portable_beacons.tweaks.witch_armor.page.0"
+            "text": "portable_beacons.entry.witch_armor.page.0"
         },
         {
             "type": "patchouli:image",
             "images": ["portable_beacons:textures/gui/book/witch_armor_image.png"],
-            "text": "book.portable_beacons.tweaks.witch_armor.page.1"
+            "text": "portable_beacons.entry.witch_armor.page.1"
         }
     ]
 }

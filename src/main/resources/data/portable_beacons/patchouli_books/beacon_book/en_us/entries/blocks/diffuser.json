@@ -5,12 +5,12 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "book.portable_beacons.blocks.diffuser.page.0"
+            "text": "portable_beacons.entry.diffuser.page.0"
         },
         {
         	"type": "patchouli:image",
         	"images": ["portable_beacons:textures/gui/book/diffuser_image.png"],
-        	"text": "book.portable_beacons.blocks.diffuser.page.1"
+        	"text": "portable_beacons.entry.diffuser.page.1"
         },
         {
             "type": "patchouli:crafting",

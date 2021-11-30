@@ -1,7 +1,7 @@
 {
-    "name": "Mod Integration",
-    "description": "The Portable Beacons mod has built-in integration for some mods.",
-    "icon": "netherite_plus:netherite_horse_armor",
+    "name": "portable_beacons.category.mod_integration",
+    "description": "portable_beacons.category.mod_integration.desc",
+    "icon": "minecraft:cake",
     "sortnum": 999,
     "secret": true
 }

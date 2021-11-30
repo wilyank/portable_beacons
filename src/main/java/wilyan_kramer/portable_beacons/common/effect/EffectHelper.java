@@ -182,7 +182,7 @@ public class EffectHelper {
 				effInstList.add(new EffectInstance(Effect.byId(tertiaryId)));
 			}
 		}
-		if (tileEntity.getUpdateTag().getInt("NetheriteLevel") > 9) {
+		if (tileEntity.getUpdateTag().getInt("NetheriteLevel") >= 9) {
 			effInstList.add(new EffectInstance(Effects.FIRE_RESISTANCE));
 			effInstList.add(new EffectInstance(ForgeRegistries.POTIONS.getValue(new ResourceLocation("netherite_plus", "lava_vision"))));
 		}

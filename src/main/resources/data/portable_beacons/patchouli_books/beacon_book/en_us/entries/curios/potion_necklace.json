@@ -1,11 +1,11 @@
 {
-    "name": "item.portable_beacons.portion_necklace",
+    "name": "item.portable_beacons.potion_necklace",
     "icon": "portable_beacons:potion_necklace",
     "category": "portable_beacons:curios",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "book.portable_beacons.curios.potion_necklace.page.0"
+            "text": "portable_beacons.entry.potion_necklace.page.0"
         },
         {
             "type": "patchouli:crafting",

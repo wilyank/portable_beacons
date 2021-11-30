@@ -5,7 +5,7 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "book.portable_beacons.blocks.nether_star_block.page.0"
+            "text": "portable_beacons.entry.nether_star_block.page.0"
         },
         {
             "type": "patchouli:crafting",

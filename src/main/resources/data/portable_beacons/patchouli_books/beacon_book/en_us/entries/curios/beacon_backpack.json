@@ -1,25 +1,26 @@
 {
-    "name": "item.portable_beacons.backpack",
+    "name": "item.portable_beacons.beacon_backpack",
     "icon": "minecraft:beacon",
     "category": "portable_beacons:curios",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "book.portable_beacons.curios.beacon_backpack.page.0"
+            "text": "portable_beacons.entry.beacon_backpack.page.0"
         },
         {
             "type": "patchouli:crafting",
             "recipe":"portable_beacons:beacon_backpack_0",
-            "recipe2":"portable_beacons:beacon_backpack_1"
+            "text": "portable_beacons.entry.beacon_backpack.page.1"
         },
         {
             "type": "patchouli:crafting",
-            "recipe":"portable_beacons:beacon_backpack_2",
-            "recipe2":"portable_beacons:beacon_backpack_3"
+            "recipe":"portable_beacons:beacon_backpack_1",
+            "recipe2":"portable_beacons:beacon_backpack_2"
         },
         {
             "type": "patchouli:crafting",
-            "recipe":"portable_beacons:beacon_backpack_4"
+            "recipe":"portable_beacons:beacon_backpack_3",
+            "recipe2":"portable_beacons:beacon_backpack_4"
         }
     ]
 }

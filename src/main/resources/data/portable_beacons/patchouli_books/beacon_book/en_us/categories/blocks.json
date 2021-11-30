@@ -1,6 +1,6 @@
 {
-    "name": "Blocks",
-    "description": "Blocks",
+    "name": "portable_beacons.category.blocks",
+    "description": "portable_beacons.category.blocks.desc",
     "icon": "portable_beacons:diffuser",
     "sortnum":3
 }

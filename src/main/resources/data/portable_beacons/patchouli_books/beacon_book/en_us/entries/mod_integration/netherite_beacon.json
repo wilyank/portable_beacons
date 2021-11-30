@@ -2,11 +2,11 @@
     "name": "block.netherite_plus.netherite_beacon",
     "icon": "netherite_plus:netherite_beacon",
     "category": "portable_beacons:mod_integration",
-    "advancement":"netherite_plus:netherite_plus/root",
+    "flag": "mod:netherite_plus",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "book.portable_beacons.mod_integration.netherite_plus.page.0"
+            "text": "portable_beacons.entry.netherite_plus.page.0"
         },
         {
             "type": "patchouli:image",

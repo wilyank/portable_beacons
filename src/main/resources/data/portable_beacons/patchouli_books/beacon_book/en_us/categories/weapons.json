@@ -1,6 +1,6 @@
 {
-    "name": "Weapons",
-    "description": "Things to stab and slug your friends with",
+    "name": "portable_beacons.category.weapons",
+    "description": "portable_beacons.category.weapons.desc",
     "icon": "portable_beacons:infused_dagger",
     "sortnum": 2
 }

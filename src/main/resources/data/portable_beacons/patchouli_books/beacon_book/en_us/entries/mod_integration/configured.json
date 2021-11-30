@@ -1,11 +1,11 @@
 {
-    "name": "book.portable_beacons.mod_integration.configured.title",
+    "name": "portable_beacons.entry.configured.title",
     "icon": "portable_beacons:data_item",
     "category": "portable_beacons:mod_integration",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "book.portable_beacons.mod_integration.configured.page.0"
+            "text": "portable_beacons.entry.configured.page.0"
         }
     ]
 }

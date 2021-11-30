@@ -1,6 +1,6 @@
 {
-    "name": "Wearables",
-    "description": "Wear a Beacon on your back! Don't worry if you don't like sharing. There is the Potion Necklace as well.",
+    "name": "portable_beacons.category.curios",
+    "description": "portable_beacons.category.curios.desc",
     "icon": "portable_beacons:potion_necklace",
     "sortnum": 1
 }
