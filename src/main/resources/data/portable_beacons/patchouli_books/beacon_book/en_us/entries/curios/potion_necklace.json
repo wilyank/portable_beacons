@@ -1,11 +1,11 @@
 {
-    "name": "Potion Necklace",
+    "name": "item.portable_beacons.portion_necklace",
     "icon": "portable_beacons:potion_necklace",
     "category": "portable_beacons:curios",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "Somehow, encasing a Beacon and a Conduit in Blaze Rods gives it a power similar to a Brewing Stand, but wearable.$(br)Absorb different materials into the Potion Necklace to store a Potion Effect."
+            "text": "book.portable_beacons.curios.potion_necklace.page.0"
         },
         {
             "type": "patchouli:crafting",

@@ -1,11 +1,11 @@
 {
-    "name": "Infused Dagger",
+    "name": "item.portable_beacons.infused_dagger",
     "icon": "portable_beacons:infused_dagger",
     "category": "portable_beacons:weapons",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "Great for stabbing. May cause some health defects. $(br)$(br)The infused dagger can be infused with many different substances to produce different consequences in the stabbee."
+            "text": "book.portable_beacons.weapons.infused_dagger.page.0"
         },
         {
             "type": "patchouli:crafting",

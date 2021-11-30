@@ -1,11 +1,11 @@
 {
-    "name": "Configuration",
+    "name": "book.portable_beacons.mod_integration.configured.title",
     "icon": "portable_beacons:data_item",
     "category": "portable_beacons:mod_integration",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "Many aspects of this mod can be configured. This can be done even easier using the Configured mod."
+            "text": "book.portable_beacons.mod_integration.configured.page.0"
         }
     ]
 }
