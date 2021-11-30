@@ -28,6 +28,10 @@ import net.minecraft.util.ResourceLocation;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 
 public class ShapelessNBTRecipeBuilder {
+	
+	// this class is necessary because vanilla nor forge can add nbt to the result of a shapeless recipe
+	
+	
 	private final ItemStack result;
 	private final List<Ingredient> ingredients = Lists.newArrayList();
 	private final Advancement.Builder advancement = Advancement.Builder.advancement();

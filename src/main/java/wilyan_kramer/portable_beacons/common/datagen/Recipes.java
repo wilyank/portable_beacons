@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
@@ -20,8 +21,11 @@ import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.minecraftforge.registries.ForgeRegistries;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
+import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 import wilyan_kramer.portable_beacons.common.item.ItemList;
 
 
@@ -54,9 +58,6 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.GHAST_TEAR, Effects.REGENERATION, 100);
 		this.addInfusionRecipe(consumer,  ItemList.infused_dagger, Items.SHULKER_SHELL, Effects.LEVITATION, 200);
 		this.addInfusionRecipe(consumer, ItemList.infused_dagger, ItemList.glowberries, Effects.GLOWING, 400);
-
-
-
 		
 		ShapelessRecipeBuilder.shapeless(ItemList.glowberries)
 		.requires(Items.SWEET_BERRIES)
@@ -145,6 +146,39 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		.group("")
 		.unlockedBy("has_netherite", has(Items.NETHERITE_INGOT))
 		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.infused_dagger.toString()));
+		
+//		ConditionalRecipe.builder()
+//		.addCondition(modLoaded("alexsmobs"))
+//		.addRecipe(ShapelessNBTRecipeBuilder
+//				.shapeless(
+//						PotionUtils.setCustomEffects(
+//								new ItemStack(ItemList.infused_dagger), 
+//								EffectHelper.setProperties(
+//										new ArrayList<EffectInstance>(Arrays.asList( new EffectInstance(
+//												ForgeRegistries.POTIONS.getValue(
+//														new ResourceLocation(
+//																"alexsmobs", "sunbird_curse")
+//														), 100, 0, true, true, true)
+//												)
+//											)
+//									)
+//						)
+//				).requires(ItemList.infused_dagger)
+//				.requires(Items.FIREWORK_ROCKET)
+//				.requires(Items.FERMENTED_SPIDER_EYE)
+//				.requires(Items.SUNFLOWER)
+//				.unlockedBy("has_dirt", has(Blocks.DIRT))::save
+//				).build(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.infused_dagger.toString() + "_sunflower"));;
+		
+//		ConditionalRecipe.builder()
+//		.addCondition(modLoaded("alexsmobs"))
+//		.addRecipe(
+//				ShapelessRecipeBuilder
+//				.shapeless(Items.DIAMOND)
+//				.requires(Items.DIAMOND)
+//				.group("")
+//				.unlockedBy("has_dirt", has(Blocks.DIRT))::save)
+//		.build(consumer, new ResourceLocation(PortableBeaconsMod.MODID, Items.DIAMOND.toString()));	
 	}
 	
 	private void addUpgradingRecipe(Consumer<IFinishedRecipe> consumer, Item input, Item output, Item upgrader) {

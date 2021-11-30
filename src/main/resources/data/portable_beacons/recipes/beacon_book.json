@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "patchouli",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "minecraft:book"
+          },
+          {
+            "item": "portable_beacons:glowberries"
+          }
+        ],
+        "result": {
+          "item": "patchouli:guide_book",
+          "nbt": {"patchouli:book":"portable_beacons:beacon_book"}
+        }
+      }
+    }
+  ]
+}
