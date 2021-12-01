@@ -103,7 +103,6 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 			this.durationLeft = 0;
 			this.amplifiers = new int[] {0,0,0,0};
 		}
-		//}
 		this.setChanged();
 	}
 	@SuppressWarnings("unused")
@@ -207,6 +206,11 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 			return handler.cast();
 		}
 		return super.getCapability(cap, side);
+	}
+	
+	public ItemStack getInventoryContent() {
+		return this.itemHandler.getStackInSlot(0);
+		
 	}
 	public final IIntArray dataAccess = new IIntArray() {
 	      public int get(int index) {
