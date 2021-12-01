@@ -22,10 +22,13 @@ import net.minecraft.potion.PotionUtils;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.registries.ForgeRegistries;
 import wilyan_kramer.portable_beacons.common.effect.EffectHelper;
 
 public class InfusedSwordItem extends SwordItem {
@@ -79,6 +82,23 @@ public class InfusedSwordItem extends SwordItem {
     	  stacksInGroup.add(new ItemStack(this));
          for(EffectInstance effInst : allowedEffects ) {
                stacksInGroup.add(PotionUtils.setCustomEffects(new ItemStack(this), new ArrayList<EffectInstance>(Arrays.asList(effInst))));
+         }
+         if (ModList.get().isLoaded("alexsmobs")) {
+				stacksInGroup.add(
+						PotionUtils.setCustomEffects(
+								new ItemStack(this), new ArrayList<EffectInstance>(
+										Arrays.asList(
+												new EffectInstance(
+														ForgeRegistries.POTIONS.getValue(
+																new ResourceLocation("alexsmobs", "sunbird_curse")
+																),
+														100,
+														0
+														)
+												)
+										)
+								)
+						);
          }
       }
    }

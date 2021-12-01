@@ -1,0 +1,33 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "alexsmobs",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "alexsmobs:bone_serpent_tooth"
+          },
+          {
+            "item": "alexsmobs:lava_bottle"
+          },
+          {
+            "item": "portable_beacons:potion_necklace"
+          }
+        ],
+        "result": {
+          "item": "portable_beacons:potion_necklace",
+          "nbt": {
+            "Potion": "alexsmobs:lava_vision"
+          }
+        }
+      }
+    }
+  ]
+}

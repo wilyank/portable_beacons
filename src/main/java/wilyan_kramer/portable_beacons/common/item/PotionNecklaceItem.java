@@ -36,6 +36,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.registries.ForgeRegistries;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurio.SoundInfo;
@@ -130,6 +132,13 @@ public class PotionNecklaceItem extends Item implements ICurioItem {
 			stacksInGroup.add(PotionUtils.setPotion(new ItemStack(this), Potions.NIGHT_VISION));
 			stacksInGroup.add(PotionUtils.setPotion(new ItemStack(this), Potions.FIRE_RESISTANCE));
 			stacksInGroup.add(PotionUtils.setPotion(new ItemStack(this), Potions.TURTLE_MASTER));
+			if (ModList.get().isLoaded("alexsmobs")) {
+				stacksInGroup.add(PotionUtils.setPotion(new ItemStack(this), ForgeRegistries.POTION_TYPES.getValue(new ResourceLocation("alexsmobs", "lava_vision"))));
+				stacksInGroup.add(PotionUtils.setPotion(new ItemStack(this), ForgeRegistries.POTION_TYPES.getValue(new ResourceLocation("alexsmobs", "bug_pheromones"))));
+				stacksInGroup.add(PotionUtils.setPotion(new ItemStack(this), ForgeRegistries.POTION_TYPES.getValue(new ResourceLocation("alexsmobs", "clinging"))));
+
+
+			}
 		}
 	}
 }

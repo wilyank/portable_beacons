@@ -72,5 +72,11 @@
     
     "portable_beacons.entry.bonk_stick.page.0": "Hit your friend over their head to instantly cure them of their hubris. This can be exceptionally useful when fighting someone who has a Beacon Backpack equipped.",
     
-    "portable_beacons.entry.infused_dagger.page.0": "Great for stabbing. May cause some health defects. $(br)$(br)The infused dagger can be infused with many different substances to produce different consequences in the stabbee."
+    "portable_beacons.entry.infused_dagger.page.0": "Great for stabbing. May cause some health defects. $(br)$(br)The infused dagger can be infused with many different substances to produce different consequences in the stabbee.",
+
+    "portable_beacons.entry.alexsmobs.title": "Alex's Mobs",
+    "portable_beacons.entry.alexsmobs.page.0":"The magical powers from some of Alex's mobs can be harnessed using an Infused Dagger or Potion Necklace. Swat your enemies with a Sunbird's Blessing turned awful in your dagger.",
+    "portable_beacons.entry.alexsmobs.page.1":"See the wonders hidden the Nether's Lava Oceans using the Bone Serpent's magic.",
+    "portable_beacons.entry.alexsmobs.page.2":"Bothered by large bugs? Bottle their pheromones and hang them around your neck.",
+    "portable_beacons.entry.alexsmobs.page.3":"Get the drop on your enemies by using some distilled Dropbear claws."
 }

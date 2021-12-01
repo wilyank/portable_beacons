@@ -1,0 +1,30 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "alexsmobs",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "alexsmobs:dropbear_claw"
+          },
+          {
+            "item": "portable_beacons:potion_necklace"
+          }
+        ],
+        "result": {
+          "item": "portable_beacons:potion_necklace",
+          "nbt": {
+            "Potion": "alexsmobs:clinging"
+          }
+        }
+      }
+    }
+  ]
+}

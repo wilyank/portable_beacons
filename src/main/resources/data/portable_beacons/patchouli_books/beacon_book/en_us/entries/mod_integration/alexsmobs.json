@@ -1,0 +1,48 @@
+{
+    "name": "portable_beacons.entry.alexsmobs.title",
+    "icon": "alexsmobs:dropbear_claw",
+    "category": "portable_beacons:mod_integration",
+    "flag": "mod:alexsmobs",
+    "pages": [
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:infused_dagger_sunbird_curse",
+            "text": "portable_beacons.entry.alexsmobs.page.0"
+        },
+        {
+            "type": "patchouli:entity",
+            "entity": "alexsmobs:sunbird",
+            "scale": 0.5
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:potion_necklace_lava_vision",
+            "text": "portable_beacons.entry.alexsmobs.page.1"
+        },
+        {
+            "type": "patchouli:entity",
+            "entity": "alexsmobs:bone_serpent",
+            "scale": 0.5
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:potion_necklace_bug_pheromones",
+            "text": "portable_beacons.entry.alexsmobs.page.2"
+        },
+        {
+            "type": "patchouli:entity",
+            "entity": "alexsmobs:crimson_mosquito",
+            "scale": 0.5
+        },{
+            "type": "patchouli:crafting",
+            "recipe":"portable_beacons:potion_necklace_clinging",
+            "text": "portable_beacons.entry.alexsmobs.page.3"
+        },
+        {
+            "type": "patchouli:entity",
+            "entity": "alexsmobs:dropbear",
+            "scale": 0.5
+        }
+        
+    ]
+}
