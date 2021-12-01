@@ -58,7 +58,7 @@ public class Config {
 			this.canCopyFromNetheriteBeacon = builder
 					.comment("Whether effects can be copied from Netherite Beacons (from Netherite Plus mod) unto Beacon Backpacks ")
 					.worldRestart()
-					.define("canCopyFromNetheriteBeacon", false);
+					.define("canCopyFromNetheriteBeacon", true);
 			this.onlyCopyFromFullBeacon = builder
 					.comment("Whether the Beacon Backpack can only get effects from full (9x9) beacons")
 					.worldRestart()
