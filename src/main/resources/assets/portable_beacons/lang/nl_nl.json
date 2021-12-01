@@ -1,24 +1,76 @@
 {
 	"itemGroup.portable_beacons": "Draagbare bakens",
+
     "item.portable_beacons.infused_star": "Doordrenkte ster",
     "item.portable_beacons.infused_star.tooltip.help": "Gebruik met een drank in andere hand om effecten toe te voegen",
+
     "item.portable_beacons.potion_necklace": "Drankketting",
+
     "item.portable_beacons.beacon_backpack_0": "Rang 1 bakenrugzak",
     "item.portable_beacons.beacon_backpack_1": "Rang 2 bakenrugzak",
     "item.portable_beacons.beacon_backpack_2": "Rang 3 bakenrugzak",
     "item.portable_beacons.beacon_backpack_3": "Rang 4 bakenrugzak",
     "item.portable_beacons.beacon_backpack_4": "Rang 5 bakenrugzak",
+
     "item.portable_beacons.beacon_backpack.tooltip.help": "Gebruik op een %s om effecten toe te voegen",
     "item.portable_beacons.tooltip.or": "%s of %s",
+
     "item.portable_beacons.glowberries": "Gloeibessen",
+
     "item.portable_beacons.bonk_stick": "Bonkstok",
-    "item.portable_beacons.infused_dagger": "Doordrenkte dolk",
     "item.portable_beacons.bonk_stick.tooltip":"Een ontnuchterende ervaring",
+
+    "item.portable_beacons.infused_dagger": "Doordrenkte dolk",
+
     "item.portable_beacons.tooltip.on_hit": "Geraakte vijand:",
+
     "block.portable_beacons.nether_star_block": "Nethersterblok",
+
     "block.portable_beacons.diffuser": "Verstuiver",
-    "screen.portable_beacons.diffuser": "Verstuiver",
+
     "message.portable_beacons.command.infuse.add": "%s doordrenkt met %s",
     "message.portable_beacons.command.infuse.clear": "Alle effecten van %s verwijderd",
-    "message.portable_beacons.command.infuse.error": "Dit kun je niet doordrenken"
+    "message.portable_beacons.command.infuse.error": "Dit kun je niet doordrenken",
+
+    "item.portable_beacons.book": "Bakenhandboek",
+    "portable_beacons.landing_text": "Draagbare Bakens is een mod die meer manier toevoegt om effecten te krijgen.",
+    
+    "portable_beacons.category.blocks": "Blokken",
+    "portable_beacons.category.blocks.desc": "Blokken toegevoegd door Draagbare Bakens",
+    "portable_beacons.category.curios": "Draagbare dingen",
+    "portable_beacons.category.curios.desc": "Draag een baken op je rug! Maak je geen zorgen: als je niet van delen houdt, is er ook een Drankketting.",
+    "portable_beacons.category.mod_integration": "Modintegratie",
+    "portable_beacons.category.mod_integration.desc": "De Draagbare Bakens mod heeft ingebouwde integratie voor sommige mods.",
+    "portable_beacons.category.tweaks": "Wijzigingen",
+    "portable_beacons.category.tweaks.desc": "Om zijn volledige potentiaal te ontketenen, wijzigt de Draagbare Bakensmod sommige vanilla features.",
+    "portable_beacons.category.weapons": "Wapens",
+    "portable_beacons.category.weapons.desc": "Dingen om je vrienden mee te knuppelen en steken.",
+    
+    "portable_beacons.entry.diffuser.page.0": "De verstuiver kan een drankje over een groot gebied verstuiven. Hij werkt wat langzaam en heeft een redstonesignaal nodig om te werken.",
+    "portable_beacons.entry.diffuser.page.1": "De verstuiver kan geautomatiseerd worden met hoppers en redstone.",
+    
+    "portable_beacons.entry.nether_star_block.page.0": "Een handig opbergblok voor al je nethersterren. Kan als basis voor een baken gebruikt worden.",
+    
+    "portable_beacons.entry.beacon_backpack.page.0": "Combineer een Kanaal en een Baken, draag het geval op je rug en geniet overal van positieve effecten. Om de effecten erop te krijgen, gebruik je de rugzak op een actief baken. Dit kan pijnlijk zijn.",
+    "portable_beacons.entry.beacon_backpack.page.1": "De bakenrugzak kan geüpgradet worden om het bereik en de capaciteit te vergroten. (Zie ommezijde.)",
+    
+    "portable_beacons.entry.potion_necklace.page.0": "Op de een of andere manier geeft de combinatie van een Kanaal een Baken en twee vuurstormstaven een ketting die drankeffecten op kan slaan.",
+    
+    "portable_beacons.entry.configured.title": "Configuratie",
+    "portable_beacons.entry.configured.page.0": "Veel aspecten van deze mod kunnen geconfigureerd worden. Met de Configured mod wordt dit nog makkelijker. Houdt in gedachten dat de Configured mod incompatibel is met Netherite Plus.",
+    
+    "portable_beacons.entry.netherite_plus.page.0": "Een netheritebaken werkt net als een normaal baken. Je krijgt daarbovenop ook nog gratis vuurbestendigheid en lavazicht erbij!",
+    
+    "portable_beacons.entry.glowberries.page.0": "Gloeiende bessen om je buik en je tuin te verlichten.",
+    
+    "portable_beacons.entry.nether_star.title": "Netherster",
+    "portable_beacons.entry.nether_star.page.0": "Nethersterren kunnen gebruikt worden om een baken te activeren. Eindelijk iets om die troep voor te gebruiken.",
+    
+    "portable_beacons.entry.witch_armor.title": "Heksenharnas",
+    "portable_beacons.entry.witch_armor.page.0": "Heksen vervloeken aanvallers uit reflex. Er is een zekere kans dat er een negatief effect gegeven wordt aan enig ding dat een heks probeert aan te vallen.$(br)Het soort, de duur, de lengte en de kans van het effect kan veranderd worden in de configuratiebestanden.",
+    "portable_beacons.entry.witch_armor.page.1": "*hehe*",
+    
+    "portable_beacons.entry.bonk_stick.page.0": "Sla je vriend op zijn of haar hoofd om hem of haar onmiddelijk van zijn of haar hoogmoed te genezen. Dit kan vooral handig zijn tegen dragers van bakenrugzakken.",
+    
+    "portable_beacons.entry.infused_dagger.page.0": "Goed om mee te steken. Kan gezondheidsdefecten veroorzaken. $(br)$(br)The dolk kan met veel verschillende stoffen doordrenkt worden om verschillende effecten te weeg te brengen in het slachtoffer.",
 }
