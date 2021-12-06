@@ -1,6 +1,6 @@
 {
     "parent":"minecraft:item/generated",
     "textures": {
-        "layer0": "portable_beacons:item/glowberries"
+        "layer0": "portable_beacons:item/starberries"
     }
 }

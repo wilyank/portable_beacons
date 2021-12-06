@@ -45,7 +45,7 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		this.addInfusionRecipe(consumer, ItemList.potion_necklace, Items.MAGMA_CREAM, Potions.FIRE_RESISTANCE);
 		this.addInfusionRecipe(consumer, ItemList.potion_necklace, Items.TURTLE_HELMET, Potions.TURTLE_MASTER);
 		
-		this.addInfusionRecipe(consumer, ItemList.potion_necklace, ItemList.glowberries, Effects.GLOWING, 400);
+		this.addInfusionRecipe(consumer, ItemList.potion_necklace, ItemList.starberries, Effects.GLOWING, 400);
 		this.addInfusionRecipe(consumer, ItemList.potion_necklace, Items.SHULKER_SHELL, Effects.LEVITATION, 400);
 
 		
@@ -57,14 +57,14 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.SPIDER_EYE, Effects.POISON, 60);
 		this.addInfusionRecipe(consumer, ItemList.infused_dagger, Items.GHAST_TEAR, Effects.REGENERATION, 100);
 		this.addInfusionRecipe(consumer,  ItemList.infused_dagger, Items.SHULKER_SHELL, Effects.LEVITATION, 200);
-		this.addInfusionRecipe(consumer, ItemList.infused_dagger, ItemList.glowberries, Effects.GLOWING, 400);
+		this.addInfusionRecipe(consumer, ItemList.infused_dagger, ItemList.starberries, Effects.GLOWING, 400);
 		
-		ShapelessRecipeBuilder.shapeless(ItemList.glowberries)
+		ShapelessRecipeBuilder.shapeless(ItemList.starberries)
 		.requires(Items.SWEET_BERRIES)
 		.requires(Items.GLOWSTONE_DUST, 2)
 		.group("")
 		.unlockedBy("has_item", has(Items.SWEET_BERRIES))
-		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.glowberries.toString()));
+		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.starberries.toString()));
 		
 		ShapelessRecipeBuilder.shapeless(Items.NETHER_STAR, 9)
 		.requires(ItemList.nether_star_block)

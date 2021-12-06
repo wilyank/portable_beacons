@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "portable_beacons:glowberries"
+      "item": "portable_beacons:starberries"
     },
     {
       "item": "portable_beacons:infused_dagger"

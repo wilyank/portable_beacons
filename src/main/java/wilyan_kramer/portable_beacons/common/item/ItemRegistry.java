@@ -27,7 +27,7 @@ public class ItemRegistry {
     				ItemList.beacon_backpack_2 = new BeaconBackpackItem("beacon_backpack_2", 2),
     				ItemList.beacon_backpack_3 = new BeaconBackpackItem("beacon_backpack_3", 3),
     				ItemList.beacon_backpack_4 = new BeaconBackpackItem("beacon_backpack_4", 4),
-    				ItemList.glowberries = new BlockNamedItem(BlockList.glowberry_bush, new Properties().stacksTo(16).tab(InventoryTabs.TAB_PORTABLE_BEACONS).food(ItemList.GLOWBERRIES)).setRegistryName(PortableBeaconsMod.MODID, "glowberries"),
+    				ItemList.starberries = new BlockNamedItem(BlockList.starberry_bush, new Properties().stacksTo(16).tab(InventoryTabs.TAB_PORTABLE_BEACONS).food(ItemList.GLOWBERRIES)).setRegistryName(PortableBeaconsMod.MODID, "starberries"),
     				ItemList.bonk_stick = new BonkStickItem(ItemTier.WOOD, Config.COMMON.bonkStickDamage.get(), -1F, new Properties().stacksTo(1).defaultDurability(Config.COMMON.bonkStickDurability.get()).tab(InventoryTabs.TAB_PORTABLE_BEACONS)).setRegistryName(PortableBeaconsMod.MODID, "bonk_stick"),
     				ItemList.infused_dagger = new InfusedSwordItem(ItemTier.WOOD, Config.COMMON.infusedDaggerDamage.get(), -2F, new Properties().stacksTo(1).defaultDurability(Config.COMMON.infusedDaggerDurability.get()).tab(InventoryTabs.TAB_PORTABLE_BEACONS)).setRegistryName(PortableBeaconsMod.MODID, "infused_dagger"),
     				ItemList.nether_star_block = new BlockItem(BlockList.nether_star_block, new Properties().tab(InventoryTabs.TAB_PORTABLE_BEACONS).rarity(Rarity.EPIC)).setRegistryName(BlockList.nether_star_block.getRegistryName()),

@@ -6,13 +6,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "portable_beacons:glowberries"
+          "name": "portable_beacons:starberries"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "portable_beacons:glowberry_bush",
+          "block": "portable_beacons:starberry_bush",
           "properties": {
             "age": "3"
           }
@@ -42,7 +42,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "portable_beacons:glowberries"
+          "name": "portable_beacons:starberries"
         }
       ],
       "conditions": [

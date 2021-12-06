@@ -20,13 +20,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.Tags.Blocks;
 import wilyan_kramer.portable_beacons.common.item.ItemList;
 
-public class GlowberryBushBlock extends SweetBerryBushBlock {
+public class StarBerryBushBlock extends SweetBerryBushBlock {
 
-	public GlowberryBushBlock(Properties prop) {
+	public StarBerryBushBlock(Properties prop) {
 		super(prop);
 	}
 	public ItemStack getCloneItemStack(IBlockReader blockReader, BlockPos blockPos, BlockState blockState) {
-		return new ItemStack(ItemList.glowberries);
+		return new ItemStack(ItemList.starberries);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class GlowberryBushBlock extends SweetBerryBushBlock {
 			return ActionResultType.PASS;
 		} else if (i > 1) {
 			int j = 1 + world.random.nextInt(2);
-			popResource(world, blockPos, new ItemStack(ItemList.glowberries, j + (flag ? 1 : 0)));
+			popResource(world, blockPos, new ItemStack(ItemList.starberries, j + (flag ? 1 : 0)));
 			world.playSound((PlayerEntity)null, blockPos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
 			world.setBlock(blockPos, blockState.setValue(AGE, Integer.valueOf(1)), 2);
 			return ActionResultType.sidedSuccess(world.isClientSide);

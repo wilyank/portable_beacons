@@ -22,7 +22,7 @@ public class ItemList {
 	public static Item beacon_backpack_2;
 	public static Item beacon_backpack_3;
 	public static Item beacon_backpack_4;
-	public static Item glowberries;
+	public static Item starberries;
 	public static Item bonk_stick;
 	public static Item infused_dagger;
 	public static Item nether_star_block;

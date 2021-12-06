@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "portable_beacons:glowberries"
+      "portable_beacons:potion_necklace_starberries"
     ]
   },
   "criteria": {
-    "has_item": {
+    "has_dagger": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:sweet_berries"
+            "item": "portable_beacons:potion_necklace"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "portable_beacons:glowberries"
+        "recipe": "portable_beacons:potion_necklace_starberries"
       }
     }
   },
   "requirements": [
     [
-      "has_item",
+      "has_dagger",
       "has_the_recipe"
     ]
   ]

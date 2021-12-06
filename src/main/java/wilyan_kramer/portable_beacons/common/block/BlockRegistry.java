@@ -30,16 +30,16 @@ public class BlockRegistry {
     						.strength(5.0F, 6.0F)
     						.sound(SoundType.METAL)
     						).setRegistryName(new ResourceLocation(PortableBeaconsMod.MODID, "nether_star_block")),
-    				BlockList.glowberry_bush = new GlowberryBushBlock(
+    				BlockList.starberry_bush = new StarBerryBushBlock(
     						AbstractBlock.Properties
     						.of(Material.PLANT)
     						.randomTicks()
     						.noCollission()
     						.lightLevel((state) -> {
-    							return 6*state.getValue(BlockStateProperties.AGE_3);
+    							return 4*state.getValue(BlockStateProperties.AGE_3);
     							})
     						.sound(SoundType.SWEET_BERRY_BUSH)
-    						).setRegistryName(PortableBeaconsMod.MODID, "glowberry_bush"),
+    						).setRegistryName(PortableBeaconsMod.MODID, "starberry_bush"),
     				BlockList.diffuser = new DiffuserBlock(
     						AbstractBlock.Properties
     						.of(Material.STONE)
@@ -49,7 +49,7 @@ public class BlockRegistry {
     						).setRegistryName(PortableBeaconsMod.MODID, "diffuser")
     				);
     		if (FMLEnvironment.dist == Dist.CLIENT) {
-    			RenderTypeLookup.setRenderLayer(BlockList.glowberry_bush, RenderType.cutout());
+    			RenderTypeLookup.setRenderLayer(BlockList.starberry_bush, RenderType.cutout());
     			RenderTypeLookup.setRenderLayer(BlockList.diffuser, RenderType.translucent());
     		}
     	}
