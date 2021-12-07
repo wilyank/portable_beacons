@@ -10,7 +10,7 @@
       "model": "portable_beacons:block/starberry_bush_stage2"
     },
     "age=3": {
-      "model": "portable_beacons:block/starberry_bush_stage2"
+      "model": "portable_beacons:block/starberry_bush_stage3"
     }
   }
 }

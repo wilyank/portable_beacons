@@ -1,0 +1,6 @@
+{
+	"hurt_starberry_bush": {
+		"subtitle": "portable_beacons.subtitles.hurt.starberry_bush",
+		"sounds": ["minecraft:entity/player/hurt/berrybush_hurt1.ogg", "minecraft:entity/player/hurt/berrybush_hurt2.ogg"]
+	}
+}
