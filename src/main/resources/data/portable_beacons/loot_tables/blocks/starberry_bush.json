@@ -48,7 +48,7 @@
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "portable_beacons:glowberry_bush",
+          "block": "portable_beacons:starberry_bush",
           "properties": {
             "age": "2"
           }
