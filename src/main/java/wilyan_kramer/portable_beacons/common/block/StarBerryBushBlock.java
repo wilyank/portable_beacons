@@ -17,7 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.Tags.Blocks;
 import wilyan_kramer.portable_beacons.common.item.ItemList;
 
 public class StarBerryBushBlock extends SweetBerryBushBlock {
@@ -39,7 +38,7 @@ public class StarBerryBushBlock extends SweetBerryBushBlock {
 
 	@Override
 	protected boolean mayPlaceOn(BlockState blockstate, IBlockReader blockReader, BlockPos blockPos) {
-		return blockstate.is(Blocks.NETHERRACK);
+		return blockstate.is(BlockList.nether_star_block);
 	}
 
 	public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockRayTraceResult posOnFace) {

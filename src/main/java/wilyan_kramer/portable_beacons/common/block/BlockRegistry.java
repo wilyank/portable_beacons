@@ -23,7 +23,7 @@ public class BlockRegistry {
     	@SubscribeEvent
     	public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
     		blockRegistryEvent.getRegistry().registerAll(
-    				BlockList.nether_star_block = new Block(
+    				BlockList.nether_star_block = new NetherStarBlock(
     						AbstractBlock.Properties
     						.of(Material.METAL, MaterialColor.METAL)
     						.harvestTool(ToolType.PICKAXE)

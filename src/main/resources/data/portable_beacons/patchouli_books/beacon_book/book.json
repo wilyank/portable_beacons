@@ -1,7 +1,7 @@
 {
     "name": "item.portable_beacons.book",
     "landing_text": "portable_beacons.landing_text",
-    "version": 108,
+    "version": 110,
     "i18n": true,
     "book_texture": "patchouli:textures/gui/book_gray.png",
     "model": "portable_beacons:book",

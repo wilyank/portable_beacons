@@ -15,7 +15,7 @@
     "item.portable_beacons.beacon_backpack.tooltip.help": "Gebruik op een %s om effecten toe te voegen",
     "item.portable_beacons.tooltip.or": "%s of %s",
 
-    "item.portable_beacons.glowberries": "Sterbessen",
+    "item.portable_beacons.starberries": "Sterbessen",
 
     "item.portable_beacons.bonk_stick": "Bonkstok",
     "item.portable_beacons.bonk_stick.tooltip":"Een ontnuchterende ervaring",
@@ -61,10 +61,10 @@
     
     "portable_beacons.entry.netherite_plus.page.0": "Een netheritebaken werkt net als een normaal baken. Je krijgt daarbovenop ook nog gratis vuurbestendigheid en lavazicht erbij!",
     
-    "portable_beacons.entry.glowberries.page.0": "Gloeiende bessen om je buik en je tuin te verlichten.",
+    "portable_beacons.entry.starberries.page.0": "Gloeiende bessen om je buik en je tuin te verlichten. Plant een zoete bessenstruik op een nethersterblok om deze delicatesse te krijgen.",
     
     "portable_beacons.entry.nether_star.title": "Netherster",
-    "portable_beacons.entry.nether_star.page.0": "Nethersterren kunnen gebruikt worden om een baken te activeren. Eindelijk iets om die troep voor te gebruiken.",
+    "portable_beacons.entry.nether_star.page.0": "Nethersterren kunnen gebruikt worden om een baken te activeren. Eindelijk iets om die troep voor te gebruiken. Er gaat een gerucht rond dat dit blok magische effecten kan induceren in bepaalde planten.",
     
     "portable_beacons.entry.witch_armor.title": "Heksenharnas",
     "portable_beacons.entry.witch_armor.page.0": "Heksen vervloeken aanvallers uit reflex. Er is een zekere kans dat er een negatief effect gegeven wordt aan enig ding dat een heks probeert aan te vallen.$(br)Het soort, de duur, de lengte en de kans van het effect kan veranderd worden in de configuratiebestanden.",
@@ -72,5 +72,5 @@
     
     "portable_beacons.entry.bonk_stick.page.0": "Sla je vriend op zijn of haar hoofd om hem of haar onmiddelijk van zijn of haar hoogmoed te genezen. Dit kan vooral handig zijn tegen dragers van bakenrugzakken.",
     
-    "portable_beacons.entry.infused_dagger.page.0": "Goed om mee te steken. Kan gezondheidsdefecten veroorzaken. $(br)$(br)The dolk kan met veel verschillende stoffen doordrenkt worden om verschillende effecten te weeg te brengen in het slachtoffer.",
+    "portable_beacons.entry.infused_dagger.page.0": "Goed om mee te steken. Kan gezondheidsdefecten veroorzaken. $(br)$(br)The dolk kan met veel verschillende stoffen doordrenkt worden om verschillende effecten te weeg te brengen in het slachtoffer."
 }

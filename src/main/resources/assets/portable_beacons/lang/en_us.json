@@ -61,10 +61,10 @@
     
     "portable_beacons.entry.netherite_plus.page.0": "You can infuse effects from the Netherite Beacon into the Beacon Backpack in the same way you infuse effects from a normal Beacon. Simply right click with the Beacon Backpack in hand.",
     
-    "portable_beacons.entry.glowberries.page.0": "Glowing berries to light up your belly and your yard.",
+    "portable_beacons.entry.starberries.page.0": "Glowing berries to light up your belly and your yard. To obtan them, plant a Sweet Berry Bush on a Nether Star Block.",
     
     "portable_beacons.entry.nether_star.title": "Nether Star",
-    "portable_beacons.entry.nether_star.page.0": "Nether stars can be used as Beacon payment. Finally a use for that junk.",
+    "portable_beacons.entry.nether_star.page.0": "Nether stars can be used as Beacon payment. Finally a use for that junk. Rumor has it, this block can induce magical effects into certain plants.",
     
     "portable_beacons.entry.witch_armor.title": "Witch Armor",
     "portable_beacons.entry.witch_armor.page.0": "Witches appear to have some reactive curses they reflexively cast on any attacker. There is a certain chance a negative effect will be applied to any entity that attempts to hurt a witch.$(br)The types, durations, levels and chance of the effects can be changed in the configuration files.",

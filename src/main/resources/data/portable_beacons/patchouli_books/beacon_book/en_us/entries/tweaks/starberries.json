@@ -1,0 +1,28 @@
+{
+    "name": "item.portable_beacons.starberries",
+    "icon": "portable_beacons:starberries",
+    "category": "portable_beacons:tweaks",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "portable_beacons.entry.starberries.page.0"
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock": {
+                "mapping": {
+                    "N": "portable_beacons:nether_star_block",
+                    "0": "portable_beacons:starberry_bush"
+                },
+                "pattern": [
+                    [
+                        "0"
+                    ],
+                    [
+                        "N"
+                    ]
+                ]
+            }
+        }
+    ]
+}
