@@ -10,7 +10,7 @@ displayName="Portable Beacons Mod" #mandatory
 #updateJSONURL="" #optional
 displayURL="https://www.curseforge.com/minecraft/mc-mods/portable-beacons/" #optional
 logoFile="logo.png" #optional
-credits="" #optional
+credits="Thanks to Herrscher of Banana for making some wonderful textures" #optional
 authors="Wilyan Kramer" #optional
 description='''
 Carry a beacon on your back. Never be out of range!
