@@ -17,7 +17,9 @@
     "item.portable_beacons.tooltip.or": "%s or %s",
     
     "item.portable_beacons.starberries": "Starberries",
-    
+    "death.attack.starberry_bush": "%s cut themselves on a starplant",
+    "death.attack.starberry_bush.player": "A starry bush prevented %s's escape from %s",
+
     "item.portable_beacons.bonk_stick": "Bonk Stick",
     "item.portable_beacons.bonk_stick.tooltip":"A sobering experience",
     

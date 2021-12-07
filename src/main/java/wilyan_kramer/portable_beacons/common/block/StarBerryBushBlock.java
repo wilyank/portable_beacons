@@ -10,13 +10,16 @@ import net.minecraft.item.Items;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import wilyan_kramer.portable_beacons.common.effect.ModDamageSource;
 import wilyan_kramer.portable_beacons.common.item.ItemList;
 
 public class StarBerryBushBlock extends SweetBerryBushBlock {
@@ -32,8 +35,17 @@ public class StarBerryBushBlock extends SweetBerryBushBlock {
 	public void entityInside(BlockState blockState, World world, BlockPos blockPos, Entity entity) {
 		if (entity instanceof LivingEntity) {
 			((LivingEntity) entity).addEffect(new EffectInstance(Effects.GLOWING, 200));
-		}
-		super.entityInside(blockState, world, blockPos, entity);
+			entity.makeStuckInBlock(blockState, new Vector3d((double)0.8F, 0.75D, (double)0.8F));
+
+			if (!world.isClientSide && blockState.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
+				double d0 = Math.abs(entity.getX() - entity.xOld);
+				double d1 = Math.abs(entity.getZ() - entity.zOld);
+				if (d0 >= (double)0.003F || d1 >= (double)0.003F) {
+					entity.hurt(ModDamageSource.starberry_bush, 1.0F);
+				}
+			}
+        }
+		//super.entityInside(blockState, world, blockPos, entity);
 	}
 
 	@Override
