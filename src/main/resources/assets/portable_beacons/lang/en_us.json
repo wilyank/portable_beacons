@@ -16,7 +16,7 @@
     "item.portable_beacons.beacon_backpack.tooltip.help": "Use on %s to infuse",
     "item.portable_beacons.tooltip.or": "%s or %s",
     
-    "item.portable_beacons.starberries": "Starberries",
+    "item.portable_beacons.starberries": "Starberry",
     "death.attack.starberry_bush": "%s cut themselves on a starplant",
     "death.attack.starberry_bush.player": "A starry bush prevented %s's escape from %s",
 
@@ -63,7 +63,7 @@
     
     "portable_beacons.entry.netherite_plus.page.0": "You can infuse effects from the Netherite Beacon into the Beacon Backpack in the same way you infuse effects from a normal Beacon. Simply right click with the Beacon Backpack in hand.",
     
-    "portable_beacons.entry.starberries.page.0": "Glowing berries to light up your belly and your yard. To obtan them, plant a Sweet Berry Bush on a Nether Star Block.",
+    "portable_beacons.entry.starberries.page.0": "Glowing berries to light up your belly and your yard. To obtain them, plant a Sweet Berry Bush on a Nether Star Block.",
     
     "portable_beacons.entry.nether_star.title": "Nether Star",
     "portable_beacons.entry.nether_star.page.0": "Nether stars can be used as Beacon payment. Finally a use for that junk. Rumor has it, this block can induce magical effects into certain plants.",
