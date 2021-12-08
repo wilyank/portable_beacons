@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -16,7 +17,6 @@ import wilyan_kramer.portable_beacons.setup.ClientSetup;
 import wilyan_kramer.portable_beacons.setup.CommonSetup;
 
 @Mod("portable_beacons")
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PortableBeaconsMod {
 	public static final String MODID = "portable_beacons";
 
@@ -25,7 +25,7 @@ public class PortableBeaconsMod {
 
     public PortableBeaconsMod() {
     	Config.init();
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(CommonSetup::init);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::init);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientSetup::init);
@@ -33,7 +33,12 @@ public class PortableBeaconsMod {
         MinecraftForge.EVENT_BUS.register(new CommonSetup());
         MinecraftForge.EVENT_BUS.register(new EventListeners());
     }
-    //for some reason, I can't figure out how to move this to InterModCommunications.class
+    
+    private void init(final FMLCommonSetupEvent event) {
+    	//LOGGER.info(MODID + " Init called!");
+    	
+	}
+    
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
         InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("necklace").build());

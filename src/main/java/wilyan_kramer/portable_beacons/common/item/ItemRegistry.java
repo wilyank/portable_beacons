@@ -1,7 +1,6 @@
 package wilyan_kramer.portable_beacons.common.item;
 
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemTier;
