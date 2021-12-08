@@ -4,12 +4,72 @@
         "rules": [
           {
             "output_state": {
-              "Name": "minecraft:air"
+              "Name": "minecraft:diamond_ore"
             },
             "input_predicate": {
-              "block": "minecraft:stone_bricks",
-              "probability": 0.3,
+              "block": "minecraft:stone",
+              "probability": 0.001,
               "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:crafting_table"
+            },
+            "input_predicate": {
+              "block": "minecraft:smithing_table",
+              "probability": 0.5,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:cauldron",
+              "Properties": {
+              	"level": "2" 
+              }
+            },
+            "input_predicate": {
+              "block": "minecraft:orange_wool",
+              "probability": 0.5,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:cauldron",
+              "Properties": {
+              	"level": "3" 
+              }
+            },
+            "input_predicate": {
+              "block": "minecraft:orange_wool",
+              "probability": 0.5,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:cauldron",
+              "Properties": {
+              	"level": "0" 
+              }
+            },
+            "input_predicate": {
+              "block": "minecraft:orange_wool",
+              "predicate_type": "minecraft:block_match"
             },
             "location_predicate": {
               "predicate_type": "minecraft:always_true"
@@ -17,6 +77,10 @@
           }
         ],
         "processor_type": "minecraft:rule"
+      },
+      {
+      	"processor_type": "minecraft:block_age",
+      	"mossiness": 0.5
       }
     ]
   }
