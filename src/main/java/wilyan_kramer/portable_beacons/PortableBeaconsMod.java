@@ -8,6 +8,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -92,8 +93,9 @@ public class PortableBeaconsMod {
     }
     
     public void biomeModification(final BiomeLoadingEvent event) {
-        event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_workshop_room);
-
+    	if (event.getCategory() != Biome.Category.BEACH && event.getCategory() != Biome.Category.OCEAN) {
+            event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_workshop_room);
+    	}
     }
     private static Method GETCODEC_METHOD;
     public void addDimensionalSpacing(final WorldEvent.Load event) {

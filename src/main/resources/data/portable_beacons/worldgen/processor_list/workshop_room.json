@@ -20,7 +20,7 @@
       },
       {
       	"processor_type": "minecraft:block_age",
-      	"mossiness": 0.5
+      	"mossiness": 0.4
       }
     ]
   }
