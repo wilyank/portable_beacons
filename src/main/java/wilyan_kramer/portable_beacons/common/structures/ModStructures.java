@@ -18,16 +18,26 @@ import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 public class ModStructures {
     
 	public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, PortableBeaconsMod.MODID);
-
+	
     public static final RegistryObject<Structure<NoFeatureConfig>> workshop_room = DEFERRED_REGISTRY_STRUCTURE.register("workshop_room", () -> (new WorkshopRoomStructure(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> workshop_room_nether = DEFERRED_REGISTRY_STRUCTURE.register("workshop_room_nether", () -> (new WorkshopRoomNetherStructure(NoFeatureConfig.CODEC)));
 
+    
     public static void setupStructures() {
         setupMapSpacingAndLand(
                 workshop_room.get(), /* The instance of the structure */
-                new StructureSeparationSettings(20 /* average distance apart in chunks between spawn attempts */,
+                new StructureSeparationSettings(
+                		20 /* average distance apart in chunks between spawn attempts */,
                         10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         35848128 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
+        setupMapSpacingAndLand(
+        		workshop_room_nether.get(),
+        		new StructureSeparationSettings(
+        				20,
+        				10,
+        				35848128),
+        		true);
 
 
         // Add more structures here and so on

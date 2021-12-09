@@ -93,8 +93,11 @@ public class PortableBeaconsMod {
     }
     
     public void biomeModification(final BiomeLoadingEvent event) {
-    	if (event.getCategory() != Biome.Category.BEACH && event.getCategory() != Biome.Category.OCEAN) {
+    	if (event.getCategory() != Biome.Category.BEACH && event.getCategory() != Biome.Category.OCEAN && event.getCategory() != Biome.Category.NETHER) {
             event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_workshop_room);
+    	}
+    	if (event.getCategory() == Biome.Category.NETHER) {
+            event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_workshop_room_nether);
     	}
     }
     private static Method GETCODEC_METHOD;
@@ -126,6 +129,7 @@ public class PortableBeaconsMod {
              */
             Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(chunkSource.generator.getSettings().structureConfig());
             tempMap.putIfAbsent(ModStructures.workshop_room.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.workshop_room.get()));
+            tempMap.putIfAbsent(ModStructures.workshop_room_nether.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.workshop_room_nether.get()));
             chunkSource.generator.getSettings().structureConfig = tempMap;
         }
     }
