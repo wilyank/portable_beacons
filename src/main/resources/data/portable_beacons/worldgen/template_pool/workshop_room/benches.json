@@ -1,0 +1,76 @@
+{
+    "name": "portable_beacons:workshop_room/benches",
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:workshop_room/benches/smithing_table",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:workshop_room/benches/crafting_table",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:workshop_room/benches/blast_furnace",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:workshop_room/benches/cauldron_0",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:workshop_room/benches/cauldron_1",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:workshop_room/benches/cauldron_2",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:workshop_room/benches/cauldron_3",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      }
+    ]
+  }

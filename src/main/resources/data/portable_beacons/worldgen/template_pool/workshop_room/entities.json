@@ -1,0 +1,36 @@
+{
+    "name": "portable_beacons:workshop_room/entities",
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:workshop_room/entities/witch",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:workshop_room/entities/villager",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:workshop_room/entities/zombie_villager",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      }
+    ]
+  }

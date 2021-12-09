@@ -1,0 +1,36 @@
+{
+    "name": "portable_beacons:workshop_room/beacons",
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 17,
+        "element": {
+          "location": "portable_beacons:workshop_room/beacons/iron",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 2,
+        "element": {
+          "location": "portable_beacons:workshop_room/beacons/gold",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:workshop_room/beacons/emerald",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      }
+    ]
+  }

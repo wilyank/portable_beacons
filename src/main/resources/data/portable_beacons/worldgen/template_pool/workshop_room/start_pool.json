@@ -5,11 +5,9 @@
 
   "elements": [
     {
-
       "weight": 1,
       "element": {
-        "location": "portable_beacons:workshop_room",
-
+        "location": "portable_beacons:workshop_room/main/frame",
         "processors": "portable_beacons:workshop_room",
         "projection": "rigid",
         
