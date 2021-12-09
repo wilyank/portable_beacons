@@ -71,11 +71,15 @@
     "portable_beacons.entry.witch_armor.title": "Witch Armor",
     "portable_beacons.entry.witch_armor.page.0": "Witches appear to have some reactive curses they reflexively cast on any attacker. There is a certain chance a negative effect will be applied to any entity that attempts to hurt a witch.$(br)The types, durations, levels and chance of the effects can be changed in the configuration files.",
     "portable_beacons.entry.witch_armor.page.1": "*hehe*",
-    
+
+    "portable_beacons.entry.structures.title": "Underground Structures",
+    "portable_beacons.entry.structures.page.0": "Where do these ingenious machines come from, that allow us to distribute effective influences so percisely?  Rumor has it, there exists a secret society that investigates these things. Perhaps you will stumble upon their workshops while digging for minerals? ",
+
+
     "portable_beacons.entry.bonk_stick.page.0": "Hit your friend over their head to instantly cure them of their hubris. This can be exceptionally useful when fighting someone who has a Beacon Backpack equipped.",
     
     "portable_beacons.entry.infused_dagger.page.0": "Great for stabbing. May cause some health defects. $(br)$(br)The infused dagger can be infused with many different substances to produce different consequences in the stabbee.",
-
+    
     "portable_beacons.entry.alexsmobs.title": "Alex's Mobs",
     "portable_beacons.entry.alexsmobs.page.0":"The magical powers from some of Alex's mobs can be harnessed using an Infused Dagger or Potion Necklace. Swat your enemies with a Sunbird's Blessing turned awful in your dagger.",
     "portable_beacons.entry.alexsmobs.page.1":"See the wonders hidden the Nether's Lava Oceans using the Bone Serpent's magic.",

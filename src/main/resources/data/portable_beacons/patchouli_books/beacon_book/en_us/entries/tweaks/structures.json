@@ -1,0 +1,11 @@
+{
+    "name": "portable_beacons.entry.structures.title",
+    "icon": "minecraft:cauldron",
+    "category": "portable_beacons:tweaks",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "portable_beacons.entry.structures.page.0"
+        }
+    ]
+}
