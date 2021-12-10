@@ -99,7 +99,7 @@ public class PortableBeaconsMod {
     			&& event.getCategory() != Biome.Category.THEEND) {
             event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_workshop_room);
     	}
-    	if (event.getCategory() == Biome.Category.NETHER) {
+    	if (event.getCategory() == Biome.Category.NETHER && false) {
             event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_workshop_room_nether);
     	}
     }
@@ -135,8 +135,12 @@ public class PortableBeaconsMod {
              * And if you want to do dimension blacklisting, you need to remove the spacing entry entirely from the map below to prevent generation safely.
              */
             Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(chunkSource.generator.getSettings().structureConfig());
-            tempMap.putIfAbsent(ModStructures.workshop_room.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.workshop_room.get()));
-            tempMap.putIfAbsent(ModStructures.workshop_room_nether.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.workshop_room_nether.get()));
+            if (serverWorld.dimension().equals(World.OVERWORLD)) {
+                tempMap.putIfAbsent(ModStructures.workshop_room.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.workshop_room.get()));
+            }
+            else if (serverWorld.dimension().equals(World.NETHER) && false) {
+                tempMap.putIfAbsent(ModStructures.workshop_room_nether.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.workshop_room_nether.get()));
+            }
             chunkSource.generator.getSettings().structureConfig = tempMap;
         }
     }
