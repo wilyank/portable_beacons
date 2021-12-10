@@ -14,6 +14,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
+import wilyan_kramer.portable_beacons.common.config.Config;
 
 public class ModStructures {
     
@@ -27,8 +28,8 @@ public class ModStructures {
         setupMapSpacingAndLand(
                 workshop_room.get(), /* The instance of the structure */
                 new StructureSeparationSettings(
-                		20 /* average distance apart in chunks between spawn attempts */,
-                        10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                		Config.COMMON.structureWorkshopRoomMaxSpacing.get() /* average distance apart in chunks between spawn attempts */,
+                        Config.COMMON.structureWorkshopRoomMinSpacing.get() /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         35848128 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
         setupMapSpacingAndLand(
@@ -36,7 +37,7 @@ public class ModStructures {
         		new StructureSeparationSettings(
         				20,
         				10,
-        				35848128),
+        				35848127),
         		true);
 
 

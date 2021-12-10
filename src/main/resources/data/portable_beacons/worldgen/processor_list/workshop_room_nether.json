@@ -7,61 +7,9 @@
               "Name": "minecraft:ancient_debris"
             },
             "input_predicate": {
-              "block": "minecraft:stone",
+              "block": "minecraft:blackstone",
               "probability": 0.001,
               "predicate_type": "minecraft:random_block_match"
-            },
-            "location_predicate": {
-              "predicate_type": "minecraft:always_true"
-            }
-          },
-          {
-            "output_state": {
-              "Name": "minecraft:blackstone"
-            },
-            "input_predicate": {
-              "block": "minecraft:stone",
-              "predicate_type": "minecraft:block_match"
-            },
-            "location_predicate": {
-              "predicate_type": "minecraft:always_true"
-            }
-          },
-          {
-            "output_state": {
-              "Name": "minecraft:polished_blackstone_bricks"
-            },
-            "input_predicate": {
-              "block": "minecraft:stone_bricks",
-              "predicate_type": "minecraft:block_match"
-            },
-            "location_predicate": {
-              "predicate_type": "minecraft:always_true"
-            }
-          },
-          {
-            "output_state": {
-              "Name": "minecraft:chiseled_polished_blackstone"
-            },
-            "input_predicate": {
-              "block": "minecraft:chiseled_stone_bricks",
-              "predicate_type": "minecraft:block_match"
-            },
-            "location_predicate": {
-              "predicate_type": "minecraft:always_true"
-            }
-          },
-          {
-            "output_state": {
-              "Name": "minecraft:polished_blackstone_brick_slab",
-              "Properties": {
-                  "waterlogged": "false",
-                  "type": "bottom"
-              }
-            },
-            "input_predicate": {
-              "block": "minecraft:stone_brick_stairs",
-              "predicate_type": "minecraft:block_match"
             },
             "location_predicate": {
               "predicate_type": "minecraft:always_true"

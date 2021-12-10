@@ -122,6 +122,8 @@ public class PortableBeaconsMod {
                 serverWorld.dimension().equals(World.OVERWORLD)){
                 return;
             }
+            
+            // why is this not skipping non-overworld dimensions?
             if(!serverWorld.dimension().equals(World.OVERWORLD)) {
             	return;
             }

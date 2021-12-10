@@ -24,6 +24,7 @@ import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
+import wilyan_kramer.portable_beacons.common.config.Config;
 
 
 public class WorkshopRoomStructure extends Structure<NoFeatureConfig>{
@@ -64,7 +65,15 @@ public class WorkshopRoomStructure extends Structure<NoFeatureConfig>{
 			int x = chunkX * 16;
             int z = chunkZ * 16;
             
-            int structureStartHeight = random.nextInt(25) + 6;
+            int minHeight = Config.COMMON.structureWorkshopRoomMinHeight.get();
+            int maxHeight = Config.COMMON.structureWorkshopRoomMaxHeight.get();
+            
+            if (minHeight>maxHeight) {
+            	throw new IllegalArgumentException("Minimum generation height of " + this.getFeature().getFeatureName() + " cannot be higher than the minimum generation height");
+            }
+            
+            int structureStartHeight = random.nextInt(maxHeight-minHeight) + minHeight;
+            
             BlockPos centerPos = new BlockPos(x, structureStartHeight, z);            
             
             JigsawManager.addPieces(dynamicRegistryManager, 

@@ -44,6 +44,12 @@ public class Config {
 		public final BooleanValue witchArmor;
 		public final IntValue witchArmorChance;
 		public final ConfigValue<List<? extends String>> witchArmorEffects;
+		public final BooleanValue generateStructures;
+		public final IntValue structureWorkshopRoomMinSpacing;
+		public final IntValue structureWorkshopRoomMaxSpacing;
+		public final IntValue structureWorkshopRoomMinHeight;
+		public final IntValue structureWorkshopRoomMaxHeight;
+		
 
 		Common(ForgeConfigSpec.Builder builder) {
 			builder.comment("Common config for Portable Beacons").push("Beacon Backpack Config");
@@ -149,6 +155,27 @@ public class Config {
 							"4,500" //slowness
 							), o -> o instanceof String);
 			builder.pop();
+			builder.push("Structure config");
+			this.generateStructures = builder
+					.comment("Whether to generate workshop room structures in the overworld")
+					.worldRestart()
+					.define("generateStructures", true);
+			this.structureWorkshopRoomMinSpacing = builder
+					.comment("Minimum distance in chunks between two workshop room structures")
+					.worldRestart()
+					.defineInRange("structureWorkshopRoomMinSpacing", 0, 1000, 10);
+			this.structureWorkshopRoomMaxSpacing = builder
+					.comment("Maximum distance in chunks between two workshop room structures")
+					.worldRestart()
+					.defineInRange("structureWorkshopRoomMaxSpacing", 1, 1000, 20);
+			this.structureWorkshopRoomMinHeight = builder
+					.comment("Minimum y-level at which workshop room structures can generate. MUST be lower than structureWorkshopRoomMaxHeight")
+					.worldRestart()
+					.defineInRange("structureWorkshopRoomMinHeight", 6, 244, 6);
+			this.structureWorkshopRoomMaxHeight = builder
+					.comment("Maximum y-level at which workshop room structures can generate. MUST be higher than structureWorkshopRoomMinHeight")
+					.worldRestart()
+					.defineInRange("structureWorkshopRoomMaxHeight", 7, 245, 36);
 		}
 	}
 //	public static final ForgeConfigSpec clientSpec;
