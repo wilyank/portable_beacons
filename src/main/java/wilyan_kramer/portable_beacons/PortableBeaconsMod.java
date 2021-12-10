@@ -93,7 +93,10 @@ public class PortableBeaconsMod {
     }
     
     public void biomeModification(final BiomeLoadingEvent event) {
-    	if (event.getCategory() != Biome.Category.BEACH && event.getCategory() != Biome.Category.OCEAN && event.getCategory() != Biome.Category.NETHER) {
+    	if (event.getCategory() != Biome.Category.BEACH 
+    			&& event.getCategory() != Biome.Category.OCEAN 
+    			&& event.getCategory() != Biome.Category.NETHER 
+    			&& event.getCategory() != Biome.Category.THEEND) {
             event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_workshop_room);
     	}
     	if (event.getCategory() == Biome.Category.NETHER) {
@@ -101,7 +104,8 @@ public class PortableBeaconsMod {
     	}
     }
     private static Method GETCODEC_METHOD;
-    public void addDimensionalSpacing(final WorldEvent.Load event) {
+    @SuppressWarnings("unchecked")
+	public void addDimensionalSpacing(final WorldEvent.Load event) {
     	if(event.getWorld() instanceof ServerWorld){
             ServerWorld serverWorld = (ServerWorld)event.getWorld();
             ServerChunkProvider chunkSource = serverWorld.getChunkSource();
@@ -117,6 +121,9 @@ public class PortableBeaconsMod {
             if(chunkSource.getGenerator() instanceof FlatChunkGenerator &&
                 serverWorld.dimension().equals(World.OVERWORLD)){
                 return;
+            }
+            if(!serverWorld.dimension().equals(World.OVERWORLD)) {
+            	return;
             }
 
             /*
