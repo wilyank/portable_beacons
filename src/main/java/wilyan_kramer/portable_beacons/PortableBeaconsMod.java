@@ -99,8 +99,8 @@ public class PortableBeaconsMod {
     			&& event.getCategory() != Biome.Category.THEEND) {
             event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_workshop_room);
     	}
-    	if (event.getCategory() == Biome.Category.NETHER && false) {
-            event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_workshop_room_nether);
+    	if (event.getCategory() == Biome.Category.NETHER) {
+            event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_nether_temple);
     	}
     }
     private static Method GETCODEC_METHOD;
@@ -124,9 +124,9 @@ public class PortableBeaconsMod {
             }
             
             // why is this not skipping non-overworld dimensions?
-            if(!serverWorld.dimension().equals(World.OVERWORLD)) {
-            	return;
-            }
+//            if(!serverWorld.dimension().equals(World.OVERWORLD)) {
+//            	return;
+//            }
 
             /*
              * putIfAbsent so people can override the spacing with dimension datapacks themselves if they wish to customize spacing more precisely per dimension.
@@ -140,8 +140,8 @@ public class PortableBeaconsMod {
             if (serverWorld.dimension().equals(World.OVERWORLD)) {
                 tempMap.putIfAbsent(ModStructures.workshop_room.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.workshop_room.get()));
             }
-            else if (serverWorld.dimension().equals(World.NETHER) && false) {
-                tempMap.putIfAbsent(ModStructures.workshop_room_nether.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.workshop_room_nether.get()));
+            else if (serverWorld.dimension().equals(World.NETHER)) {
+                tempMap.putIfAbsent(ModStructures.nether_temple.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.nether_temple.get()));
             }
             chunkSource.generator.getSettings().structureConfig = tempMap;
         }

@@ -1,0 +1,66 @@
+{
+    "name": "portable_beacons:nether_temple/decorations",
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:nether_temple/decoration/diffuser",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:nether_temple/decorations/torch",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:nether_temple/decorations/lava",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:nether_temple/decorations/barrel_bastion",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:nether_temple/decorations/barrel_pb_weapons",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:nether_temple/decorations/lodestone",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      }
+    ]
+  }

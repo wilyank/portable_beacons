@@ -7,8 +7,8 @@
       {
         "weight": 1,
         "element": {
-          "location": "portable_beacons:workshop_room/main/frame",
-          "processors": "portable_beacons:workshop_room_nether",
+          "location": "portable_beacons:nether_temple/main/frame",
+          "processors": "portable_beacons:nether_temple",
           "projection": "rigid",
           
           "element_type": "minecraft:single_pool_element"

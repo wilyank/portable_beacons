@@ -27,28 +27,37 @@ public class Config {
 		public final BooleanValue canCopyFromConduit;
 		public final BooleanValue canCopyFromNetheriteBeacon;
 		public final BooleanValue onlyCopyFromFullBeacon;
+		
 		public final DoubleValue beaconRangeA;
 		public final DoubleValue beaconRangeB;
 		public final BooleanValue beaconSelf;
 		public final BooleanValue beaconOthers;
+		
 		public final IntValue effectCooldown;
 		public final IntValue effectDuration;
+		
 		public final DoubleValue diffuserRange;
 		public final BooleanValue diffuserMobs;
 		public final IntValue diffuserCooldown;
 		public final IntValue diffuserDuration;
+		
 		public final IntValue bonkStickDamage;
 		public final IntValue bonkStickDurability;
 		public final IntValue infusedDaggerDamage; 
 		public final IntValue infusedDaggerDurability;
+		
 		public final BooleanValue witchArmor;
 		public final IntValue witchArmorChance;
 		public final ConfigValue<List<? extends String>> witchArmorEffects;
-		public final BooleanValue generateStructures;
+		
+		public final BooleanValue generateWorkshopRoomStructure;
 		public final IntValue structureWorkshopRoomMinSpacing;
 		public final IntValue structureWorkshopRoomMaxSpacing;
 		public final IntValue structureWorkshopRoomMinHeight;
 		public final IntValue structureWorkshopRoomMaxHeight;
+		public final BooleanValue generateNetherTempleStructure;
+		public final IntValue structureNetherTempleMinSpacing;
+		public final IntValue structureNetherTempleMaxSpacing;
 		
 
 		Common(ForgeConfigSpec.Builder builder) {
@@ -94,6 +103,7 @@ public class Config {
 					.worldRestart()
 					.defineInRange("effectDuration", 400, 1, 10000);
 			builder.pop();
+			
 			builder.push("Diffuser Config");
 			this.diffuserRange = builder
 					.comment("The range of the Diffuser")
@@ -112,6 +122,7 @@ public class Config {
 					.worldRestart()
 					.defineInRange("diffuserDuration", 300, 0, 600);
 			builder.pop();
+			
 			builder.push("Weapons Config");
 			this.bonkStickDamage = builder
 					.comment("Base damage of the Bonk Stick")
@@ -130,6 +141,7 @@ public class Config {
 					.worldRestart()
 					.defineInRange("infusedDaggerDurability", 100, 1, 1000000);
 			builder.pop();
+			
 			builder.push("Gameplay Config");
 			this.witchArmor = builder
 					.comment("Whether the Witch applies potion effects to entities hitting it")
@@ -156,26 +168,42 @@ public class Config {
 							), o -> o instanceof String);
 			builder.pop();
 			builder.push("Structure config");
-			this.generateStructures = builder
+			
+			//workshop room
+			this.generateWorkshopRoomStructure = builder
 					.comment("Whether to generate workshop room structures in the overworld")
 					.worldRestart()
-					.define("generateStructures", true);
+					.define("generateWorkshopRoomStructure", true);
 			this.structureWorkshopRoomMinSpacing = builder
 					.comment("Minimum distance in chunks between two workshop room structures")
 					.worldRestart()
-					.defineInRange("structureWorkshopRoomMinSpacing", 0, 1000, 10);
+					.defineInRange("structureWorkshopRoomMinSpacing", 10, 0, 1000);
 			this.structureWorkshopRoomMaxSpacing = builder
 					.comment("Maximum distance in chunks between two workshop room structures")
 					.worldRestart()
-					.defineInRange("structureWorkshopRoomMaxSpacing", 1, 1000, 20);
+					.defineInRange("structureWorkshopRoomMaxSpacing", 20, 1, 1000);
 			this.structureWorkshopRoomMinHeight = builder
 					.comment("Minimum y-level at which workshop room structures can generate. MUST be lower than structureWorkshopRoomMaxHeight")
 					.worldRestart()
-					.defineInRange("structureWorkshopRoomMinHeight", 6, 244, 6);
+					.defineInRange("structureWorkshopRoomMinHeight", 6, 6, 244);
 			this.structureWorkshopRoomMaxHeight = builder
 					.comment("Maximum y-level at which workshop room structures can generate. MUST be higher than structureWorkshopRoomMinHeight")
 					.worldRestart()
-					.defineInRange("structureWorkshopRoomMaxHeight", 7, 245, 36);
+					.defineInRange("structureWorkshopRoomMaxHeight", 36, 7, 245);
+			
+			// nether temples
+			this.generateNetherTempleStructure = builder
+					.comment("Whether to generate nether temple structures in the nether")
+					.worldRestart()
+					.define("generateNetherTempleStructure", false);
+			this.structureNetherTempleMinSpacing = builder
+					.comment("Minimum distance in chunks between two nether temple structures")
+					.worldRestart()
+					.defineInRange("structureNetherTempleMinSpacing", 10, 0, 1000);
+			this.structureNetherTempleMaxSpacing = builder
+					.comment("Maximum distance in chunks between two nether temple structures")
+					.worldRestart()
+					.defineInRange("structureNetherTempleMaxSpacing", 20, 1, 1000);
 		}
 	}
 //	public static final ForgeConfigSpec clientSpec;

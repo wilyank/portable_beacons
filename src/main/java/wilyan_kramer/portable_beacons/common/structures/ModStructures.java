@@ -21,7 +21,7 @@ public class ModStructures {
 	public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, PortableBeaconsMod.MODID);
 	
     public static final RegistryObject<Structure<NoFeatureConfig>> workshop_room = DEFERRED_REGISTRY_STRUCTURE.register("workshop_room", () -> (new WorkshopRoomStructure(NoFeatureConfig.CODEC)));
-    public static final RegistryObject<Structure<NoFeatureConfig>> workshop_room_nether = DEFERRED_REGISTRY_STRUCTURE.register("workshop_room_nether", () -> (new WorkshopRoomNetherStructure(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> nether_temple = DEFERRED_REGISTRY_STRUCTURE.register("nether_temple", () -> (new NetherTempleStructure(NoFeatureConfig.CODEC)));
 
     
     public static void setupStructures() {
@@ -33,10 +33,10 @@ public class ModStructures {
                         35848128 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
         setupMapSpacingAndLand(
-        		workshop_room_nether.get(),
+        		nether_temple.get(),
         		new StructureSeparationSettings(
-        				20,
-        				10,
+        				Config.COMMON.structureNetherTempleMaxSpacing.get(),
+        				Config.COMMON.structureNetherTempleMinSpacing.get(),
         				35848127),
         		true);
 

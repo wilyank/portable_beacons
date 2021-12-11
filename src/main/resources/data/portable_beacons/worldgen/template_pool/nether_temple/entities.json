@@ -1,0 +1,46 @@
+{
+    "name": "portable_beacons:nether_temple/entities",
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:nether_temple/entities/wither_skeleton_axe",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:nether_temple/entities/wither_skeleton_bow",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:nether_temple/entities/wither_skeleton_sword",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 2,
+        "element": {
+          "location": "portable_beacons:nether_temple/entities/wither_skeleton",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      }
+    ]
+  }
