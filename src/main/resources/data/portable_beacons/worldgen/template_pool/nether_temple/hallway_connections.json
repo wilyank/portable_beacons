@@ -1,0 +1,106 @@
+{
+    "name": "portable_beacons:nether_temple/hallway_connections",
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 1,
+        "element": {
+          "location": "portable_beacons:nether_temple/hallways/shaft",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 2,
+        "element": {
+          "location": "portable_beacons:nether_temple/hallways/cross",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 15,
+        "element": {
+          "location": "portable_beacons:nether_temple/hallways/cross_2",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "location": "portable_beacons:nether_temple/hallways/cross_3",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 20,
+        "element": {
+          "location": "portable_beacons:nether_temple/hallways/straight",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 20,
+        "element": {
+          "location": "portable_beacons:nether_temple/hallways/corner",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 100,
+        "element": {
+          "location": "portable_beacons:nether_temple/hallways/roof",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 20,
+        "element": {
+          "location": "portable_beacons:nether_temple/rooms/treasure_room",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 20,
+        "element": {
+          "location": "portable_beacons:nether_temple/rooms/potion_room",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 20,
+        "element": {
+          "location": "portable_beacons:nether_temple/rooms/nether_wart_room",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          
+          "element_type": "minecraft:single_pool_element"
+        }
+      }
+    ]
+  }

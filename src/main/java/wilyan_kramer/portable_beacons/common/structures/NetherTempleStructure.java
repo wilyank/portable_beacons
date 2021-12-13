@@ -95,7 +95,7 @@ public class NetherTempleStructure extends Structure<NoFeatureConfig>{
 			int x = chunkX * 16;
             int z = chunkZ * 16;
             
-            BlockPos centerPos = new BlockPos(x, chunkGenerator.getSeaLevel() + 1, z);            
+            BlockPos centerPos = new BlockPos(x, chunkGenerator.getSeaLevel() - 1, z);            
             
             JigsawManager.addPieces(dynamicRegistryManager, 
             		new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)

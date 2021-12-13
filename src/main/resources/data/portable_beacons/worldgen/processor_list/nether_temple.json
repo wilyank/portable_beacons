@@ -17,10 +17,6 @@
           }
         ],
         "processor_type": "minecraft:rule"
-      },
-      {
-      	"processor_type": "minecraft:block_age",
-      	"mossiness": 0.4
       }
     ]
   }

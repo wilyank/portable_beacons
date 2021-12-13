@@ -1,5 +1,9 @@
 package wilyan_kramer.portable_beacons;
 
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,10 +27,10 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import wilyan_kramer.portable_beacons.common.EventListeners;
@@ -35,11 +39,6 @@ import wilyan_kramer.portable_beacons.common.structures.ModConfiguredStructures;
 import wilyan_kramer.portable_beacons.common.structures.ModStructures;
 import wilyan_kramer.portable_beacons.setup.ClientSetup;
 import wilyan_kramer.portable_beacons.setup.CommonSetup;
-
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-import wilyan_kramer.portable_beacons.common.config.Config;
 
 @Mod("portable_beacons")
 public class PortableBeaconsMod {
