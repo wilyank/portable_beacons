@@ -39,7 +39,7 @@ import wilyan_kramer.portable_beacons.setup.CommonSetup;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-
+import wilyan_kramer.portable_beacons.common.config.Config;
 
 @Mod("portable_beacons")
 public class PortableBeaconsMod {
@@ -97,10 +97,14 @@ public class PortableBeaconsMod {
     			&& event.getCategory() != Biome.Category.OCEAN 
     			&& event.getCategory() != Biome.Category.NETHER 
     			&& event.getCategory() != Biome.Category.THEEND) {
-            event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_workshop_room);
+    		if (Config.COMMON.generateWorkshopRoomStructure.get()) {
+                event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_workshop_room);
+    		}
     	}
     	if (event.getCategory() == Biome.Category.NETHER) {
-            event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_nether_temple);
+    		if (Config.COMMON.generateNetherTempleStructure.get()) {
+                event.getGeneration().getStructures().add(() -> ModConfiguredStructures.configured_nether_temple);
+    		}
     	}
     }
     private static Method GETCODEC_METHOD;
@@ -137,10 +141,10 @@ public class PortableBeaconsMod {
              * And if you want to do dimension blacklisting, you need to remove the spacing entry entirely from the map below to prevent generation safely.
              */
             Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(chunkSource.generator.getSettings().structureConfig());
-            if (serverWorld.dimension().equals(World.OVERWORLD)) {
+            if (serverWorld.dimension().equals(World.OVERWORLD) && Config.COMMON.generateWorkshopRoomStructure.get()) {
                 tempMap.putIfAbsent(ModStructures.workshop_room.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.workshop_room.get()));
             }
-            else if (serverWorld.dimension().equals(World.NETHER)) {
+            else if (serverWorld.dimension().equals(World.NETHER) && Config.COMMON.generateNetherTempleStructure.get()) {
                 tempMap.putIfAbsent(ModStructures.nether_temple.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.nether_temple.get()));
             }
             chunkSource.generator.getSettings().structureConfig = tempMap;
