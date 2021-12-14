@@ -8,8 +8,9 @@
             "text": "portable_beacons.entry.witch_armor.page.0"
         },
         {
-            "type": "patchouli:image",
-            "images": ["portable_beacons:textures/gui/book/witch_armor_image.png"],
+            "type": "patchouli:entity",
+            "entity": "minecraft:witch",
+            "scale": 0.5,
             "text": "portable_beacons.entry.witch_armor.page.1"
         }
     ]

@@ -38,7 +38,7 @@ public class DiffuserBlock extends Block {
 	@SuppressWarnings("deprecation")
 	@Override
 	 public void onRemove(BlockState blockStateOld, World world, BlockPos blockPos, BlockState blockStateNew, boolean bool) {
-	      if (!blockStateOld.is(blockStateNew.getBlock())) {
+	      if (!blockStateOld.getBlock().is(blockStateNew.getBlock())) {
 	         TileEntity tileentity = world.getBlockEntity(blockPos);
 	         if (tileentity instanceof DiffuserTileEntity) {
 	        	 DiffuserTileEntity diffuserTE = (DiffuserTileEntity) tileentity;

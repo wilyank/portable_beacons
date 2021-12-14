@@ -7,4 +7,5 @@ public class BlockList {
 	public static Block nether_star_block;
 	public static Block starberry_bush;
 	public static Block diffuser;
+	public static Block workbench;
 }

@@ -29,7 +29,7 @@ public class BlockRegistry {
     						.harvestTool(ToolType.PICKAXE)
     						.strength(5.0F, 6.0F)
     						.sound(SoundType.METAL)
-    						).setRegistryName(new ResourceLocation(PortableBeaconsMod.MODID, "nether_star_block")),
+    						).setRegistryName(PortableBeaconsMod.MODID, "nether_star_block"),
     				BlockList.starberry_bush = new StarBerryBushBlock(
     						AbstractBlock.Properties
     						.of(Material.PLANT)
@@ -46,8 +46,15 @@ public class BlockRegistry {
     						.sound(SoundType.NETHER_BRICKS)
     						.harvestTool(ToolType.PICKAXE)
     						.strength(3.0F, 3.0F)
-    						).setRegistryName(PortableBeaconsMod.MODID, "diffuser")
+    						).setRegistryName(PortableBeaconsMod.MODID, "diffuser"),
+    				BlockList.workbench = new WorkbenchBlock(
+    						AbstractBlock.Properties
+    						.of(Material.STONE)
+    						.strength(5.0F, 6.0F)
+    						.sound(SoundType.STONE)
+    						).setRegistryName(PortableBeaconsMod.MODID, "bench")
     				);
+    		
     		if (FMLEnvironment.dist == Dist.CLIENT) {
     			RenderTypeLookup.setRenderLayer(BlockList.starberry_bush, RenderType.cutout());
     			RenderTypeLookup.setRenderLayer(BlockList.diffuser, RenderType.translucent());
