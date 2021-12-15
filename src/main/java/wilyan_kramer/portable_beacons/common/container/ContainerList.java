@@ -8,5 +8,6 @@ import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 @ObjectHolder(PortableBeaconsMod.MODID)
 public class ContainerList {
 	public static final ContainerType<DiffuserContainer> diffuserContainer = null;
+	public static final ContainerType<BenchContainer> benchContainer = null;
 
 }

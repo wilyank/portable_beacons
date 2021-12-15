@@ -27,4 +27,5 @@ public class ItemList {
 	public static Item infused_dagger;
 	public static Item nether_star_block;
 	public static Item diffuser;
+	public static Item bench;
 }

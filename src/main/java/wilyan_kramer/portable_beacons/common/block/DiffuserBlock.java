@@ -35,30 +35,7 @@ import wilyan_kramer.portable_beacons.common.container.DiffuserContainer;
 import wilyan_kramer.portable_beacons.common.tileentity.DiffuserTileEntity;
 
 public class DiffuserBlock extends Block {
-	@SuppressWarnings("deprecation")
-	@Override
-	 public void onRemove(BlockState blockStateOld, World world, BlockPos blockPos, BlockState blockStateNew, boolean bool) {
-	      if (!blockStateOld.getBlock().is(blockStateNew.getBlock())) {
-	         TileEntity tileentity = world.getBlockEntity(blockPos);
-	         if (tileentity instanceof DiffuserTileEntity) {
-	        	 DiffuserTileEntity diffuserTE = (DiffuserTileEntity) tileentity;
-	        	 ItemStack itemstack = diffuserTE.getInventoryContent();
-	        	 if (!itemstack.isEmpty()) {
-	                 world.levelEvent(1010, blockPos, 0);
-	                 double d0 = (double)(world.random.nextFloat() * 0.7F) + (double)0.15F;
-	                 double d1 = (double)(world.random.nextFloat() * 0.7F) + (double)0.060000002F + 0.6D;
-	                 double d2 = (double)(world.random.nextFloat() * 0.7F) + (double)0.15F;
-	                 ItemStack itemstack1 = itemstack.copy();
-	                 ItemEntity itementity = new ItemEntity(world, (double)blockPos.getX() + d0, (double)blockPos.getY() + d1, (double)blockPos.getZ() + d2, itemstack1);
-	                 itementity.setDefaultPickUpDelay();
-	                 world.addFreshEntity(itementity);
-	              }
-	            world.updateNeighbourForOutputSignal(blockPos, this);
-	         }
-	         super.onRemove(blockStateOld, world, blockPos, blockStateNew, bool);
-	      }
-	   }
-
+	
 	private static final VoxelShape SHAPE = VoxelShapes.or(Block.box(0.5D, 0D, 0.5D, 15.5D, 1D, 15.5D), Block.box(3.5, 1, 3.5, 12.5, 16, 12.5));
 	public DiffuserBlock(Properties prop) {
 		super(prop);
@@ -172,5 +149,29 @@ public class DiffuserBlock extends Block {
 		}
 		return ActionResultType.SUCCESS;
 	}
+	@SuppressWarnings("deprecation")
+	@Override
+	 public void onRemove(BlockState blockStateOld, World world, BlockPos blockPos, BlockState blockStateNew, boolean bool) {
+	      if (!blockStateOld.getBlock().is(blockStateNew.getBlock())) {
+	         TileEntity tileentity = world.getBlockEntity(blockPos);
+	         if (tileentity instanceof DiffuserTileEntity) {
+	        	 DiffuserTileEntity diffuserTE = (DiffuserTileEntity) tileentity;
+	        	 ItemStack itemstack = diffuserTE.getInventoryContent();
+	        	 if (!itemstack.isEmpty()) {
+	                 world.levelEvent(1010, blockPos, 0);
+	                 double d0 = (double)(world.random.nextFloat() * 0.7F) + (double)0.15F;
+	                 double d1 = (double)(world.random.nextFloat() * 0.7F) + (double)0.060000002F + 0.6D;
+	                 double d2 = (double)(world.random.nextFloat() * 0.7F) + (double)0.15F;
+	                 ItemStack itemstack1 = itemstack.copy();
+	                 ItemEntity itementity = new ItemEntity(world, (double)blockPos.getX() + d0, (double)blockPos.getY() + d1, (double)blockPos.getZ() + d2, itemstack1);
+	                 itementity.setDefaultPickUpDelay();
+	                 world.addFreshEntity(itementity);
+	              }
+	            world.updateNeighbourForOutputSignal(blockPos, this);
+	         }
+	         super.onRemove(blockStateOld, world, blockPos, blockStateNew, bool);
+	      }
+	   }
+
 
 }

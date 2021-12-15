@@ -1,22 +1,16 @@
 package wilyan_kramer.portable_beacons.common.tileentity;
 
-import java.util.Random;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.LockableTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.INameable;
 import net.minecraft.util.text.ITextComponent;
@@ -27,29 +21,26 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 
-public class WorkbenchTileEntity extends LockableTileEntity implements ISidedInventory, ITickableTileEntity, INameable {
+public class BenchTileEntity extends TileEntity implements ITickableTileEntity, INameable {
 
-	private static final int[] SLOTS_FOR_UP = new int[]{0,1,2,3,4,5,6,7,8};
-	private static final int[] SLOTS_FOR_DOWN = new int[]{9};
-	private static final int[] SLOTS_FOR_SIDES = new int[]{};
     private ItemStackHandler itemHandler = createItemHandler();
     private LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
     private ITextComponent name;
     
-	private Random random = new Random();
-
-
-	public WorkbenchTileEntity() {
-		super(TileEntityList.workbench);
+    //constructor
+	public BenchTileEntity() {
+		super(TileEntityList.bench);
 	}
 	
+	// i think this is the markDirty() from mcp mappings
 	@Override
 	protected void invalidateCaps() {
 		super.invalidateCaps();
 		handler.invalidate();
 	}
+	
+	// load this TE and its data from the save file
 	@Override
 	public void load(BlockState state, CompoundNBT compound) {
 		itemHandler.deserializeNBT(compound.getCompound("Inventory"));
@@ -58,6 +49,8 @@ public class WorkbenchTileEntity extends LockableTileEntity implements ISidedInv
 	      }
 		super.load(state, compound);
 	}
+	
+	// write this TE and its data to the save file
 	@Override
 	public CompoundNBT save(CompoundNBT compound) {
 		compound.put("Inventory", itemHandler.serializeNBT());
@@ -66,20 +59,28 @@ public class WorkbenchTileEntity extends LockableTileEntity implements ISidedInv
 	    }
 		return super.save(compound);
 	}
+	
+	// what to do when the TE is updated
 	@Override
 	public void handleUpdateTag(BlockState state, CompoundNBT tag) {
 		load(state, tag);
 	}
+	
+	// what packet do we send to sync the TE when it updates?
 	@Override
 	public SUpdateTileEntityPacket getUpdatePacket() {
 		return new SUpdateTileEntityPacket(this.worldPosition, 1, getUpdateTag());
 	}
+	
+	// what to do when we receive an update packet
 	@Override
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
 		CompoundNBT tag = pkt.getTag();
 		handleUpdateTag(this.level.getBlockState(worldPosition), tag);
 		this.level.sendBlockUpdated(worldPosition, this.level.getBlockState(worldPosition), this.level.getBlockState(worldPosition), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
 	}
+	
+	// get the data to put in the update packet
 	@Override
 	public CompoundNBT getUpdateTag() {
 		CompoundNBT tag = super.getUpdateTag();
@@ -87,17 +88,23 @@ public class WorkbenchTileEntity extends LockableTileEntity implements ISidedInv
 		return super.getUpdateTag();
 	}
 
+	// create the inventory of the TE
 	private ItemStackHandler createItemHandler() {
 		return new ItemStackHandler(this.getContainerSize()) {
+			
+			// when the inventory contents change, do this
 			@Override
 			protected void onContentsChanged(int slot) {
 				setChanged();
 			}
+			
+			// can this item be inserted in this slot?
 			@Override
 			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-					return slot != 9;
+					return slot != 16;
 			}
 
+			// insert the item into the inventory if it is valid
 			@Nonnull
 			@Override
 			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
@@ -111,6 +118,7 @@ public class WorkbenchTileEntity extends LockableTileEntity implements ISidedInv
 		};
 	}
 	
+	// forge capapbility magic
 	@Nonnull
 	@Override
 	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
@@ -119,13 +127,13 @@ public class WorkbenchTileEntity extends LockableTileEntity implements ISidedInv
 		}
 		return super.getCapability(cap, side);
 	}
-
-	@Override
+	
+	// get the inventory size
 	public int getContainerSize() {
-		return 10;
+		return 16+1+9; // four crafting slots, one crafting output slot (not sure if that one should be a real slot?) and nine inventory stots
 	}
 
-	@Override
+	// check if the inventory is empty
 	public boolean isEmpty() {
 		for (int i = 0; i < this.getContainerSize(); i++) {
 			if (itemHandler.getStackInSlot(i) != null) {
@@ -135,16 +143,17 @@ public class WorkbenchTileEntity extends LockableTileEntity implements ISidedInv
 		return true;
 	}
 
-	@Override
+	// get which item is in this slot
 	public ItemStack getItem(int slot) {
 		return itemHandler.getStackInSlot(slot);
 	}
 
-	
+	// take an item from a slot
 	public ItemStack removeItem(int slot, int amount) {
 		return itemHandler.extractItem(slot, amount, false);
 	}
-
+	
+	// delete an item from a slot????
 	public ItemStack removeItemNoUpdate(int slot) {
 		if (slot > 0 && slot < this.getContainerSize()) {
 			ItemStack returnStack = itemHandler.getStackInSlot(slot).copy();
@@ -154,53 +163,24 @@ public class WorkbenchTileEntity extends LockableTileEntity implements ISidedInv
 		return ItemStack.EMPTY;
 	}
 
-	@Override
+	// set the item in that slot to this
 	public void setItem(int slot, ItemStack stack) {
 		itemHandler.setStackInSlot(slot, stack);
 	}
-
-	@Override
-	public boolean stillValid(PlayerEntity player) {
-		return this.getBlockPos().closerThan(player.getPosition(1.0F),  5.0F);
-	}
-
-	@Override
-	public void clearContent() {
-		// no idea what to do here, but we have to implement it...
-	}
-
+	
+	// this function is called every tick
 	@Override
 	public void tick() {
 		// Do time-based recipes here
-		PortableBeaconsMod.LOGGER.info("TileEntity at " + this.getBlockPos().toShortString() + " ticking!");
 	}
 
-	@Override
-	public int[] getSlotsForFace(Direction direction) {
-		if (direction == Direction.DOWN) {
-			return SLOTS_FOR_DOWN;
-		} else {
-			return direction == Direction.UP ? SLOTS_FOR_UP : SLOTS_FOR_SIDES;
-		}
-	}
-
-	@Override
-	public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction direction) {
-		return this.canPlaceItem(slot, stack);
-	}
-
-	@Override
-	public boolean canTakeItemThroughFace(int slot, ItemStack stack, @Nullable Direction direction) {
-		if (slot == 9) return false;
-		return true;
-	}
-
+	// bunch of stuff to make anvil renaming of the block work.
 	@Override
 	public ITextComponent getName() {
 		return this.name != null ? this.name : this.getDefaultName();
 	}
 	public ITextComponent getDefaultName() {
-		return new TranslationTextComponent("block.portable_beacons.workbench");
+		return new TranslationTextComponent("block.portable_beacons.bench");
 	}
 	@Override
 	public boolean hasCustomName() {
@@ -219,12 +199,7 @@ public class WorkbenchTileEntity extends LockableTileEntity implements ISidedInv
 	   this.name = name;
 	}
 
-	@Override
-	protected Container createMenu(int p_213906_1_, PlayerInventory p_213906_2_) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	// drop the inventory contents when the block is broken
 	public void dropItems() {
 		for (int i = 0; i < this.getContainerSize(); i++) {
 			if (itemHandler.getStackInSlot(i) != ItemStack.EMPTY) {

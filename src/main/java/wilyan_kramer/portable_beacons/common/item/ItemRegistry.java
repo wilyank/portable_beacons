@@ -30,7 +30,9 @@ public class ItemRegistry {
     				ItemList.bonk_stick = new BonkStickItem(ItemTier.WOOD, Config.COMMON.bonkStickDamage.get(), -1F, new Properties().stacksTo(1).defaultDurability(Config.COMMON.bonkStickDurability.get()).tab(InventoryTabs.TAB_PORTABLE_BEACONS)).setRegistryName(PortableBeaconsMod.MODID, "bonk_stick"),
     				ItemList.infused_dagger = new InfusedSwordItem(ItemTier.WOOD, Config.COMMON.infusedDaggerDamage.get(), -2F, new Properties().stacksTo(1).defaultDurability(Config.COMMON.infusedDaggerDurability.get()).tab(InventoryTabs.TAB_PORTABLE_BEACONS)).setRegistryName(PortableBeaconsMod.MODID, "infused_dagger"),
     				ItemList.nether_star_block = new BlockItem(BlockList.nether_star_block, new Properties().tab(InventoryTabs.TAB_PORTABLE_BEACONS).rarity(Rarity.EPIC)).setRegistryName(BlockList.nether_star_block.getRegistryName()),
-    				ItemList.diffuser = new BlockItem(BlockList.diffuser, new Properties().tab(InventoryTabs.TAB_PORTABLE_BEACONS)).setRegistryName(BlockList.diffuser.getRegistryName())
+    				ItemList.diffuser = new BlockItem(BlockList.diffuser, new Properties().tab(InventoryTabs.TAB_PORTABLE_BEACONS)).setRegistryName(BlockList.diffuser.getRegistryName()),
+    				ItemList.bench = new BlockItem(BlockList.bench, new Properties().tab(InventoryTabs.TAB_PORTABLE_BEACONS)).setRegistryName(BlockList.bench.getRegistryName())
+
     				);
     	}
     }

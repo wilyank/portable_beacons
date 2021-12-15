@@ -71,7 +71,7 @@ public class DiffuserContainer extends Container {
 
 
 	@Override
-	public boolean stillValid(PlayerEntity p_75145_1_) {
+	public boolean stillValid(PlayerEntity player) {
         return super.stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, BlockList.diffuser);
 	}
 	

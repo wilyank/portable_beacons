@@ -13,7 +13,7 @@ public class TileEntityRegistry {
 	public static void onRegisterTileEntityTypes(RegistryEvent.Register<TileEntityType<?>> event) {
 		event.getRegistry().registerAll(
 				TileEntityType.Builder.of(DiffuserTileEntity::new, BlockList.diffuser).build(null).setRegistryName("diffuser"),
-				TileEntityType.Builder.of(WorkbenchTileEntity::new, BlockList.workbench).build(null).setRegistryName("workbench")
+				TileEntityType.Builder.of(BenchTileEntity::new, BlockList.bench).build(null).setRegistryName("bench")
 				);
 	}
 }

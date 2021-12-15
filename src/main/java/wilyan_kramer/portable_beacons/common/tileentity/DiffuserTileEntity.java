@@ -120,8 +120,8 @@ public class DiffuserTileEntity extends TileEntity implements ITickableTileEntit
 		durationLeft = compound.getInt("Duration");
 		amplifiers = compound.getIntArray("Amplifiers");
 		if (compound.contains("CustomName", 8)) {
-	         this.name = ITextComponent.Serializer.fromJson(compound.getString("CustomName"));
-	      }
+			this.name = ITextComponent.Serializer.fromJson(compound.getString("CustomName"));
+	    }
 		super.load(state, compound);
 	}
 	@Override

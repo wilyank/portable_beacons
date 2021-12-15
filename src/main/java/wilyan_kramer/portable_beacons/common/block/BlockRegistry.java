@@ -47,7 +47,7 @@ public class BlockRegistry {
     						.harvestTool(ToolType.PICKAXE)
     						.strength(3.0F, 3.0F)
     						).setRegistryName(PortableBeaconsMod.MODID, "diffuser"),
-    				BlockList.workbench = new WorkbenchBlock(
+    				BlockList.bench = new BenchBlock(
     						AbstractBlock.Properties
     						.of(Material.STONE)
     						.strength(5.0F, 6.0F)
@@ -58,6 +58,7 @@ public class BlockRegistry {
     		if (FMLEnvironment.dist == Dist.CLIENT) {
     			RenderTypeLookup.setRenderLayer(BlockList.starberry_bush, RenderType.cutout());
     			RenderTypeLookup.setRenderLayer(BlockList.diffuser, RenderType.translucent());
+    			RenderTypeLookup.setRenderLayer(BlockList.bench, RenderType.translucent());
     		}
     	}
     }

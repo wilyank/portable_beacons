@@ -20,18 +20,23 @@ import wilyan_kramer.portable_beacons.common.container.DiffuserContainer;
 public class DiffuserScreen extends ContainerScreen<DiffuserContainer> {
 	private ResourceLocation GUI = new ResourceLocation(PortableBeaconsMod.MODID, "textures/gui/diffuser_gui.png");
 
+	// constructor
 	public DiffuserScreen(DiffuserContainer container, PlayerInventory inv, ITextComponent name) {
 		super(container, inv, name);
 	}
 
+	// draw the GUI
 	@Override
 	public void render(MatrixStack mStack, int mouseX, int mouseY, float partialTicks) {
 		this.renderBackground(mStack);
+		// draw all the things that the super class handles
 		super.render(mStack, mouseX, mouseY, partialTicks);
+		// draw the tooltips in the inventory
 		this.renderTooltip(mStack, mouseX, mouseY);
 	}
 	
 
+	// draw the texts
 	@Override
 	protected void renderLabels(MatrixStack mStack, int mouseX, int mouseY) {
 		if (menu.getDuration() <= 0) {
