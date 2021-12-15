@@ -7,6 +7,7 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import wilyan_kramer.portable_beacons.common.container.BenchContainer;
 
@@ -51,6 +52,7 @@ public class BenchScreen extends ContainerScreen<BenchContainer> {
 	@Override
 	protected void renderLabels(MatrixStack mStack, int mouseX, int mouseY) {
 		// arguments: matrix stack, x coord, y coord, color
+		drawString(mStack, font, new StringTextComponent(Integer.toString(3)), this.leftPos + 135, this.topPos + 75, 255);
 		super.renderLabels(mStack, mouseX, mouseY);
 	}
 
@@ -62,6 +64,13 @@ public class BenchScreen extends ContainerScreen<BenchContainer> {
 		this.minecraft.getTextureManager().bind(GUI);
 		int relX = (this.width - this.getXSize()) / 2;
 		int relY = (this.height - this.getYSize()) / 2;
-		this.blit(mStack, relX+16, relY, 0, 0, this.getXSize(), this.getYSize());		
+		this.blit(mStack, relX+16, relY, 0, 0, this.getXSize(), this.getYSize());
+		int potioneerLevel = this.menu.getPotioneerLevel();
+		int artificerLevel = this.menu.getArtificerLevel();
+		int summonerLevel = this.menu.getSummonerLevel();
+	    this.blit(mStack, this.leftPos + 132, this.topPos + 72, 208, potioneerLevel*16, 16, 16); // the potioneer badge
+	    this.blit(mStack, this.leftPos + 132 + 16, this.topPos + 72, 224, artificerLevel*16, 16, 16); // the artificer badge
+	    this.blit(mStack, this.leftPos + 132 + 32, this.topPos + 72, 240, summonerLevel*16, 16, 16); // the summoner badge
+	    //blit(matrixStack, x coord on gui, y coord on gui, x coord on texture, y coord on texture, width, height)
 	}
 }

@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.ai.goal.Goal.Flag;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -12,6 +13,7 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.IIntArray;
 import net.minecraft.util.INameable;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -21,6 +23,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import wilyan_kramer.portable_beacons.common.block.ModBlockStateProperties;
 
 public class BenchTileEntity extends TileEntity implements ITickableTileEntity, INameable {
 
@@ -127,7 +130,37 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 		}
 		return super.getCapability(cap, side);
 	}
-	
+	public IIntArray dataAccess = new IIntArray() {
+		public int get(int index) {
+			switch(index) {
+			case 0:
+				return BenchTileEntity.this.level.getBlockState(worldPosition).getValue(ModBlockStateProperties.POTIONEER_LEVEL);
+			case 1:
+				return BenchTileEntity.this.level.getBlockState(worldPosition).getValue(ModBlockStateProperties.ARTIFICER_LEVEL);
+			case 2:
+				return BenchTileEntity.this.level.getBlockState(worldPosition).getValue(ModBlockStateProperties.SUMMONER_LEVEL);
+			default:
+				return 0;
+			}
+		}
+		public void set(int index, int value) {
+			switch(index) {
+			case 0:
+				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.POTIONEER_LEVEL, value), 0);
+				break;
+			case 1:
+				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.ARTIFICER_LEVEL, value), 0);
+				break;
+			case 2:
+				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.SUMMONER_LEVEL, value), 0);
+				break;
+			}
+		}
+		public int getCount() {
+			return 3;
+		}
+	};
+
 	// get the inventory size
 	public int getContainerSize() {
 		return 16+1+9; // four crafting slots, one crafting output slot (not sure if that one should be a real slot?) and nine inventory stots

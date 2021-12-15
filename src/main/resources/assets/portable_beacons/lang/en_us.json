@@ -30,6 +30,8 @@
     
     "block.portable_beacons.diffuser": "Diffuser",
     
+    "block.portable_beacons.bench":"Bench",
+    
     "message.portable_beacons.command.infuse.add": "Infused %s into %s",
     "message.portable_beacons.command.infuse.clear": "Cleared all effects from %s",
     "message.portable_beacons.command.infuse.error": "Cannot infuse this item",
