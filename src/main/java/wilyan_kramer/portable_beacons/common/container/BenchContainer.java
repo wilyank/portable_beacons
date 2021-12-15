@@ -1,28 +1,45 @@
 package wilyan_kramer.portable_beacons.common.container;
 
+import com.mojang.datafixers.util.Pair;
+
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.common.capability.CurioItemCapability;
 import wilyan_kramer.portable_beacons.common.block.BlockList;
 import wilyan_kramer.portable_beacons.common.tileentity.BenchTileEntity;
 
 public class BenchContainer extends Container {
 
+	public static final ResourceLocation BLOCK_ATLAS = new ResourceLocation("textures/atlas/blocks.png");
+	public static final ResourceLocation EMPTY_ARMOR_SLOT_HELMET = new ResourceLocation("item/empty_armor_slot_helmet");
+	public static final ResourceLocation EMPTY_ARMOR_SLOT_CHESTPLATE = new ResourceLocation("item/empty_armor_slot_chestplate");
+	public static final ResourceLocation EMPTY_ARMOR_SLOT_LEGGINGS = new ResourceLocation("item/empty_armor_slot_leggings");
+	public static final ResourceLocation EMPTY_ARMOR_SLOT_BOOTS = new ResourceLocation("item/empty_armor_slot_boots");
+	public static final ResourceLocation EMPTY_ARMOR_SLOT_SHIELD = new ResourceLocation("item/empty_armor_slot_shield");
+	private static final ResourceLocation[] TEXTURE_EMPTY_SLOTS = new ResourceLocation[]{EMPTY_ARMOR_SLOT_BOOTS, EMPTY_ARMOR_SLOT_LEGGINGS, EMPTY_ARMOR_SLOT_CHESTPLATE, EMPTY_ARMOR_SLOT_HELMET};
+	private static final EquipmentSlotType[] SLOT_IDS = new EquipmentSlotType[]{EquipmentSlotType.HEAD, EquipmentSlotType.CHEST, EquipmentSlotType.LEGS, EquipmentSlotType.FEET};
+
+
 	private PlayerEntity playerEntity;
 	private IItemHandler playerInventory;
 	private TileEntity tileEntity;
+	
+	
 
 	public BenchContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
 		super(ContainerList.benchContainer, windowId);
@@ -82,15 +99,40 @@ public class BenchContainer extends Container {
     }
     private void layoutPlayerEquipmentSlots(int leftCol, int topRow) {
     	// add the offhand, armor slots and curios slots. not sure how i can do the curios slots with mod support
+    	    	
     	topRow += 2*18 + 14;
-    	for (int i = 3; i >= 0; i--) {
-    		addSlot(new SlotItemHandler(playerInventory, 36 + i, leftCol, topRow));
-    		topRow += 18;
-    	}
-    	// Crap. now you can put whatever you want in those slots... I guess this is a reason why the capability system is better than the vanilla inventory system.
+
+    	for(int k = 0; k < 4; ++k) {
+            final EquipmentSlotType equipmentslottype = SLOT_IDS[k];
+            this.addSlot(new SlotItemHandler(playerInventory, 39 - k, leftCol, topRow) {
+               public int getMaxStackSize() {
+                  return 1;
+               }
+
+               public boolean mayPlace(ItemStack stack) {
+                  return stack.canEquip(equipmentslottype, playerEntity);
+               }
+
+               public boolean mayPickup(PlayerEntity player) {
+                  ItemStack itemstack = this.getItem();
+                  return !itemstack.isEmpty() && EnchantmentHelper.hasBindingCurse(itemstack) ? false : super.mayPickup(player);
+               }
+
+               @OnlyIn(Dist.CLIENT)
+               public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
+                  return Pair.of(BenchContainer.BLOCK_ATLAS, BenchContainer.TEXTURE_EMPTY_SLOTS[equipmentslottype.getIndex()]);
+               }
+            });
+            topRow += 18;
+         }
     	//addSlotBox(playerInventory, 36, leftCol, topRow, 1, 18, 4, 18);
     	topRow += 4; // add the spacing between inventory and hotbar
-    	addSlot(new SlotItemHandler(playerInventory, 40, leftCol, topRow));
+    	this.addSlot(new SlotItemHandler(playerInventory, 40, leftCol, topRow) {
+    		@OnlyIn(Dist.CLIENT)
+    		public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
+    			return Pair.of(BenchContainer.BLOCK_ATLAS, BenchContainer.EMPTY_ARMOR_SLOT_SHIELD);
+    		}
+    	});
     	
     }
 
