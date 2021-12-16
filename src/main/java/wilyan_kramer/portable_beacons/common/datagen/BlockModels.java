@@ -130,7 +130,7 @@ public class BlockModels extends BlockStateProvider {
 		
 	}
 	private void addTransparentBlock(BlockModelBuilder builder, float fx, float fy, float fz, float tx, float ty, float tz) {
-		builder.element().from(fx, fy, fz).to(tx, ty, tz).allFaces((direction, faceBuilder) -> faceBuilder.texture("#glass")).end().texture("glass", mcLoc("block/black_stained_glass"))
+		builder.element().from(fx, fy, fz).to(tx, ty, tz).allFaces((direction, faceBuilder) -> faceBuilder.texture("#glass")).end().texture("glass", mcLoc("block/black_stained_glass"));
 	}
 	
 }
