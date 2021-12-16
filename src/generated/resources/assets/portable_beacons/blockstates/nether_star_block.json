@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "portable_beacons:block/nether_star_block"
+    }
+  }
+}

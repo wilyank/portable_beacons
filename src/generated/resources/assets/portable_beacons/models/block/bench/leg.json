@@ -1,0 +1,39 @@
+{
+  "textures": {
+    "planks": "minecraft:block/birch_planks"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        3,
+        14,
+        3
+      ],
+      "faces": {
+        "down": {
+          "texture": "#planks"
+        },
+        "up": {
+          "texture": "#planks"
+        },
+        "north": {
+          "texture": "#planks"
+        },
+        "south": {
+          "texture": "#planks"
+        },
+        "west": {
+          "texture": "#planks"
+        },
+        "east": {
+          "texture": "#planks"
+        }
+      }
+    }
+  ]
+}

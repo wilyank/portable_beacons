@@ -1,0 +1,40 @@
+{
+  "textures": {
+    "side_left": "portable_beacons:block/bench_drawer_side_left",
+    "side_right": "portable_beacons:block/bench_drawer_side_right",
+    "bottom": "portable_beacons:block/bench_drawer_bottom",
+    "back": "portable_beacons:block/bench_drawer_back",
+    "front": "portable_beacons:block/bench_drawer_front"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        6,
+        3
+      ],
+      "to": [
+        10,
+        14,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#bottom"
+        },
+        "north": {
+          "texture": "#side_left"
+        },
+        "south": {
+          "texture": "#side_right"
+        },
+        "west": {
+          "texture": "#front"
+        },
+        "east": {
+          "texture": "#back"
+        }
+      }
+    }
+  ]
+}

@@ -38,6 +38,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.network.NetworkHooks;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import wilyan_kramer.portable_beacons.common.container.BenchContainer;
@@ -51,8 +52,6 @@ public class BenchBlock extends HorizontalBlock {
 			ModBlockStateProperties.SUMMONER_LEVEL};
 	public static final EnumProperty<BenchPart> PART = ModBlockStateProperties.BENCH_PART;	
 		
-	// need to update this to two-wide block
-	
 	protected static final VoxelShape BASE = Block.box(0.0D, 6.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 	protected static final VoxelShape LEG_NORTH_WEST = Block.box(0.0D, 0.0D, 0.0D, 3.0D, 14.0D, 3.0D);
 	protected static final VoxelShape LEG_SOUTH_WEST = Block.box(0.0D, 0.0D, 13.0D, 3.0D, 14.0D, 16.0D);
@@ -113,7 +112,7 @@ public class BenchBlock extends HorizontalBlock {
 		
 		if (!world.isClientSide) {
 			BlockPos blockpos = pos.relative(state.getValue(FACING));
-			world.setBlock(blockpos, state.setValue(PART, BenchPart.RIGHT), 3);
+			world.setBlock(blockpos, state.setValue(PART, BenchPart.RIGHT), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
 			world.blockUpdated(pos, Blocks.AIR);
 			state.updateNeighbourShapes(world, pos, 3);
 		}
@@ -160,8 +159,8 @@ public class BenchBlock extends HorizontalBlock {
 					index = 2;
 				}
 				if (index != -1 && currentLevels[index] < 5) {
-					world.setBlock(pos, state.setValue(LEVELS[index], currentLevels[index] + 1), 3);
-					world.setBlock(neighborPos, world.getBlockState(neighborPos).setValue(LEVELS[index], currentLevels[index] + 1), 3);
+					world.setBlock(pos, state.setValue(LEVELS[index], currentLevels[index] + 1), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+					world.setBlock(neighborPos, world.getBlockState(neighborPos).setValue(LEVELS[index], currentLevels[index] + 1), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
 				}
 			}
 			

@@ -145,13 +145,13 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 		public void set(int index, int value) {
 			switch(index) {
 			case 0:
-				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.POTIONEER_LEVEL, value), 0);
+				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.POTIONEER_LEVEL, value), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
 				break;
 			case 1:
-				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.ARTIFICER_LEVEL, value), 0);
+				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.ARTIFICER_LEVEL, value), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
 				break;
 			case 2:
-				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.SUMMONER_LEVEL, value), 0);
+				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.SUMMONER_LEVEL, value), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
 				break;
 			}
 		}
