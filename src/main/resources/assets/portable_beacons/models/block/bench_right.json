@@ -1,0 +1,80 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+"ambientocclusion": false,
+    "textures": {
+        "birch_planks": "minecraft:block/birch_planks",
+        "smithing_table_side": "minecraft:block/smithing_table_side",
+        "smithing_table_top": "minecraft:block/smithing_table_top"
+    },
+    "display": {
+        "gui": {
+            "rotation": [ 30, 45, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0 ],
+            "scale": [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "head": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    },
+    "elements": [
+        {
+            "name": "leg_NW",
+            "from": [ 0, 0, 13 ], 
+            "to": [ 3, 14, 16 ], 
+            "faces": {
+                "north": { "texture": "#birch_planks", "uv": [ 0, 0, 3, 14 ] },
+                "east": { "texture": "#birch_planks", "uv": [ 0, 0, 3, 14 ] },
+                "south": { "texture": "#birch_planks", "uv": [ 0, 0, 3, 14 ] },
+                "west": { "texture": "#birch_planks", "uv": [ 0, 0, 3, 14 ] },
+                "down": { "texture": "#birch_planks", "uv": [ 0, 0, 3, 3 ], "rotation": 270 }
+            }
+        },
+        {
+            "name": "leg_SW",
+            "from": [ 13, 0, 13 ], 
+            "to": [ 16, 14, 16 ], 
+            "faces": {
+                "north": { "texture": "#birch_planks", "uv": [ 0, 0, 3, 14 ] },
+                "east": { "texture": "#birch_planks", "uv": [ 0, 0, 3, 14 ] },
+                "south": { "texture": "#birch_planks", "uv": [ 0, 0, 3, 14 ] },
+                "west": { "texture": "#birch_planks", "uv": [ 0, 0, 3, 14 ] },
+                "down": { "texture": "#birch_planks", "uv": [ 0, 0, 3, 3 ], "rotation": 270 }
+            }
+        },
+        {
+            "name": "desktop",
+            "from": [ 0, 14, 0 ], 
+            "to": [ 16, 16, 16 ], 
+            "faces": {
+                "north": { "texture": "#smithing_table_side", "uv": [ 0, 0, 16, 2 ] },
+                "east": { "texture": "#smithing_table_side", "uv": [ 0, 0, 16, 2 ] },
+                "south": { "texture": "#smithing_table_side", "uv": [ 0, 0, 16, 2 ] },
+                "west": { "texture": "#smithing_table_side", "uv": [ 0, 0, 16, 2 ] },
+                "up": { "texture": "#smithing_table_top", "uv": [ 0, 0, 16, 16 ], "rotation": 270 },
+                "down": { "texture": "#birch_planks", "uv": [ 0, 0, 16, 16 ], "rotation": 270 }
+            }
+        }
+    ]
+}

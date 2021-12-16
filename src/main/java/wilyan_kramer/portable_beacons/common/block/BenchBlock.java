@@ -52,8 +52,16 @@ public class BenchBlock extends HorizontalBlock {
 	public static final EnumProperty<BenchPart> PART = ModBlockStateProperties.BENCH_PART;	
 		
 	// need to update this to two-wide block
-	private static final VoxelShape SHAPE = VoxelShapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(1.0D, 16.0D, 1.0D, 5.0D, 18.0D, 5.0D));
-
+	
+	protected static final VoxelShape BASE = Block.box(0.0D, 6.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+	protected static final VoxelShape LEG_NORTH_WEST = Block.box(0.0D, 0.0D, 0.0D, 3.0D, 14.0D, 3.0D);
+	protected static final VoxelShape LEG_SOUTH_WEST = Block.box(0.0D, 0.0D, 13.0D, 3.0D, 14.0D, 16.0D);
+	protected static final VoxelShape LEG_NORTH_EAST = Block.box(13.0D, 0.0D, 0.0D, 16.0D, 14.0D, 3.0D);
+	protected static final VoxelShape LEG_SOUTH_EAST = Block.box(13.0D, 0.0D, 13.0D, 16.0D, 14.0D, 16.0D);
+	protected static final VoxelShape NORTH_SHAPE = VoxelShapes.or(BASE, LEG_NORTH_WEST, LEG_NORTH_EAST);
+	protected static final VoxelShape SOUTH_SHAPE = VoxelShapes.or(BASE, LEG_SOUTH_WEST, LEG_SOUTH_EAST);
+	protected static final VoxelShape WEST_SHAPE = VoxelShapes.or(BASE, LEG_NORTH_WEST, LEG_SOUTH_WEST);
+	protected static final VoxelShape EAST_SHAPE = VoxelShapes.or(BASE, LEG_NORTH_EAST, LEG_SOUTH_EAST);
 	
 	public BenchBlock(Properties prop) {
 		super(prop);
@@ -73,9 +81,19 @@ public class BenchBlock extends HorizontalBlock {
 	      return BlockRenderType.MODEL;
 	   }
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
-		// need to update this for rotations
-		return SHAPE;
+	public VoxelShape getShape(BlockState state, IBlockReader blockReader, BlockPos pos,
+			ISelectionContext context) {
+		Direction direction = getConnectedDirection(state).getOpposite();
+		switch (direction) {
+		case NORTH:
+			return NORTH_SHAPE;
+		case SOUTH:
+			return SOUTH_SHAPE;
+		case WEST:
+			return WEST_SHAPE;
+		default:
+			return EAST_SHAPE;
+		}
 	}
 
 	@Nullable
