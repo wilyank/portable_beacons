@@ -272,6 +272,15 @@
         "model": "portable_beacons:block/bench/drawer",
         "y": 270
       }
+    },
+    {
+      "when": {
+        "bench_part": "right",
+        "potioneer_level": "1"
+      },
+      "apply": {
+        "model": "portable_beacons:block/bench/bottle"
+      }
     }
   ]
 }

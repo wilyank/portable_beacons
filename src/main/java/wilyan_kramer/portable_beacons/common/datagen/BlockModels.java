@@ -78,8 +78,9 @@ public class BlockModels extends BlockStateProvider {
 				.texture("back", modLoc("block/bench_drawer_back"))
 				.texture("front", modLoc("block/bench_drawer_front"));
 		
-		//potioneer bottle
-		//TODO
+		// potioneer bottle
+		BlockModelBuilder bottle = models().getBuilder("block/bench/bottle");
+		addBottle(bottle, 3.0F, 16.0F, 2.0F, 0.5F);
 		
 		MultiPartBlockStateBuilder bld = getMultipartBuilder(block);
 		BlockModelBuilder[] models = new BlockModelBuilder[] { tableTopLeft, tableTopRight };
@@ -124,13 +125,64 @@ public class BlockModels extends BlockStateProvider {
 		bld.part().modelFile(drawer).rotationY(90).addModel().condition(BenchBlock.PART, BenchPart.LEFT).condition(BenchBlock.FACING, Direction.WEST);
 		bld.part().modelFile(drawer).rotationY(180).addModel().condition(BenchBlock.PART, BenchPart.LEFT).condition(BenchBlock.FACING, Direction.NORTH);
 		bld.part().modelFile(drawer).rotationY(270).addModel().condition(BenchBlock.PART, BenchPart.LEFT).condition(BenchBlock.FACING, Direction.EAST);
+		
+		// the decorations
+		bld.part().modelFile(bottle).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.LEVELS[0], Integer.valueOf(1));
 					
 	}
 	private void addBottle(BlockModelBuilder builder, float x, float y, float z, float scale) {
 		
+		// bottle floor
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z,  5, 0, 5, 6, 1, 6, scale);
+		//bottle walls
+		addOffsetAndScaledTransparentCuboid(builder, x, y ,z, 5, 1, 4, 6, 6, 1, scale);
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 4, 1, 5, 1, 6, 6, scale);
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 11, 1, 5, 1, 6, 6, scale);
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 5, 1, 11, 6, 6, 1, scale);
+		// bottle roof
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 5, 7, 5, 6, 1, 6, scale);
+		// bottle neck
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 7, 8, 6, 2, 3, 1, scale);
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 6, 8, 7, 1, 3, 2, scale);
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 9, 8, 6, 2, 3, 1, scale);
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 6, 8, 9, 1, 3, 2, scale);
+		// bottle head
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 6, 10, 6, 1, 2, 1, scale);
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 6, 10, 9, 1, 2, 1, scale);
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 9, 10, 6, 1, 2, 1, scale);
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 9, 10, 9, 1, 2, 1, scale);
+		
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 7, 10, 5, 2, 2, 1, scale);
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 7, 10, 10, 2, 2, 1, scale);
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 5, 10, 7, 1, 2, 2, scale);
+		addOffsetAndScaledTransparentCuboid(builder, x, y, z, 10, 10, 7, 1, 2, 2, scale);
+		//cork
+		addOffsetAndScaledCuboid(builder, x, y, z, 7, 11, 7, 2, 2, 2, scale, "#cork");
+		
+		//bottle liquid
+		addOffsetAndScaledCuboid(builder, x, y, z, 5, 1, 5, 6, 4, 6, scale, "#color");
+		
+
+		builder.texture("glass", mcLoc("block/glass"))
+		.texture("color", mcLoc("block/purple_stained_glass"))
+		.texture("cork", mcLoc("block/terracotta"));
+
 	}
-	private void addTransparentBlock(BlockModelBuilder builder, float fx, float fy, float fz, float tx, float ty, float tz) {
-		builder.element().from(fx, fy, fz).to(tx, ty, tz).allFaces((direction, faceBuilder) -> faceBuilder.texture("#glass")).end().texture("glass", mcLoc("block/black_stained_glass"));
+	private void addOffsetAndScaledTransparentCuboid(BlockModelBuilder builder, float ox, float oy, float oz, float sx, float sy, float sz, float dx, float dy, float dz, float scale) {
+		addOffsetAndScaledCuboid(builder, ox, oy, oz, sx, sy, sz, dx, dy, dz, scale, "#glass");
 	}
-	
+	private void addOffsetAndScaledCuboid(BlockModelBuilder builder, float ox, float oy, float oz, float sx, float sy, float sz, float dx, float dy, float dz, float scale, String texture) {
+		builder.element()
+		.from(ox + sx * scale, oy +  sy * scale, oz + sz * scale)
+		.to(ox + (sx + dx)* scale, oy + (sy + dy) * scale, oz + (sz +dz) * scale)
+		.allFaces((direction, faceBuilder) -> faceBuilder.texture(texture).uvs(0, 0, 16, 16));
+	}
+	private void addOffsetAndScaledCuboid2(BlockModelBuilder builder, float ox, float oy, float oz, float sx, float sy, float sz, float dx, float dy, float dz, float scale, String texture, String texture2) {
+		builder.element()
+		.from(ox + sx * scale, oy +  sy * scale, oz + sz * scale)
+		.to(ox + (sx + dx)* scale, oy + (sy + dy) * scale, oz + (sz +dz) * scale)
+		.allFaces((direction, faceBuilder) -> faceBuilder.texture(texture).uvs(0, 0, 16, 16))
+		.face(Direction.UP).texture(texture2).uvs(0, 0, 16, 16).end()
+		.face(Direction.UP).texture(texture2).uvs(0, 0, 16, 16).end();
+	}
 }
