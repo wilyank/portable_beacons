@@ -94,6 +94,8 @@ public class BenchContainer extends Container {
 				}
 				// add the block inventory row
 				addSlotRange(h, 0, 24, 108, 9, 18);
+				this.addSlot(new SlotItemHandler(h, 9, 218, 8));
+				this.addSlot(new SlotItemHandler(h, 10, 218, 41));
 			});
 		}
 		layoutPlayerInventorySlots(24, 140); // layout the player's inventory and hotbar slots

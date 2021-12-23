@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -23,6 +24,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import wilyan_kramer.portable_beacons.common.block.ModBlockStateProperties;
+import wilyan_kramer.portable_beacons.common.item.ItemList;
 
 public class BenchTileEntity extends TileEntity implements ITickableTileEntity, INameable {
 
@@ -103,8 +105,17 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 			// can this item be inserted in this slot?
 			@Override
 			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-				return true;	
-				//return slot != 16;
+				if (slot == 10) {
+					if (stack.getItem() == Items.POTION 
+							|| stack.getItem() == ItemList.infused_dagger 
+							|| stack.getItem() == ItemList.potion_necklace) {
+						return true;
+					}
+					else {
+						return false;
+					}
+				}
+				return true;
 			}
 
 			// insert the item into the inventory if it is valid
@@ -163,7 +174,7 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 
 	// get the inventory size
 	public int getContainerSize() {
-		return 9; // only the inventory row, crafting slots are in container
+		return 11; // only the inventory row and brewing stand, crafting slots are in container
 	}
 
 	// check if the inventory is empty

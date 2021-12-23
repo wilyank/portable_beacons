@@ -29,7 +29,7 @@ public class BenchScreen extends ContainerScreen<BenchContainer> {
 		super(container, inv, name);
 		this.titleLabelX = 24;
 	    this.titleLabelY = 6;
-	    this.imageWidth = 208;
+	    this.imageWidth = 240;
 	    this.imageHeight = 222;
 	    this.inventoryLabelX = 24;
 	    this.inventoryLabelY = this.imageHeight - 94;
