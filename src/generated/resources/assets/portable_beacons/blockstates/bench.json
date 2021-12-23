@@ -276,10 +276,130 @@
     {
       "when": {
         "bench_part": "right",
-        "potioneer_level": "1"
+        "potioneer_level": "1",
+        "facing": "east"
       },
       "apply": {
         "model": "portable_beacons:block/bench/bottle"
+      }
+    },
+    {
+      "when": {
+        "bench_part": "right",
+        "summoner_level": "2",
+        "facing": "east"
+      },
+      "apply": {
+        "model": "portable_beacons:block/bench/totem"
+      }
+    },
+    {
+      "when": {
+        "bench_part": "left",
+        "summoner_level": "1",
+        "facing": "east"
+      },
+      "apply": {
+        "model": "portable_beacons:block/bench/skull"
+      }
+    },
+    {
+      "when": {
+        "bench_part": "right",
+        "potioneer_level": "1",
+        "facing": "south"
+      },
+      "apply": {
+        "model": "portable_beacons:block/bench/bottle",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "bench_part": "right",
+        "summoner_level": "2",
+        "facing": "south"
+      },
+      "apply": {
+        "model": "portable_beacons:block/bench/totem",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "bench_part": "left",
+        "summoner_level": "1",
+        "facing": "south"
+      },
+      "apply": {
+        "model": "portable_beacons:block/bench/skull",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "bench_part": "right",
+        "potioneer_level": "1",
+        "facing": "west"
+      },
+      "apply": {
+        "model": "portable_beacons:block/bench/bottle",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "bench_part": "right",
+        "summoner_level": "2",
+        "facing": "west"
+      },
+      "apply": {
+        "model": "portable_beacons:block/bench/totem",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "bench_part": "left",
+        "summoner_level": "1",
+        "facing": "west"
+      },
+      "apply": {
+        "model": "portable_beacons:block/bench/skull",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "bench_part": "right",
+        "potioneer_level": "1",
+        "facing": "north"
+      },
+      "apply": {
+        "model": "portable_beacons:block/bench/bottle",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "bench_part": "right",
+        "summoner_level": "2",
+        "facing": "north"
+      },
+      "apply": {
+        "model": "portable_beacons:block/bench/totem",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "bench_part": "left",
+        "summoner_level": "1",
+        "facing": "north"
+      },
+      "apply": {
+        "model": "portable_beacons:block/bench/skull",
+        "y": 270
       }
     }
   ]

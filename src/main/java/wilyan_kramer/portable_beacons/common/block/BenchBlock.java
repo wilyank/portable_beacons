@@ -27,6 +27,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -138,35 +139,36 @@ public class BenchBlock extends HorizontalBlock {
 					state.getValue(LEVELS[1]),
 					state.getValue(LEVELS[2])};
 			
-			PortableBeaconsMod.LOGGER.info("pos:" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ());
-			printBlockState(state);
+//			PortableBeaconsMod.LOGGER.info("pos:" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ());
+//			printBlockState(state);
 			
 			BlockPos neighborPos = pos.relative(this.getNeighbourDirection(state.getValue(PART), state.getValue(FACING)));
-			PortableBeaconsMod.LOGGER.info("pos:" + neighborPos.getX() + ", " + neighborPos.getY() + ", " + neighborPos.getZ());
-			printBlockState(world.getBlockState(neighborPos));
-			
-			if (player.getItemInHand(hand).getItem() == Items.DIAMOND ||
+//			PortableBeaconsMod.LOGGER.info("pos:" + neighborPos.getX() + ", " + neighborPos.getY() + ", " + neighborPos.getZ());
+//			printBlockState(world.getBlockState(neighborPos));
+			BlockPos leftPartPos = (state.getValue(PART) == BenchPart.LEFT) ? pos : neighborPos;
+			ItemStack stack = player.getItemInHand(hand);
+
+			if (stack.getItem() == Items.DIAMOND ||
 					player.getItemInHand(hand).getItem() == Items.EMERALD ||
 					player.getItemInHand(hand).getItem() == Items.ENDER_EYE) {
 				int index = -1;
-				if (player.getItemInHand(hand).getItem() == Items.DIAMOND) {
+				if (stack.getItem() == Items.DIAMOND) {
 					index = 0;
 				}
-				else if (player.getItemInHand(hand).getItem() == Items.EMERALD) {
+				else if (stack.getItem() == Items.EMERALD) {
 					index = 1;
 				}
-				else if (player.getItemInHand(hand).getItem() == Items.ENDER_EYE) {
+				else if (stack.getItem() == Items.ENDER_EYE) {
 					index = 2;
 				}
 				if (index != -1 && currentLevels[index] < 5) {
 					world.setBlock(pos, state.setValue(LEVELS[index], currentLevels[index] + 1), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
 					world.setBlock(neighborPos, world.getBlockState(neighborPos).setValue(LEVELS[index], currentLevels[index] + 1), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+					if (!player.isCreative()) {
+						stack.shrink(1);
+					}
 				}
-			}
-			
-			BlockPos leftPartPos = (state.getValue(PART) == BenchPart.LEFT) ? pos : neighborPos;
-			
-			if (this.hasTileEntity(world.getBlockState(leftPartPos))) {
+			} else if (this.hasTileEntity(world.getBlockState(leftPartPos))) {
 				TileEntity tileEntity = world.getBlockEntity(leftPartPos);
 				if (tileEntity instanceof BenchTileEntity) {
 					INamedContainerProvider containerProvider = new INamedContainerProvider() {
@@ -176,7 +178,7 @@ public class BenchBlock extends HorizontalBlock {
 						}
 						@Override
 						public Container createMenu(int i, PlayerInventory inv, PlayerEntity player) {
-							return new BenchContainer(i, world, leftPartPos, inv, player);
+							return new BenchContainer(i, world, leftPartPos, inv, player, IWorldPosCallable.create(world, leftPartPos));
 						}
 					};
 					NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, tileEntity.getBlockPos());

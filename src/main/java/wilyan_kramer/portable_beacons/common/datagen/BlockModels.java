@@ -3,8 +3,10 @@ package wilyan_kramer.portable_beacons.common.datagen;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Direction.Axis;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ModelBuilder.FaceRotation;
 import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import wilyan_kramer.portable_beacons.PortableBeaconsMod;
@@ -38,9 +40,10 @@ public class BlockModels extends BlockStateProvider {
 		// table leg
 		BlockModelBuilder tableLeg = models().getBuilder("block/bench/leg")
 				.element().from(0, 0, 0).to(3, 14, 3)
-				.allFaces((direction, faceBuilder) -> faceBuilder.texture("#planks"))
+				.allFaces((direction, faceBuilder) -> faceBuilder.texture("#planks").uvs(0, 0, 3, 14))
+				.face(Direction.DOWN).uvs(3, 0, 6, 3).end()
 				.end()
-				.texture("planks", mcLoc("block/birch_planks"));
+				.texture("planks", modLoc("block/bench_leg"));
 		// right side of the table top
 		BlockModelBuilder tableTopLeft = models().getBuilder("block/bench/top_left")
 				.element().from(0, 14, 0).to(16, 16, 16)
@@ -80,7 +83,15 @@ public class BlockModels extends BlockStateProvider {
 		
 		// potioneer bottle
 		BlockModelBuilder bottle = models().getBuilder("block/bench/bottle");
-		addBottle(bottle, 3.0F, 16.0F, 2.0F, 0.5F);
+		addBottleDecoration(bottle, 10.0F, 16.01F, 0.0F, 0.5F);
+		
+		// totem of undying item
+		BlockModelBuilder totem = models().getBuilder("block/bench/totem");
+		addTotemDecoration(totem, 0.0F, 16.01F, 0.0F, 0.4F);
+		
+		// wither skull
+		BlockModelBuilder skull = models().getBuilder("block/bench/skull");
+		addSkullDecoration(skull, 4.0F, 18.01F, 4.0F, 0.6F, 45.0F);
 		
 		MultiPartBlockStateBuilder bld = getMultipartBuilder(block);
 		BlockModelBuilder[] models = new BlockModelBuilder[] { tableTopLeft, tableTopRight };
@@ -120,17 +131,33 @@ public class BlockModels extends BlockStateProvider {
 		bld.part().modelFile(tableLeg).rotationY(90).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.FACING, Direction.EAST);
 		bld.part().modelFile(tableLeg).rotationY(180).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.FACING, Direction.EAST);
 
-		// the drawer
+//		// the drawer
 		bld.part().modelFile(drawer).rotationY(0).addModel().condition(BenchBlock.PART, BenchPart.LEFT).condition(BenchBlock.FACING, Direction.SOUTH);
 		bld.part().modelFile(drawer).rotationY(90).addModel().condition(BenchBlock.PART, BenchPart.LEFT).condition(BenchBlock.FACING, Direction.WEST);
 		bld.part().modelFile(drawer).rotationY(180).addModel().condition(BenchBlock.PART, BenchPart.LEFT).condition(BenchBlock.FACING, Direction.NORTH);
 		bld.part().modelFile(drawer).rotationY(270).addModel().condition(BenchBlock.PART, BenchPart.LEFT).condition(BenchBlock.FACING, Direction.EAST);
 		
 		// the decorations
-		bld.part().modelFile(bottle).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.LEVELS[0], Integer.valueOf(1));
-					
+		bld.part().modelFile(bottle).rotationY(0).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.LEVELS[0], Integer.valueOf(1)).condition(BenchBlock.FACING, Direction.EAST);
+		bld.part().modelFile(totem).rotationY(0).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.LEVELS[2], Integer.valueOf(2)).condition(BenchBlock.FACING, Direction.EAST);
+		bld.part().modelFile(skull).rotationY(0).addModel().condition(BenchBlock.PART, BenchPart.LEFT).condition(BenchBlock.LEVELS[2], Integer.valueOf(1)).condition(BenchBlock.FACING, Direction.EAST);
+
+		
+		bld.part().modelFile(bottle).rotationY(90).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.LEVELS[0], Integer.valueOf(1)).condition(BenchBlock.FACING, Direction.SOUTH);
+		bld.part().modelFile(totem).rotationY(90).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.LEVELS[2], Integer.valueOf(2)).condition(BenchBlock.FACING, Direction.SOUTH);
+		bld.part().modelFile(skull).rotationY(90).addModel().condition(BenchBlock.PART, BenchPart.LEFT).condition(BenchBlock.LEVELS[2], Integer.valueOf(1)).condition(BenchBlock.FACING, Direction.SOUTH);
+
+		
+		bld.part().modelFile(bottle).rotationY(180).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.LEVELS[0], Integer.valueOf(1)).condition(BenchBlock.FACING, Direction.WEST);
+		bld.part().modelFile(totem).rotationY(180).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.LEVELS[2], Integer.valueOf(2)).condition(BenchBlock.FACING, Direction.WEST);
+		bld.part().modelFile(skull).rotationY(180).addModel().condition(BenchBlock.PART, BenchPart.LEFT).condition(BenchBlock.LEVELS[2], Integer.valueOf(1)).condition(BenchBlock.FACING, Direction.WEST);
+
+		
+		bld.part().modelFile(bottle).rotationY(270).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.LEVELS[0], Integer.valueOf(1)).condition(BenchBlock.FACING, Direction.NORTH);
+		bld.part().modelFile(totem).rotationY(270).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.LEVELS[2], Integer.valueOf(2)).condition(BenchBlock.FACING, Direction.NORTH);
+		bld.part().modelFile(skull).rotationY(270).addModel().condition(BenchBlock.PART, BenchPart.LEFT).condition(BenchBlock.LEVELS[2], Integer.valueOf(1)).condition(BenchBlock.FACING, Direction.NORTH);
 	}
-	private void addBottle(BlockModelBuilder builder, float x, float y, float z, float scale) {
+	private void addBottleDecoration(BlockModelBuilder builder, float x, float y, float z, float scale) {
 		
 		// bottle floor
 		addOffsetAndScaledTransparentCuboid(builder, x, y, z,  5, 0, 5, 6, 1, 6, scale);
@@ -162,12 +189,54 @@ public class BlockModels extends BlockStateProvider {
 		//bottle liquid
 		addOffsetAndScaledCuboid(builder, x, y, z, 5, 1, 5, 6, 4, 6, scale, "#color");
 		
-
 		builder.texture("glass", mcLoc("block/glass"))
 		.texture("color", mcLoc("block/purple_stained_glass"))
 		.texture("cork", mcLoc("block/terracotta"));
 
 	}
+	private void addTotemDecoration(BlockModelBuilder builder, float x, float y, float z, float scale) {
+		// body
+		addBlockWithuvs(builder, x, y, z, 5.0F, 0.0F, 1.0F, 6.0F, 1.0F, 14.0F, scale, "#totem");
+		addBlockWithuvs(builder, x, y, z, 6.0F, 0.0F, 15.0F, 4.0F, 1.0F, 1.0F, scale, "#totem");
+		// left
+		addBlockWithuvs(builder, x, y, z, 4.0F, 0.0F, 2.0F, 1.0F, 1.0F, 11.0F, scale, "#totem");
+		addBlockWithuvs(builder, x, y, z, 2.0F, 0.0F, 8.0F, 2.0F, 1.0F, 3.0F, scale, "#totem");
+		addBlockWithuvs(builder, x, y, z, 1.0F, 0.0F, 8.0F, 1.0F, 1.0F, 2.0F, scale, "#totem");
+		// right
+		addBlockWithuvs(builder, x, y, z, 11.0F, 0.0F, 2.0F, 1.0F, 1.0F, 11.0F, scale, "#totem");
+		addBlockWithuvs(builder, x, y, z, 12.0F, 0.0F, 8.0F, 2.0F, 1.0F, 3.0F, scale, "#totem");
+		addBlockWithuvs(builder, x, y, z, 14.0F, 0.0F, 8.0F, 1.0F, 1.0F, 2.0F, scale, "#totem");
+
+
+		builder.texture("totem", mcLoc("item/totem_of_undying"));
+	}
+	private void addSkullDecoration(BlockModelBuilder builder, float ox, float oy, float oz, float scale, float angleY) {
+		String texture = "#wither_skeleton";
+		builder.element()
+		.from(ox - 4 * scale, oy - 4 * scale, oz - 4 * scale)
+		.to(ox + 4 * scale, oy + 4 * scale, oz + 4 * scale)
+		.rotation().angle(angleY).axis(Axis.Y).origin(ox + 4.0F * scale, oy + 4.0F * scale, oz + 4.0F * scale).end()
+		.face(Direction.UP).texture(texture).uvs(8, 0, 16, 8).end()
+		.face(Direction.NORTH).texture(texture).uvs(0, 0, 8, 8).end()
+		.face(Direction.EAST).texture(texture).uvs(0, 8, 8, 16).rotation(FaceRotation.UPSIDE_DOWN).end()
+		.face(Direction.SOUTH).texture(texture).uvs(8, 8, 16, 16).end()
+		.face(Direction.WEST).texture(texture).uvs(0, 8, 8, 16).end()
+		.end().texture("wither_skeleton", modLoc("block/bench_skull"))
+		;
+	}
+	
+	
+	private void addBlockWithuvs(BlockModelBuilder builder, float ox, float oy, float oz, float sx, float sy, float sz, float dx, float dy, float dz, float scale, String texture) {
+		builder.element()
+		.from(ox + sx * scale, oy + sy * scale, oz + sz * scale)
+		.to(ox + (sx + dx)* scale, oy + (sy + dy) * scale, oz + (sz + dz) * scale)
+		.face(Direction.UP).texture(texture).uvs(sx, sz, sx + dx, sz + dz).end()
+		.face(Direction.NORTH).texture(texture).uvs(sx, sz, sx + dx, sz + 1).end()
+		.face(Direction.EAST).texture(texture).uvs(sx + dx - 1, sz, sx + dx, sz + dz).rotation(FaceRotation.CLOCKWISE_90).end()
+		.face(Direction.SOUTH).texture(texture).uvs(sx, sz + dz - 1, sx + dx, sz + dz).end()
+		.face(Direction.WEST).texture(texture).uvs(sx, sz, sx + 1, sz + dz).rotation(FaceRotation.COUNTERCLOCKWISE_90).end();
+	}
+	
 	private void addOffsetAndScaledTransparentCuboid(BlockModelBuilder builder, float ox, float oy, float oz, float sx, float sy, float sz, float dx, float dy, float dz, float scale) {
 		addOffsetAndScaledCuboid(builder, ox, oy, oz, sx, sy, sz, dx, dy, dz, scale, "#glass");
 	}
@@ -176,13 +245,5 @@ public class BlockModels extends BlockStateProvider {
 		.from(ox + sx * scale, oy +  sy * scale, oz + sz * scale)
 		.to(ox + (sx + dx)* scale, oy + (sy + dy) * scale, oz + (sz +dz) * scale)
 		.allFaces((direction, faceBuilder) -> faceBuilder.texture(texture).uvs(0, 0, 16, 16));
-	}
-	private void addOffsetAndScaledCuboid2(BlockModelBuilder builder, float ox, float oy, float oz, float sx, float sy, float sz, float dx, float dy, float dz, float scale, String texture, String texture2) {
-		builder.element()
-		.from(ox + sx * scale, oy +  sy * scale, oz + sz * scale)
-		.to(ox + (sx + dx)* scale, oy + (sy + dy) * scale, oz + (sz +dz) * scale)
-		.allFaces((direction, faceBuilder) -> faceBuilder.texture(texture).uvs(0, 0, 16, 16))
-		.face(Direction.UP).texture(texture2).uvs(0, 0, 16, 16).end()
-		.face(Direction.UP).texture(texture2).uvs(0, 0, 16, 16).end();
 	}
 }

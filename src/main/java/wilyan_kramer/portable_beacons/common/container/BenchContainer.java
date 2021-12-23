@@ -1,17 +1,26 @@
 package wilyan_kramer.portable_beacons.common.container;
 
 import java.util.Map;
+import java.util.Optional;
 
 import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.CraftResultInventory;
+import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.inventory.container.CraftingResultSlot;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.ICraftingRecipe;
+import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.network.play.server.SSetSlotPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
@@ -50,14 +59,22 @@ public class BenchContainer extends Container {
 	private TileEntity tileEntity;
 	public final LazyOptional<ICuriosItemHandler> curiosHandler;
 	private final IIntArray data;
-	
+	CraftingInventory craftingInv = new CraftingInventory(this, 4, 4);
+    CraftResultInventory result = new CraftResultInventory();
+    private final IWorldPosCallable access;
 
-	public BenchContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
+
+    public BenchContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
+    	this(windowId, world, pos, playerInventory, player, IWorldPosCallable.NULL);
+    }
+    
+	public BenchContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IWorldPosCallable access) {
 		super(ContainerList.benchContainer, windowId);
 		tileEntity = world.getBlockEntity(pos);
 		this.playerEntity = player;
 		this.playerInventory = new InvWrapper(playerInventory);
 		this.curiosHandler = CuriosApi.getCuriosHelper().getCuriosHandler(this.playerEntity);
+		this.access = access;
 
 		if (this.tileEntity instanceof BenchTileEntity) {
 			this.data = ((BenchTileEntity) tileEntity).dataAccess;
@@ -67,11 +84,16 @@ public class BenchContainer extends Container {
 		}
 		if (this.tileEntity != null) {
 			this.tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-				//addSlot(new SlotItemHandler(h, 0, 17, 35)); // arguments: ItemHandler, slot index, x pixel coordinate, y pixel coordinate
-				addSlotBox(h, 0, 24, 18, 4, 18, 4, 18); // the crafting grid
-				//addSlotBox(handler, startIndex, startX, startY, horAmount, dx, verAmount, dy);
-				addSlot(new SlotItemHandler(h, 16, 136, 45)); // the crafting output slot
-				addSlotRange(h, 17, 24, 108, 9, 18); // the block inventory row
+				// add the crafting result inventory slot
+				this.addSlot(new CraftingResultSlot(playerInventory.player, craftingInv, result, 0, 136, 45));
+				// add the crafting area slots
+				for(int i = 0; i < 4; ++i) {
+					for(int j = 0; j < 4; ++j) {
+						this.addSlot(new Slot(this.craftingInv, j + i * 4, 24 + j * 18, 18 + i * 18));
+					}
+				}
+				// add the block inventory row
+				addSlotRange(h, 0, 24, 108, 9, 18);
 			});
 		}
 		layoutPlayerInventorySlots(24, 140); // layout the player's inventory and hotbar slots
@@ -95,7 +117,35 @@ public class BenchContainer extends Container {
 		return ContainerList.benchContainer;
 	}
 	
+	protected static void slotChangedCraftingGrid(int id, World world, PlayerEntity player,
+			CraftingInventory craftingInv, CraftResultInventory craftingResult) {
+		if (!world.isClientSide) {
+			ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) player;
+			ItemStack itemstack = ItemStack.EMPTY;
+			Optional<ICraftingRecipe> optional = world.getServer().getRecipeManager().getRecipeFor(IRecipeType.CRAFTING,
+					craftingInv, world);
+			if (optional.isPresent()) {
+				ICraftingRecipe icraftingrecipe = optional.get();
+				if (craftingResult.setRecipeUsed(world, serverplayerentity, icraftingrecipe)) {
+					itemstack = icraftingrecipe.assemble(craftingInv);
+				}
+			}
+			craftingResult.setItem(0, itemstack);
+			serverplayerentity.connection.send(new SSetSlotPacket(id, 0, itemstack));
+		}
+	}
 	
+	@Override
+	public void slotsChanged(IInventory invIn) {
+		access.execute((world, blockPos) -> {
+			slotChangedCraftingGrid(this.containerId, this.playerEntity.level, this.playerEntity, this.craftingInv, this.result);
+		});
+	}
+	@Override
+	public void removed(PlayerEntity player) {
+		super.removed(player);
+		this.clearContainer(player, player.level, craftingInv);
+	}
 	@Override
 	public ItemStack quickMoveStack(PlayerEntity player, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
@@ -105,21 +155,47 @@ public class BenchContainer extends Container {
 		if (slot != null && slot.hasItem()) {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
-			if (index < inventorySize) {
+			if (index == 0) { // if the clicked slot is the crafting result slot
+	            this.access.execute((world, blockPos) -> {
+	               itemstack1.getItem().onCraftedBy(itemstack1, world, player);
+	            });
+	            if (!this.moveItemStackTo(itemstack1, inventorySize, this.slots.size(), true)) {
+	               return ItemStack.EMPTY;
+	            }
+	            slot.onQuickCraft(itemstack1, itemstack);
+			}
+	        else if (index < inventorySize) { // if the clicked slot is part of the bench's inventory
 				if (!this.moveItemStackTo(itemstack1, inventorySize, this.slots.size(), true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.moveItemStackTo(itemstack1, 0, inventorySize, false)) {
+			} 
+	        else if (!this.moveItemStackTo(itemstack1, 0, inventorySize, false)) { // if the clicked slot is in the player's inventory
 				return ItemStack.EMPTY;
 			}
 
 			if (itemstack1.isEmpty()) {
 				slot.set(ItemStack.EMPTY);
-			} else {
+			} 
+			else {
 				slot.setChanged();
 			}
-		}
+			
+			if (itemstack1.isEmpty()) {
+	            slot.set(ItemStack.EMPTY);
+	         } 
+			else {
+	            slot.setChanged();
+	         }
 
+	         if (itemstack1.getCount() == itemstack.getCount()) {
+	            return ItemStack.EMPTY;
+	         }
+			
+			ItemStack itemstack2 = slot.onTake(player, itemstack1);
+	        if (index == 0) {
+	           player.drop(itemstack2, false);
+	        }
+		}
 		return itemstack;
 	}
 	
@@ -127,6 +203,12 @@ public class BenchContainer extends Container {
 	public boolean stillValid(PlayerEntity player) {
         return super.stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, BlockList.bench);
 	}
+	
+	@Override
+	public boolean canTakeItemForPickAll(ItemStack stack, Slot slot) {
+	      return slot.container != this.result && super.canTakeItemForPickAll(stack, slot);
+	   }
+
 	
 	private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
         for (int i = 0 ; i < amount ; i++) {
@@ -199,7 +281,5 @@ public class BenchContainer extends Container {
     		stackHandler = stacksHandler.getStacks();
     		this.addSlot(new CurioSlot(this.playerEntity, stackHandler, 0, "necklace", leftCol, curioYPos+18, stacksHandler.getRenders()));
     	});
-
     }
-
 }

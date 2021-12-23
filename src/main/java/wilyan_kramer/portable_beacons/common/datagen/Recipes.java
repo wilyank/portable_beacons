@@ -84,10 +84,11 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		.save(consumer, new ResourceLocation("portable_beacons", "potion_necklace"));
 		
 		ShapedRecipeBuilder.shaped(ItemList.beacon_backpack_0)
-		.pattern("sCs")
-		.pattern("LBL")
-		.pattern("InI")
-		.define('s', Items.STRING)
+		.pattern("LggL")
+		.pattern("LBCL")
+		.pattern("InnI")
+		.define('g', Items.GLASS)
+		//.define('s', Items.STRING)
 		.define('C', Items.CONDUIT)
 		.define('L', Items.LEATHER)
 		.define('I', Items.IRON_BLOCK)
@@ -119,6 +120,7 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		.pattern("S")
 		.pattern("L")
 		.pattern("L")
+		.pattern("L")
 		.define('S', Items.SPONGE)
 		.define('L', ItemTags.LOGS)
 		.group("")
@@ -135,6 +137,7 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		.group("")
 		.unlockedBy("has_netherite", has(Items.NETHERITE_INGOT))
 		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.infused_dagger.toString()));
+		
 		
 //		ConditionalRecipe.builder()
 //		.addCondition(modLoaded("alexsmobs"))

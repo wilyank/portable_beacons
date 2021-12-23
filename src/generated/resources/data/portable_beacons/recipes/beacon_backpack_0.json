@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "sCs",
-    "LBL",
-    "InI"
+    "LggL",
+    "LBCL",
+    "InnI"
   ],
   "key": {
-    "s": {
-      "item": "minecraft:string"
+    "g": {
+      "item": "minecraft:glass"
     },
     "C": {
       "item": "minecraft:conduit"

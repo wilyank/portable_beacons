@@ -1,6 +1,6 @@
 {
   "textures": {
-    "planks": "minecraft:block/birch_planks"
+    "planks": "portable_beacons:block/bench_leg"
   },
   "elements": [
     {
@@ -16,22 +16,58 @@
       ],
       "faces": {
         "down": {
-          "texture": "#planks"
+          "texture": "#planks",
+          "uv": [
+            3.0,
+            0.0,
+            6.0,
+            3.0
+          ]
         },
         "up": {
-          "texture": "#planks"
+          "texture": "#planks",
+          "uv": [
+            0.0,
+            0.0,
+            3.0,
+            14.0
+          ]
         },
         "north": {
-          "texture": "#planks"
+          "texture": "#planks",
+          "uv": [
+            0.0,
+            0.0,
+            3.0,
+            14.0
+          ]
         },
         "south": {
-          "texture": "#planks"
+          "texture": "#planks",
+          "uv": [
+            0.0,
+            0.0,
+            3.0,
+            14.0
+          ]
         },
         "west": {
-          "texture": "#planks"
+          "texture": "#planks",
+          "uv": [
+            0.0,
+            0.0,
+            3.0,
+            14.0
+          ]
         },
         "east": {
-          "texture": "#planks"
+          "texture": "#planks",
+          "uv": [
+            0.0,
+            0.0,
+            3.0,
+            14.0
+          ]
         }
       }
     }

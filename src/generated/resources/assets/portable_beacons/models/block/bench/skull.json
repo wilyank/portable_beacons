@@ -1,0 +1,76 @@
+{
+  "textures": {
+    "wither_skeleton": "portable_beacons:block/bench_skull"
+  },
+  "elements": [
+    {
+      "from": [
+        1.5999999,
+        15.610001,
+        1.5999999
+      ],
+      "to": [
+        6.4,
+        20.41,
+        6.4
+      ],
+      "rotation": {
+        "origin": [
+          6.4,
+          20.41,
+          6.4
+        ],
+        "axis": "y",
+        "angle": 45.0
+      },
+      "faces": {
+        "up": {
+          "texture": "#wither_skeleton",
+          "uv": [
+            8.0,
+            0.0,
+            16.0,
+            8.0
+          ]
+        },
+        "north": {
+          "texture": "#wither_skeleton",
+          "uv": [
+            0.0,
+            0.0,
+            8.0,
+            8.0
+          ]
+        },
+        "south": {
+          "texture": "#wither_skeleton",
+          "uv": [
+            8.0,
+            8.0,
+            16.0,
+            16.0
+          ]
+        },
+        "west": {
+          "texture": "#wither_skeleton",
+          "uv": [
+            0.0,
+            8.0,
+            8.0,
+            16.0
+          ]
+        },
+        "east": {
+          "texture": "#wither_skeleton",
+          "uv": [
+            0.0,
+            8.0,
+            8.0,
+            16.0
+          ],
+          "rotation": 180
+        }
+      }
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.mojang.serialization.Codec;
 
+import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
@@ -81,6 +82,7 @@ public class PortableBeaconsMod {
     {
         InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("necklace").build());
     	InterModComms.sendTo("curios", "register_type", () -> new SlotTypeMessage.Builder("back").build());
+    	ShapedRecipe.setCraftingSize(4, 4);
     }
 
     private void processIMC(final InterModProcessEvent event)

@@ -103,7 +103,8 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 			// can this item be inserted in this slot?
 			@Override
 			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-					return slot != 16;
+				return true;	
+				//return slot != 16;
 			}
 
 			// insert the item into the inventory if it is valid
@@ -162,13 +163,13 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 
 	// get the inventory size
 	public int getContainerSize() {
-		return 16+1+9; // four crafting slots, one crafting output slot (not sure if that one should be a real slot?) and nine inventory stots
+		return 9; // only the inventory row, crafting slots are in container
 	}
 
 	// check if the inventory is empty
 	public boolean isEmpty() {
 		for (int i = 0; i < this.getContainerSize(); i++) {
-			if (itemHandler.getStackInSlot(i) != null) {
+			if (!itemHandler.getStackInSlot(i).isEmpty()) {
 				return false;
 			}
 		}
