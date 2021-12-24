@@ -1,6 +1,0 @@
-{
-	"parent": "minecraft:block/cube_all",
-	"textures": {
-		"all": "portable_beacons:block/nether_star_block"
-	}
-}
