@@ -1,8 +1,8 @@
 {
   "textures": {
     "top": "portable_beacons:block/bench_top_right",
-    "bottom": "minecraft:block/birch_planks",
-    "side": "minecraft:block/smithing_table_side"
+    "bottom": "portable_beacons:block/bench_bottom_right",
+    "side": "portable_beacons:block/bench_top_right"
   },
   "elements": [
     {

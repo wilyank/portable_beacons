@@ -40,6 +40,7 @@ import wilyan_kramer.portable_beacons.common.structures.ModConfiguredStructures;
 import wilyan_kramer.portable_beacons.common.structures.ModStructures;
 import wilyan_kramer.portable_beacons.setup.ClientSetup;
 import wilyan_kramer.portable_beacons.setup.CommonSetup;
+import wilyan_kramer.portable_beacons.common.item.recipe.ModRecipes;
 
 @Mod("portable_beacons")
 public class PortableBeaconsMod {
@@ -75,6 +76,7 @@ public class PortableBeaconsMod {
     	event.enqueueWork(() -> {
             ModStructures.setupStructures();
             ModConfiguredStructures.registerConfiguredStructures();
+            ModRecipes.registerRecipes();
         });
 	}
     

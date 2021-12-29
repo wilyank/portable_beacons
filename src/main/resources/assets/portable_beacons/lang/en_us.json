@@ -25,6 +25,8 @@
     
     "item.portable_beacons.infused_dagger": "Infused Dagger",
     "item.portable_beacons.tooltip.on_hit": "On hit:",
+
+    "item.minecraft.potion.effect.glowing": "Shiny Potion",
     
     "block.portable_beacons.nether_star_block": "Nether Star Block",
     

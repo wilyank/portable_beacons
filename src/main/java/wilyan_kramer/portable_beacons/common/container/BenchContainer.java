@@ -113,6 +113,9 @@ public class BenchContainer extends Container {
 	public int getSummonerLevel() {
 		return this.data.get(2);
 	}
+	public int getBrewTime() {
+		return this.data.get(3);
+	}
 
 	@Override
 	public ContainerType<?> getType() {

@@ -5,16 +5,18 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.potion.PotionBrewing;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.INameable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -24,13 +26,13 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import wilyan_kramer.portable_beacons.common.block.ModBlockStateProperties;
-import wilyan_kramer.portable_beacons.common.item.ItemList;
 
 public class BenchTileEntity extends TileEntity implements ITickableTileEntity, INameable {
 
     private ItemStackHandler itemHandler = createItemHandler();
     private LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
     private ITextComponent name;
+    private int brewTime;
     
     //constructor
 	public BenchTileEntity() {
@@ -51,6 +53,7 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 		if (compound.contains("CustomName", 8)) {
 	         this.name = ITextComponent.Serializer.fromJson(compound.getString("CustomName"));
 	      }
+		this.brewTime = compound.getShort("BrewTime");
 		super.load(state, compound);
 	}
 	
@@ -61,6 +64,7 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 		if (this.name != null) {
 			compound.putString("CustomName", ITextComponent.Serializer.toJson(this.name));
 	    }
+		compound.putShort("BrewTime", (short) this.brewTime);
 		return super.save(compound);
 	}
 	
@@ -105,15 +109,11 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 			// can this item be inserted in this slot?
 			@Override
 			public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-				if (slot == 10) {
-					if (stack.getItem() == Items.POTION 
-							|| stack.getItem() == ItemList.infused_dagger 
-							|| stack.getItem() == ItemList.potion_necklace) {
-						return true;
-					}
-					else {
-						return false;
-					}
+				if (slot == 9) {
+					return net.minecraftforge.common.brewing.BrewingRecipeRegistry.isValidIngredient(stack);
+				}
+				else if (slot == 10) {
+					return net.minecraftforge.common.brewing.BrewingRecipeRegistry.isValidInput(stack);
 				}
 				return true;
 			}
@@ -150,6 +150,8 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 				return BenchTileEntity.this.level.getBlockState(worldPosition).getValue(ModBlockStateProperties.ARTIFICER_LEVEL);
 			case 2:
 				return BenchTileEntity.this.level.getBlockState(worldPosition).getValue(ModBlockStateProperties.SUMMONER_LEVEL);
+			case 3:
+				return BenchTileEntity.this.brewTime;
 			default:
 				return 0;
 			}
@@ -165,6 +167,8 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 			case 2:
 				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.SUMMONER_LEVEL, value), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
 				break;
+			case 3:
+				BenchTileEntity.this.brewTime = value;
 			}
 		}
 		public int getCount() {
@@ -215,10 +219,69 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 	// this function is called every tick
 	@Override
 	public void tick() {
-		// Do time-based recipes here
+		if (this.level.getBlockState(this.worldPosition).getValue(ModBlockStateProperties.POTIONEER_LEVEL) > 0) {
+			if (this.isBrewable() && this.brewTime > 0) {
+				brewTime--;
+			}
+			else if (brewTime == 0 && this.isBrewable()) {
+				this.doBrew();
+				this.brewTime = 400;
+			}
+			else {
+				this.brewTime = 400;
+			}
+			this.setChanged();
+		}
+		else {
+			brewTime = 400;
+		}
 	}
+	
+	// functions for brewing
+	private boolean isBrewable() {
+		ItemStack ingredient = this.itemHandler.getStackInSlot(9);
+		ItemStack bottle = this.itemHandler.getStackInSlot(10);
+		if (!ingredient.isEmpty()) return net.minecraftforge.common.brewing.BrewingRecipeRegistry.hasOutput(bottle, ingredient); // divert to VanillaBrewingRegistry
+		if (ingredient.isEmpty()) {
+			return false;
+		} else if (!PotionBrewing.isIngredient(ingredient)) {
+			return false;
+		} else {
+			if (!bottle.isEmpty() && PotionBrewing.hasMix(bottle, ingredient)) {
+				return true;
+			}
+			return false;
+		}
+	}
+	private void doBrew() {
+	      //if (net.minecraftforge.event.ForgeEventFactory.onPotionAttemptBrew(items)) return;
+	      ItemStack ingredient = this.itemHandler.getStackInSlot(9);
+	      ItemStack bottle = this.itemHandler.getStackInSlot(10);
+	      	      
+	      ItemStack output = net.minecraftforge.common.brewing.BrewingRecipeRegistry.getOutput(bottle, ingredient);
+          if (!output.isEmpty())
+          {
+              this.itemHandler.setStackInSlot(10, output);
+          }
+	      
+	      //net.minecraftforge.event.ForgeEventFactory.onPotionBrewed(items);
+	      BlockPos blockpos = this.getBlockPos();
+	      if (ingredient.hasContainerItem()) {
+	         ItemStack itemstack1 = ingredient.getContainerItem();
+	         ingredient.shrink(1);
+	         if (ingredient.isEmpty()) {
+	            ingredient = itemstack1;
+	         } else if (!this.level.isClientSide) {
+	            InventoryHelper.dropItemStack(this.level, (double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ(), itemstack1);
+	         }
+	      }
+	      else ingredient.shrink(1);
 
-	// bunch of stuff to make anvil renaming of the block work.
+	      //this.itemHandler.setStackInSlot(9, ingredient);
+	      this.level.levelEvent(1035, blockpos, 0);
+	   }
+
+// bunch of stuff to make anvil renaming of the block work.
 	@Override
 	public ITextComponent getName() {
 		return this.name != null ? this.name : this.getDefaultName();

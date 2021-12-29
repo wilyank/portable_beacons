@@ -52,8 +52,8 @@ public class BlockModels extends BlockStateProvider {
 				.face(Direction.DOWN).texture("#bottom").end()
 				.end()
 				.texture("top", modLoc("block/bench_top_left"))
-				.texture("bottom", mcLoc("block/birch_planks"))
-				.texture("side", mcLoc("block/smithing_table_side"));
+				.texture("bottom", modLoc("block/bench_bottom_left"))
+				.texture("side", modLoc("block/bench_top_left"));
 		
 		// left side of the table top
 		BlockModelBuilder tableTopRight = models().getBuilder("block/bench/top_right")
@@ -63,8 +63,8 @@ public class BlockModels extends BlockStateProvider {
 				.face(Direction.DOWN).texture("#bottom").end()
 				.end()
 				.texture("top", modLoc("block/bench_top_right"))
-				.texture("bottom", mcLoc("block/birch_planks"))
-				.texture("side", mcLoc("block/smithing_table_side"));
+				.texture("bottom", modLoc("block/bench_bottom_right"))
+				.texture("side", modLoc("block/bench_top_right"));
 		
 		// the little drawer thing
 		BlockModelBuilder drawer = models().getBuilder("block/bench/drawer")

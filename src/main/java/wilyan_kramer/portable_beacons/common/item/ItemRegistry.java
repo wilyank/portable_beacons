@@ -13,6 +13,7 @@ import wilyan_kramer.portable_beacons.common.block.BlockList;
 import wilyan_kramer.portable_beacons.common.config.Config;
 
 public class ItemRegistry {
+	
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
     	@SubscribeEvent
@@ -35,5 +36,7 @@ public class ItemRegistry {
 
     				);
     	}
+    	
+    	
     }
 }
