@@ -53,7 +53,8 @@ public class BlockModels extends BlockStateProvider {
 				.end()
 				.texture("top", modLoc("block/bench_top_left"))
 				.texture("bottom", modLoc("block/bench_bottom_left"))
-				.texture("side", modLoc("block/bench_top_left"));
+				.texture("side", modLoc("block/bench_top_left"))
+				.texture("particle", modLoc("block/bench_top_left"));
 		
 		// left side of the table top
 		BlockModelBuilder tableTopRight = models().getBuilder("block/bench/top_right")
@@ -156,6 +157,7 @@ public class BlockModels extends BlockStateProvider {
 		bld.part().modelFile(bottle).rotationY(270).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.LEVELS[0], Integer.valueOf(1)).condition(BenchBlock.FACING, Direction.NORTH);
 		bld.part().modelFile(totem).rotationY(270).addModel().condition(BenchBlock.PART, BenchPart.RIGHT).condition(BenchBlock.LEVELS[2], Integer.valueOf(2)).condition(BenchBlock.FACING, Direction.NORTH);
 		bld.part().modelFile(skull).rotationY(270).addModel().condition(BenchBlock.PART, BenchPart.LEFT).condition(BenchBlock.LEVELS[2], Integer.valueOf(1)).condition(BenchBlock.FACING, Direction.NORTH);
+		
 	}
 	private void addBottleDecoration(BlockModelBuilder builder, float x, float y, float z, float scale) {
 		

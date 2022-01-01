@@ -2,7 +2,8 @@
   "textures": {
     "top": "portable_beacons:block/bench_top_left",
     "bottom": "portable_beacons:block/bench_bottom_left",
-    "side": "portable_beacons:block/bench_top_left"
+    "side": "portable_beacons:block/bench_top_left",
+    "particle": "portable_beacons:block/bench_top_left"
   },
   "elements": [
     {

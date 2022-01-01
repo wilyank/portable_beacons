@@ -129,7 +129,6 @@ public class PotionNecklaceItem extends Item implements ICurioItem {
 			stacksInGroup.add(PotionUtils.setPotion(new ItemStack(this), Potions.STRENGTH));
 			stacksInGroup.add(PotionUtils.setPotion(new ItemStack(this), Potions.LEAPING));
 			stacksInGroup.add(PotionUtils.setPotion(new ItemStack(this), Potions.SLOW_FALLING));
-			stacksInGroup.add(PotionUtils.setPotion(new ItemStack(this), Potions.NIGHT_VISION));
 			stacksInGroup.add(PotionUtils.setPotion(new ItemStack(this), Potions.FIRE_RESISTANCE));
 			stacksInGroup.add(PotionUtils.setPotion(new ItemStack(this), Potions.TURTLE_MASTER));
 			if (ModList.get().isLoaded("alexsmobs")) {
