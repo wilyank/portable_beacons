@@ -1,0 +1,8 @@
+{
+  "type": "portable_beacons:bench_upgrade",
+  "input": {
+    "item": "minecraft:blaze_rod"
+  },
+  "profession": "potioneer",
+  "xp": 200
+}

@@ -25,14 +25,16 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import wilyan_kramer.portable_beacons.common.block.ModBlockStateProperties;
 
 public class BenchTileEntity extends TileEntity implements ITickableTileEntity, INameable {
 
+	public static int[] PROGRESSION_THRESHOLDS = new int[] {10,100,1000,10000, 1000000};
+	
     private ItemStackHandler itemHandler = createItemHandler();
     private LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
     private ITextComponent name;
     private int brewTime;
+    private int[] progression = new int[] {0,0,0};
     
     //constructor
 	public BenchTileEntity() {
@@ -54,6 +56,9 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 	         this.name = ITextComponent.Serializer.fromJson(compound.getString("CustomName"));
 	      }
 		this.brewTime = compound.getShort("BrewTime");
+		for (int i = 0; i < progression.length; i++) {
+			this.progression[i] = compound.getShort("Level_" + i);
+		}
 		super.load(state, compound);
 	}
 	
@@ -65,6 +70,9 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 			compound.putString("CustomName", ITextComponent.Serializer.toJson(this.name));
 	    }
 		compound.putShort("BrewTime", (short) this.brewTime);
+		for (int i = 0; i < progression.length; i++) {
+			compound.putShort("Level_" + i, (short) this.progression[i]);
+		}
 		return super.save(compound);
 	}
 	
@@ -85,7 +93,10 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
 		CompoundNBT tag = pkt.getTag();
 		handleUpdateTag(this.level.getBlockState(worldPosition), tag);
-		this.level.sendBlockUpdated(worldPosition, this.level.getBlockState(worldPosition), this.level.getBlockState(worldPosition), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+		this.level.sendBlockUpdated(worldPosition, 
+				this.level.getBlockState(worldPosition), 
+				this.level.getBlockState(worldPosition), 
+				Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
 	}
 	
 	// get the data to put in the update packet
@@ -145,11 +156,11 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 		public int get(int index) {
 			switch(index) {
 			case 0:
-				return BenchTileEntity.this.level.getBlockState(worldPosition).getValue(ModBlockStateProperties.POTIONEER_LEVEL);
+				return BenchTileEntity.this.progression[0];
 			case 1:
-				return BenchTileEntity.this.level.getBlockState(worldPosition).getValue(ModBlockStateProperties.ARTIFICER_LEVEL);
+				return BenchTileEntity.this.progression[1];
 			case 2:
-				return BenchTileEntity.this.level.getBlockState(worldPosition).getValue(ModBlockStateProperties.SUMMONER_LEVEL);
+				return BenchTileEntity.this.progression[2];
 			case 3:
 				return BenchTileEntity.this.brewTime;
 			default:
@@ -159,20 +170,20 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 		public void set(int index, int value) {
 			switch(index) {
 			case 0:
-				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.POTIONEER_LEVEL, value), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+				BenchTileEntity.this.progression[0] = value;
 				break;
 			case 1:
-				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.ARTIFICER_LEVEL, value), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+				BenchTileEntity.this.progression[1] = value;
 				break;
 			case 2:
-				BenchTileEntity.this.level.setBlock(worldPosition, getBlockState().setValue(ModBlockStateProperties.SUMMONER_LEVEL, value), Constants.BlockFlags.BLOCK_UPDATE + Constants.BlockFlags.NOTIFY_NEIGHBORS);
+				BenchTileEntity.this.progression[2] = value;
 				break;
 			case 3:
 				BenchTileEntity.this.brewTime = value;
 			}
 		}
 		public int getCount() {
-			return 3;
+			return 4;
 		}
 	};
 
@@ -219,7 +230,7 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 	// this function is called every tick
 	@Override
 	public void tick() {
-		if (this.level.getBlockState(this.worldPosition).getValue(ModBlockStateProperties.POTIONEER_LEVEL) > 0) {
+		if (this.progression[0] > BenchTileEntity.PROGRESSION_THRESHOLDS[0]) {
 			if (this.isBrewable() && this.brewTime > 0) {
 				brewTime--;
 			}
@@ -312,6 +323,13 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 			if (itemHandler.getStackInSlot(i) != ItemStack.EMPTY) {
 				this.level.addFreshEntity(new ItemEntity(level, this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ(), itemHandler.getStackInSlot(i)));
 			}
+		}
+	}
+	
+	// add experience to the bench
+	public void addExperience(int profession, int amount) {
+		if (this.progression[profession] < BenchTileEntity.PROGRESSION_THRESHOLDS[-1]) {
+			this.progression[profession] += amount;
 		}
 	}
 

@@ -40,6 +40,7 @@ import wilyan_kramer.portable_beacons.common.structures.ModConfiguredStructures;
 import wilyan_kramer.portable_beacons.common.structures.ModStructures;
 import wilyan_kramer.portable_beacons.setup.ClientSetup;
 import wilyan_kramer.portable_beacons.setup.CommonSetup;
+import wilyan_kramer.portable_beacons.common.item.recipe.ModRecipeSerializers;
 import wilyan_kramer.portable_beacons.common.item.recipe.ModRecipes;
 
 @Mod("portable_beacons")
@@ -61,7 +62,9 @@ public class PortableBeaconsMod {
         modEventBus.addListener(this::enqueueIMC);
         modEventBus.addListener(this::processIMC);
         modEventBus.addListener(ClientSetup::init);
-
+    	ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+    	
+    	
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 
         forgeBus.register(new CommonSetup());

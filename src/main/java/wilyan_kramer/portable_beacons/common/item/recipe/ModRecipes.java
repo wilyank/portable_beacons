@@ -27,6 +27,7 @@ public class ModRecipes {
 	private static ModBrewingRecipe createDaggerRecipe(ItemStack ingredient, List<EffectInstance> effects) {
 		return new ModBrewingRecipe(Ingredient.of(ItemList.infused_dagger), Ingredient.of(ingredient), PotionUtils.setCustomEffects(new ItemStack(ItemList.infused_dagger), effects));
 	}
+	@SuppressWarnings("unused")
 	private static ModBrewingRecipe createDaggerRecipe(ItemStack ingredient, Potion potion) {
 		return new ModBrewingRecipe(Ingredient.of(createPotion(potion)), Ingredient.of(ItemList.infused_dagger), PotionUtils.setPotion(new ItemStack(ItemList.infused_dagger), potion));
 	}

@@ -40,6 +40,8 @@ import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 import top.theillusivec4.curios.common.inventory.CurioSlot;
 import wilyan_kramer.portable_beacons.common.block.BlockList;
+import wilyan_kramer.portable_beacons.common.effect.Profession;
+import wilyan_kramer.portable_beacons.common.item.recipe.BenchUpgradeRecipe;
 import wilyan_kramer.portable_beacons.common.tileentity.BenchTileEntity;
 
 public class BenchContainer extends Container {
@@ -60,6 +62,7 @@ public class BenchContainer extends Container {
 	public final LazyOptional<ICuriosItemHandler> curiosHandler;
 	private final IIntArray data;
 	CraftingInventory craftingInv = new CraftingInventory(this, 4, 4);
+	CraftingInventory upgradeInv = new CraftingInventory(this, 1, 1);
     CraftResultInventory result = new CraftResultInventory();
     private final IWorldPosCallable access;
 
@@ -94,8 +97,9 @@ public class BenchContainer extends Container {
 				}
 				// add the block inventory row
 				addSlotRange(h, 0, 24, 108, 9, 18);
-				this.addSlot(new SlotItemHandler(h, 9, 218, 8));
-				this.addSlot(new SlotItemHandler(h, 10, 218, 41));
+				this.addSlot(new SlotItemHandler(h, 9, 218, 8)); // the brewing ingredient slot
+				this.addSlot(new SlotItemHandler(h, 10, 218, 41)); // the brewing bottle slot
+				this.addSlot(new Slot(this.upgradeInv, 0, 232, 72));
 			});
 		}
 		layoutPlayerInventorySlots(24, 140); // layout the player's inventory and hotbar slots
@@ -139,11 +143,34 @@ public class BenchContainer extends Container {
 			serverplayerentity.connection.send(new SSetSlotPacket(id, 0, itemstack));
 		}
 	}
+	protected static void slotChangedUpgradeGrid(int id, World world, PlayerEntity player, 
+			CraftingInventory upgradeInv, BlockPos blockPos) {
+		if (!world.isClientSide) {
+//			ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) player;
+			if (world.getBlockEntity(blockPos) instanceof BenchTileEntity) {
+				BenchTileEntity tileEntity = (BenchTileEntity) world.getBlockEntity(blockPos);
+
+				Optional<BenchUpgradeRecipe> optional = world.getServer().getRecipeManager().getRecipeFor(BenchUpgradeRecipe.TYPE, upgradeInv, world);
+				if (optional.isPresent()) {
+					BenchUpgradeRecipe recipe = optional.get();
+					int professionId = Profession.valueOf(recipe.getProfession()).ordinal();
+					if (tileEntity.dataAccess.get(professionId) < BenchTileEntity.PROGRESSION_THRESHOLDS[-1]) {
+						int current = tileEntity.dataAccess.get(professionId);
+						tileEntity.dataAccess.set(professionId, Math.max(BenchTileEntity.PROGRESSION_THRESHOLDS[-1], current + recipe.getExperience()));
+						upgradeInv.getItem(0).shrink(1);
+					}
+				}
+			}
+		}
+	}
 	
 	@Override
 	public void slotsChanged(IInventory invIn) {
 		access.execute((world, blockPos) -> {
 			slotChangedCraftingGrid(this.containerId, this.playerEntity.level, this.playerEntity, this.craftingInv, this.result);
+		});
+		access.execute((world, blockPos) -> {
+			slotChangedUpgradeGrid(this.containerId, this.playerEntity.level, this.playerEntity, this.upgradeInv, blockPos);
 		});
 	}
 	@Override

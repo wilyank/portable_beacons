@@ -138,6 +138,12 @@ public class Recipes extends RecipeProvider implements IConditionBuilder {
 		.unlockedBy("has_netherite", has(Items.NETHERITE_INGOT))
 		.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, ItemList.infused_dagger.toString()));
 		
+		BenchUpgradeRecipeBuilder.addRecipe(Items.BLAZE_ROD)
+			.setExperience(200)
+			.setProfession("potioneer")
+			.group("")
+			.unlockedBy("has_blaze_rod", has(Items.BLAZE_ROD))
+			.save(consumer, new ResourceLocation(PortableBeaconsMod.MODID, "bench_upgrade_" + Items.BLAZE_ROD.toString()));
 		
 //		ConditionalRecipe.builder()
 //		.addCondition(modLoaded("alexsmobs"))

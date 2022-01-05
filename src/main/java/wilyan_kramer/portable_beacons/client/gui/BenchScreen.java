@@ -70,9 +70,9 @@ public class BenchScreen extends ContainerScreen<BenchContainer> {
 		int potioneerLevel = this.menu.getPotioneerLevel();
 		int artificerLevel = this.menu.getArtificerLevel();
 		int summonerLevel = this.menu.getSummonerLevel();
-		this.blit(mStack, this.leftPos + 110, this.topPos + 74, 0, 222, potioneerLevel*75/5, 5);
-		this.blit(mStack, this.leftPos + 110, this.topPos + 79, 0, 227, artificerLevel*75/5, 5);
-		this.blit(mStack, this.leftPos + 110, this.topPos + 84, 0, 232, summonerLevel*75/5, 5);
+		this.blit(mStack, this.leftPos + 110, this.topPos + 74, 0, 222, (int) potioneerLevel*75/1000, 5);
+		this.blit(mStack, this.leftPos + 110, this.topPos + 79, 0, 227, (int) artificerLevel*75/1000, 5);
+		this.blit(mStack, this.leftPos + 110, this.topPos + 84, 0, 232, (int) summonerLevel*75/1000, 5);
 	    
 		
 		// the progress bar for the brewing stand
