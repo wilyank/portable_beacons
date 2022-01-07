@@ -1,5 +1,6 @@
 package wilyan_kramer.portable_beacons.common.effect;
 
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.util.IStringSerializable;
 
 public enum Profession implements IStringSerializable {
@@ -19,5 +20,18 @@ public enum Profession implements IStringSerializable {
 
 	public String getSerializedName() {
 		return this.name;
+	}
+
+	public static int asInt(String profession) {
+		if (profession.equals("potioneer")) {
+			return 0;
+		}
+		if (profession.equals("artificer")) {
+			return 1;
+		}
+		if (profession.equals("summoner")) {
+			return 2;
+		}
+		return -1;
 	}
 }

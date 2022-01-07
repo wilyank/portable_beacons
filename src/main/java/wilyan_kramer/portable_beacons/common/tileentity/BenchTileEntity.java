@@ -28,7 +28,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class BenchTileEntity extends TileEntity implements ITickableTileEntity, INameable {
 
-	public static int[] PROGRESSION_THRESHOLDS = new int[] {10,100,1000,10000, 1000000};
+	public static int[] PROGRESSION_THRESHOLDS = new int[] {10, 30, 100, 300, 1000};
 	
     private ItemStackHandler itemHandler = createItemHandler();
     private LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
@@ -152,6 +152,7 @@ public class BenchTileEntity extends TileEntity implements ITickableTileEntity, 
 		}
 		return super.getCapability(cap, side);
 	}
+	// data access for the container
 	public IIntArray dataAccess = new IIntArray() {
 		public int get(int index) {
 			switch(index) {

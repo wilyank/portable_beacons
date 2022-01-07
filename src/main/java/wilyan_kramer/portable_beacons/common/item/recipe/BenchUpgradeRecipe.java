@@ -56,7 +56,7 @@ public class BenchUpgradeRecipe implements IRecipe<IInventory> {
 
 	@Override
 	public ItemStack getResultItem() {
-		return null;
+		return this.input.getItems()[0];
 	}
 
 	@Override
@@ -80,11 +80,4 @@ public class BenchUpgradeRecipe implements IRecipe<IInventory> {
 		// TODO Auto-generated method stub
 		return this.group;
 	}
-
-	@Override
-	public ItemStack getToastSymbol() {
-		return new ItemStack(Items.TOTEM_OF_UNDYING);
-	}
-
-
 }

@@ -39,6 +39,7 @@ import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 import top.theillusivec4.curios.common.inventory.CurioSlot;
+import wilyan_kramer.portable_beacons.PortableBeaconsMod;
 import wilyan_kramer.portable_beacons.common.block.BlockList;
 import wilyan_kramer.portable_beacons.common.effect.Profession;
 import wilyan_kramer.portable_beacons.common.item.recipe.BenchUpgradeRecipe;
@@ -99,6 +100,7 @@ public class BenchContainer extends Container {
 				addSlotRange(h, 0, 24, 108, 9, 18);
 				this.addSlot(new SlotItemHandler(h, 9, 218, 8)); // the brewing ingredient slot
 				this.addSlot(new SlotItemHandler(h, 10, 218, 41)); // the brewing bottle slot
+				// the slot for upgrading the bench
 				this.addSlot(new Slot(this.upgradeInv, 0, 232, 72));
 			});
 		}
@@ -146,19 +148,34 @@ public class BenchContainer extends Container {
 	protected static void slotChangedUpgradeGrid(int id, World world, PlayerEntity player, 
 			CraftingInventory upgradeInv, BlockPos blockPos) {
 		if (!world.isClientSide) {
-//			ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) player;
+			PortableBeaconsMod.LOGGER.info("Upgrade slot changed");
+			ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) player;
 			if (world.getBlockEntity(blockPos) instanceof BenchTileEntity) {
+				PortableBeaconsMod.LOGGER.info("This is the correct TE");
 				BenchTileEntity tileEntity = (BenchTileEntity) world.getBlockEntity(blockPos);
 
 				Optional<BenchUpgradeRecipe> optional = world.getServer().getRecipeManager().getRecipeFor(BenchUpgradeRecipe.TYPE, upgradeInv, world);
 				if (optional.isPresent()) {
+					PortableBeaconsMod.LOGGER.info("recipe found");
 					BenchUpgradeRecipe recipe = optional.get();
-					int professionId = Profession.valueOf(recipe.getProfession()).ordinal();
-					if (tileEntity.dataAccess.get(professionId) < BenchTileEntity.PROGRESSION_THRESHOLDS[-1]) {
+					int professionId = Profession.asInt(recipe.getProfession());
+					PortableBeaconsMod.LOGGER.info("profession: " + recipe.getProfession());
+					PortableBeaconsMod.LOGGER.info("professionId: " + professionId);
+					if (tileEntity.dataAccess.get(professionId) < BenchTileEntity.PROGRESSION_THRESHOLDS[BenchTileEntity.PROGRESSION_THRESHOLDS.length-1]) {
+						PortableBeaconsMod.LOGGER.info("upgrade available");
 						int current = tileEntity.dataAccess.get(professionId);
-						tileEntity.dataAccess.set(professionId, Math.max(BenchTileEntity.PROGRESSION_THRESHOLDS[-1], current + recipe.getExperience()));
-						upgradeInv.getItem(0).shrink(1);
+						tileEntity.dataAccess.set(professionId, Math.max(BenchTileEntity.PROGRESSION_THRESHOLDS[BenchTileEntity.PROGRESSION_THRESHOLDS.length-1], current + recipe.getExperience()));
+						PortableBeaconsMod.LOGGER.info("set progression to " + Math.max(BenchTileEntity.PROGRESSION_THRESHOLDS[BenchTileEntity.PROGRESSION_THRESHOLDS.length-1], current + recipe.getExperience()));
+//						upgradeInv.getItem(0).shrink(1);
+						ItemStack itemStack = upgradeInv.getItem(0).copy();
+						itemStack.shrink(1);
+						upgradeInv.setItem(0, itemStack);
+						serverplayerentity.connection.send(new SSetSlotPacket(id, 0, itemStack));
+						PortableBeaconsMod.LOGGER.info("stacksize decreased");
 					}
+				}
+				else {
+					PortableBeaconsMod.LOGGER.info("recipe not found");
 				}
 			}
 		}
