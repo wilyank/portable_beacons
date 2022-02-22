@@ -32,7 +32,7 @@
     
     "block.portable_beacons.diffuser": "Diffuser",
     
-    "block.portable_beacons.bench":"Bench",
+    "block.portable_beacons.bench":"Bench (WIP)",
     
     "message.portable_beacons.command.infuse.add": "Infused %s into %s",
     "message.portable_beacons.command.infuse.clear": "Cleared all effects from %s",

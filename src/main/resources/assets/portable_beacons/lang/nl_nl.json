@@ -27,6 +27,8 @@
     "block.portable_beacons.nether_star_block": "Nethersterblok",
 
     "block.portable_beacons.diffuser": "Verstuiver",
+    
+    "block.portable_beacons.bench": "Werkbank (WIP)",
 
     "message.portable_beacons.command.infuse.add": "%s doordrenkt met %s",
     "message.portable_beacons.command.infuse.clear": "Alle effecten van %s verwijderd",
