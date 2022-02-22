@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "LggL",
-    "LBCL",
-    "InnI"
+    "LCL",
+    "LBL",
+    "InI"
   ],
   "key": {
     "g": {
